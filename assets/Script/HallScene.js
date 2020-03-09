@@ -1,0 +1,415 @@
+require("Config");
+require("ComonFunc");
+
+cc.Class({
+    extends: require("AppScene"),
+
+    properties: {
+        roomListScrollView: {
+            default: null,
+            type: cc.ScrollView
+        },
+
+        roomListCell:{
+            default:null,
+            type:cc.Node
+        }
+    },
+
+    addAutoI18n(){
+        autoi18n.analysisLanguageData(this.node,'hallUI.text_RoomList','HallScene');
+        autoi18n.analysisLanguageData(this.node,'RoomListIcon.headicondi.l_fangzhu','HallScene');
+        autoi18n.analysisLanguageData(this.node,'RoomListIcon.i_danzhu','HallScene');
+        autoi18n.analysisLanguageData(this.node,'RoomListIcon.i_wanjia','HallScene');
+        autoi18n.analysisLanguageData(this.node,'RoomListIcon.i_fanghao','HallScene');
+
+        autoi18n.analysisLanguageSprite(this.node,'hallUI.btn_backhall','exitgame');
+        autoi18n.analysisLanguageSprite(this.node,'hallUI.btn_seachRoom','ssfjbtn');
+        autoi18n.analysisLanguageSprite(this.node,'hallUI.dibg.btn_createRoom','cjfjbtn');
+        autoi18n.analysisLanguageSprite(this.node,'hallUI.dibg.btn_FastJoin','ksjrbtn');
+        autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.roomType_1','gongkaifang');
+        autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.roomType_2','mimafang');
+        autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.lijijiaru','lijijiaru');
+    },
+
+    // use this for initialization
+    onLoad: function () {
+        // this.label.string = this.text;
+        this.isSendGetList = false
+        this.isCancelPipei = false
+        this.initMgr()
+        this.initScene("Hall")
+        this.initUI()
+        this.addListens()
+        this.sendGetRoomList()
+        // cc.game.on("onLanguageChange",this.addAutoI18n,this);
+        this.addAutoI18n();
+    },
+
+    start(){
+        if(cc.vv.gameData.getBackInfo()){
+            cc.vv.gameData.setBackInfo(null)
+            this.hallwebSocketInit()
+        }
+    },
+
+    initMgr(){
+        if(!cc.vv){
+            cc.vv = {}
+            GlobalConfig.token = this.getUrlParam('token')
+            this.shareRoomId = this.getUrlParam('roomId')
+        }
+
+        //事件
+        if(!cc.vv.eventMgr){
+            var EventMgr = require("EventMgr");
+            cc.vv.eventMgr = new EventMgr();
+            cc.vv.eventMgr.init();
+        }
+
+
+        //预制体
+        if(!cc.vv.PrefabMgr){
+            var PrefabMgr = require("PrefabMgr");
+            cc.vv.PrefabMgr = new PrefabMgr();
+            cc.vv.PrefabMgr.init();
+        }
+
+
+        if(!cc.vv.musicManage){
+            cc.vv.musicManage = require("musicManage")
+        }
+
+        if(!cc.vv.gameData){
+            var GameData = require("GameData")
+            cc.vv.gameData = new GameData();
+            cc.vv.gameData.initData()
+        }
+
+
+        if(!cc.vv.webSoket){
+            var WebSoket = require("WebSoket");
+            cc.vv.webSoket = new WebSoket();
+            cc.vv.webSoket.init();
+            // this.testPost(0)
+            this.hallwebSocketInit()
+        }
+
+
+        // let lang=cc.sys.localStorage.getItem("lang");
+        let lang = this.getUrlParam('lang')
+        if(!lang){
+            lang = "ZH";
+        }
+        autoi18n.changeLanguage(lang);
+    },
+
+
+        
+    hallwebSocketInit(){
+        if(GlobalConfig.token){
+            var str = GlobalConfig.websockstr + "?token="+ GlobalConfig.token + "&channel=game"
+            cc.vv.webSoket.webSocketInit(str)
+        }
+    },
+
+
+    onX(evet,idx){
+        if(Number(idx)==100){
+            let adrbox = this.node.getChildByName("testAcc").getChildByName("adr").getChildByName("adrEditBox")
+            let str = adrbox.getComponent(cc.EditBox).string
+            cc.vv.webSoket.webSocketInit(str)
+            return
+
+            //?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzg4Nzk2NTksIm5iZiI6MTU3ODg3OTY1OSwiZXhwIjoxNTc5NDg0NDU5LCJkYXRhIjoiNSJ9
+            //.uPFaf2l0uEZLCsRkMKcrkZhZV9oc6iaVfzKsD8x6ROM&channel=game
+        }
+        this.testPost(Number(idx))
+    },
+
+
+    testPost(_idx){
+        let loginAccountArg = [11111,22222,33333,44444,55555,66666,77777,88888,99999];
+        let idx = cc.sys.localStorage.getItem('loginAccountArgIdx');
+        cc.log("---------------------:" , idx)
+        if(!idx || idx == "" || idx == 9){
+            idx = 0
+        }
+        if(_idx!=undefined){
+            idx = _idx
+        }
+        let loginAccount =  loginAccountArg[Number(idx)]  
+        cc.log("=================================loginAccount:" , loginAccount)
+        var url = "http://118.178.16.240/api/v1/passport/login";
+
+        let arg = { loginAccount: loginAccount, loginPassword:123456  }
+        window.httpPost(url, arg,(ret)=>{
+            var token = ret.result.token
+            var str = GlobalConfig.websockstr + "?token="+ token + "&channel=game"
+            cc.log("login_Post:" , str)
+            cc.vv.webSoket.webSocketInit(str)
+        })
+        idx = Number(Number(idx) + 1)
+        cc.sys.localStorage.setItem('loginAccountArgIdx',idx);
+    },
+
+
+    initUI(){
+        this.roomListScrollViewContent = this.roomListScrollView.content;
+
+        // this.roomListScrollView.on("scroll-to-bottom", ()=>{
+        //     cc.log("scroll-to-bottom---")
+        // });
+
+        //测试
+        // this.addRoomListCell();
+    },
+
+    addRoomListCell(ret){
+        if(!ret || ret.length <= 0){
+            return
+        }
+        this.roomListScrollViewContent.removeAllChildren();
+        this.roomListScrollViewContent.height = this.roomListCell.height * ret.length
+        for (var i = 0; i < ret.length; i++) {
+            var newPcell = cc.instantiate(this.roomListCell)
+            newPcell.x = 0;
+            newPcell.active = true
+            // cc.log("this.roomListScrollViewContent:" , this.roomListScrollViewContent)
+            // cc.log("this.roomListScrollViewContent_newPcell:" , newPcell)
+            this.roomListScrollViewContent.addChild(newPcell)
+            newPcell.getComponent("RoomListItem").roadUI(ret[i])
+            newPcell.getComponent("RoomListItem").setJiaRuCallBack((roomId , roomType)=>{
+                this.joinRoom(roomId,roomType)
+            })
+        }
+    },
+
+    onBackHall(){
+        cc.log("touch back hall")
+        // cc.game.end();
+        window.alsc.finish();
+    },
+
+    // JS`正则表达式`获取地址栏url参数：
+    getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); // 匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; // 返回参数值
+    },
+
+    onSeachRoom(){
+        var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+        cc.vv.PrefabMgr.add("prefab/SearchRoomView",(prefabInstance)=>{
+            if(prefabInstance){
+                let obj = prefabInstance
+                cPopUpManage.show(obj)
+                obj.getComponent("SearchRoom").setMode(1)
+                return
+            }
+        })
+    },
+
+    onCrateRoom(){
+        var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+        cc.vv.PrefabMgr.add("prefab/CreatRoom",(prefabInstance)=>{
+            if(prefabInstance){
+                let obj = prefabInstance
+                cPopUpManage.show(obj , cc.v2(0,-190))
+                return
+            }
+        })
+    },
+
+    //
+    opneInvite(data){
+        var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+        cc.vv.PrefabMgr.add("prefab/GetInvite",(prefabInstance)=>{
+            if(prefabInstance){
+                let obj = prefabInstance
+                cPopUpManage.show(obj)
+                obj.getComponent("GetInvite").initMsg(data)
+                obj.getComponent("GetInvite").setAgreeCallBack(()=>{
+                    this.sendjoinRoom(data.roomId,"" , "share")
+                })
+                return
+            }
+        })
+    },
+
+
+    opnePipeiView(){
+        this.isCancelPipei = false
+        var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+        cc.vv.PrefabMgr.add("prefab/PipeiView",(prefabInstance)=>{
+            if(prefabInstance){
+                let obj = prefabInstance
+                this.peiPeiObj = obj
+                cPopUpManage.show(obj)
+                obj.getComponent("PipeiLayer").setCancleCallBack(()=>{
+                    this.peiPeiObj = null
+                    this.isCancelPipei = true
+                })
+                return
+            }
+        })
+    },
+
+    closePipeiLayer(){
+        if(this.peiPeiObj){
+            var cPopUpManage = PopUpManage().getComponent("PopUpManage");
+            cPopUpManage.hide(this.peiPeiObj, true)
+            this.peiPeiObj = null
+            cc.log("close pi pei")
+        }
+    },
+
+
+
+    shuruMiMaJoin(roomId){
+        var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+        cc.vv.PrefabMgr.add("prefab/SearchRoomView",(prefabInstance)=>{
+            if(prefabInstance){
+                let obj = prefabInstance
+                cPopUpManage.show(obj)
+                obj.getComponent("SearchRoom").setMode(2,roomId,(ret)=>{
+                    this.sendjoinRoom(roomId,ret)
+                })
+                return
+            }
+        })
+    },
+
+    addListens(){
+        var self = this
+        cc.vv.eventMgr.addHandler(GlobalConfig.GET_SOKET_MSG, function (data) {
+            cc.log("大厅收到协议数据:" , data)
+            self.dearWithMsg(data)
+        },this);
+
+        cc.vv.eventMgr.addHandler(GlobalConfig.SOKET_OPEN, function (data) {
+            self.sendGetRoomList()
+            if(this.shareRoomId){
+                this.sendjoinRoom(this.shareRoomId,"" , "share")
+                this.shareRoomId = null
+            }
+        },this);
+
+        cc.vv.eventMgr.addHandler(GlobalConfig.SOKET_CLOSE, function (data) {
+            this.unschedule(this.hallwebSocketInit)
+            this.schedule(this.hallwebSocketInit,5)
+        },this);
+    },
+
+
+
+
+    sendGetRoomList(){
+        var state = cc.vv.webSoket.getSoketState()
+        if(!this.isSendGetList && state == 1){
+            this.isSendGetList = true
+            var sendStr =   {
+                cmd: GlobalConfig.ROOM_LIST,
+            }
+            cc.vv.webSoket.websocketSend(sendStr)
+        }
+    },
+
+
+    dearWithMsg(data){
+        if(!data.cmd){
+            return
+        }
+        var cmd = Number(data.cmd)
+        if(cmd==1000){
+            window.sendHeart()
+            return
+        }
+        if(cmd==2000){
+            return
+        }
+
+        if(cmd!=GlobalConfig.GET_INVITE && data.code!=200){
+            ShowTipsLabel(data.msg || autoi18n.languageData.showText.czerrortips)
+            if(cmd==GlobalConfig.ROOMJIESAN){
+                this.closePipeiLayer()
+            }
+            return
+        }
+
+        cc.log("cmd.hall....................." ,cmd)
+        var result = data.result || {}
+        if(cmd == GlobalConfig.SOCKTE_SEARCH_ROOM){
+            var roomId = result.roomId
+            var roomType = result.roomType
+            if(roomId&&roomType){
+                this.joinRoom(roomId,roomType)
+            }else{
+                ShowTipsLabel(autoi18n.languageData.showText.ssfjbcztips)
+            }
+        }else if(cmd == GlobalConfig.CREATE_ROOM){
+            var roomId = result.roomId
+            if(roomId){
+                this.sendjoinRoom(roomId)
+                cc.vv.gameData.setJoinRoomType(1)
+            }
+        }else if(cmd == GlobalConfig.ROOM_LIST){
+            if(result){
+                this.addRoomListCell(result)
+            }
+        }else if(cmd == GlobalConfig.JOIN_ROOM){
+            if(result){
+                window.joinGame(result,false)
+            }
+        }
+        else if(cmd == GlobalConfig.USER_INFO){
+            if(result){
+                cc.vv.gameData.setUserInfo(result)
+                this.unschedule(this.hallwebSocketInit)
+            }
+        }else if(cmd == GlobalConfig.ROOMJIESAN){
+            if(result){
+                if(!this.isCancelPipei){
+                    this.closePipeiLayer()
+                    this.sendjoinRoom(result)
+                }
+            }
+        }else if(cmd == GlobalConfig.RECOVER_GAME){
+            if(result){
+                // this.sendjoinRoom(result)
+                window.joinGame(result,true)
+            }
+        }else if(cmd == GlobalConfig.GET_INVITE){
+            //收到邀请信息
+            this.opneInvite(data)
+        }
+    },
+
+    joinRoom(roomId,roomType){
+        if(roomType == 1){
+            this.sendjoinRoom(roomId)
+        }else if(roomType == 2){
+            this.shuruMiMaJoin(roomId)
+        }
+    },
+
+    sendjoinRoom(roomId,password,from){
+        password = password || ""
+        var from = from || ""
+        var sendStr =   {
+            cmd: GlobalConfig.JOIN_ROOM,
+            roomId:roomId,
+            password:password,
+            from:from
+        }
+        cc.vv.webSoket.websocketSend(sendStr)
+        cc.vv.gameData.setJoinRoomType(2)
+    },
+
+
+    onFastJoin(){
+        this.opnePipeiView()
+    },
+
+});

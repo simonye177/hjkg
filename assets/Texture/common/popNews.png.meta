@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "b99e10b1-ef4a-417d-ad0b-5dc959a1f630",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "popNews": {
+      "ver": "1.0.4",
+      "uuid": "1db413a0-4086-4a5a-b1de-1b547ada38ff",
+      "rawTextureUuid": "b99e10b1-ef4a-417d-ad0b-5dc959a1f630",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 447,
+      "height": 34,
+      "rawWidth": 447,
+      "rawHeight": 34,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

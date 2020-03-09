@@ -1,0 +1,58 @@
+{
+  "assets-sort-type": "name",
+  "collision-matrix": [
+    [
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      null,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
+      true,
+      false
+    ]
+  ],
+  "design-resolution-height": 1334,
+  "design-resolution-width": 750,
+  "excluded-modules": [],
+  "facebook": {
+    "appID": "",
+    "audience": {
+      "enable": false
+    },
+    "enable": false,
+    "live": {
+      "enable": false
+    }
+  },
+  "fit-height": false,
+  "fit-width": true,
+  "group-list": [
+    "default",
+    "wall",
+    "mineralGolden",
+    "claw"
+  ],
+  "last-module-event-record-time": 1582639233849,
+  "simulator-orientation": false,
+  "simulator-resolution": {
+    "height": 1334,
+    "width": 750
+  },
+  "start-scene": "2d2f792f-a40c-49bb-a189-ed176a246e49",
+  "use-customize-simulator": true,
+  "use-project-simulator-setting": true
+}
