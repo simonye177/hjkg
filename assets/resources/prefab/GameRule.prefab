@@ -34,7 +34,11 @@
     ],
     "_active": true,
     "_level": 1,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 27
+      }
+    ],
     "_prefab": {
       "__id__": 28
     },
@@ -528,13 +532,10 @@
     "_components": [
       {
         "__id__": 25
-      },
-      {
-        "__id__": 26
       }
     ],
     "_prefab": {
-      "__id__": 27
+      "__id__": 26
     },
     "_opacity": 255,
     "_color": {
@@ -737,7 +738,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 700
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -779,10 +780,10 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "经典游戏“黄金矿工”的高清版本，画面更加精致，游戏内容更加丰富。保留了经典的游戏玩法，增加了养成系统，让游戏更加有趣。同时支持三个人一起玩，快点叫上你的朋友一起来吧！经典游戏“黄金矿工”的高清版本，画面更加精致，游戏内容更加丰富。保留了经典的游戏玩法，增加了养成系统，让游戏更加有趣。同时支持三个人一起玩，快点叫上你的朋友一起来吧！\n经典游戏“黄金矿工”的高清版本，画面更加精致，游戏内容更加丰富。保留了经典的游戏玩法，增加了养成系统，让游戏更加有趣。同时支持三个人一起玩，快点叫上你的朋友一起来吧！\n经典游戏“黄金矿工”的高清版本，画面更加精致，游戏内容更加丰富。保留了经典的游戏玩法，增加了养成系统，让游戏更加有趣。同时支持三个人一起玩，快点叫上你的朋友一起来吧！",
-    "_N$string": "经典游戏“黄金矿工”的高清版本，画面更加精致，游戏内容更加丰富。保留了经典的游戏玩法，增加了养成系统，让游戏更加有趣。同时支持三个人一起玩，快点叫上你的朋友一起来吧！经典游戏“黄金矿工”的高清版本，画面更加精致，游戏内容更加丰富。保留了经典的游戏玩法，增加了养成系统，让游戏更加有趣。同时支持三个人一起玩，快点叫上你的朋友一起来吧！\n经典游戏“黄金矿工”的高清版本，画面更加精致，游戏内容更加丰富。保留了经典的游戏玩法，增加了养成系统，让游戏更加有趣。同时支持三个人一起玩，快点叫上你的朋友一起来吧！\n经典游戏“黄金矿工”的高清版本，画面更加精致，游戏内容更加丰富。保留了经典的游戏玩法，增加了养成系统，让游戏更加有趣。同时支持三个人一起玩，快点叫上你的朋友一起来吧！",
+    "_string": "",
+    "_N$string": "",
     "_fontSize": 35,
-    "_lineHeight": 35,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
@@ -791,7 +792,7 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 2,
+    "_N$overflow": 3,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -844,32 +845,6 @@
     "sync": false
   },
   {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 16
-    },
-    "_enabled": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": null,
-    "_type": 1,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_state": 0,
-    "_atlas": null,
-    "_id": ""
-  },
-  {
     "__type__": "cc.ScrollView",
     "_name": "",
     "_objFlags": 0,
@@ -905,6 +880,22 @@
     },
     "fileId": "d4U7O3vqtLj5sSyeASXazG",
     "sync": false
+  },
+  {
+    "__type__": "d41c9WWfUFBnIFjYJKbLkAR",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "gameRuleScrollView": {
+      "__id__": 25
+    },
+    "labelRule": {
+      "__id__": 20
+    },
+    "_id": ""
   },
   {
     "__type__": "cc.PrefabInfo",

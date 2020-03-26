@@ -44,6 +44,18 @@ cc.Class({
         this.sendGetRoomList()
         // cc.game.on("onLanguageChange",this.addAutoI18n,this);
         this.addAutoI18n();
+
+        this.schedule(this.updateRoomList,5)
+        this.scheduleOnce(()=>{
+            var path = "mus/joinhall"
+            cc.vv.musicManage.loadClip(path, function (err, clip) {
+                if (err) {
+                    cc.error('playMusic: ', path)
+                    return
+                }
+                cc.vv.musicManage.playMusic(clip,true)
+            }); 
+        },1)
     },
 
     start(){
@@ -102,6 +114,9 @@ cc.Class({
             lang = "ZH";
         }
         autoi18n.changeLanguage(lang);
+
+        window.addCommonPrefab();
+
     },
 
 
@@ -155,7 +170,6 @@ cc.Class({
 
 
     initUI(){
-        this.roomListScrollViewContent = this.roomListScrollView.content;
 
         // this.roomListScrollView.on("scroll-to-bottom", ()=>{
         //     cc.log("scroll-to-bottom---")
@@ -165,29 +179,51 @@ cc.Class({
         // this.addRoomListCell();
     },
 
+    updateRoomList(){
+        var ret = this.roomListScrollView.node.getComponent("roomListScrollView").getSrollingTime()
+        if(ret){
+            this.sendGetRoomList()
+        }
+    },
+
     addRoomListCell(ret){
+        if(this.lastRet){
+            if(JSON.stringify(this.lastRet) == JSON.stringify(ret))return
+        }
+        this.lastRet = ret;
+        this.roomListScrollView.content.removeAllChildren();
         if(!ret || ret.length <= 0){
             return
         }
-        this.roomListScrollViewContent.removeAllChildren();
-        this.roomListScrollViewContent.height = this.roomListCell.height * ret.length
-        for (var i = 0; i < ret.length; i++) {
-            var newPcell = cc.instantiate(this.roomListCell)
-            newPcell.x = 0;
-            newPcell.active = true
-            // cc.log("this.roomListScrollViewContent:" , this.roomListScrollViewContent)
-            // cc.log("this.roomListScrollViewContent_newPcell:" , newPcell)
-            this.roomListScrollViewContent.addChild(newPcell)
-            newPcell.getComponent("RoomListItem").roadUI(ret[i])
-            newPcell.getComponent("RoomListItem").setJiaRuCallBack((roomId , roomType)=>{
-                this.joinRoom(roomId,roomType)
-            })
-        }
+        this.roomListScrollView.node.getComponent("roomListScrollView").addData(ret)
+        this.roomListScrollView.node.getComponent("roomListScrollView").joinRoomCallBack((roomId , roomType)=>{
+            window.playEff("button");
+            if(!this.tipNoNetWork()) return;
+            this.joinRoom(roomId,roomType)
+        })
+
+
+        // this.roomListScrollViewContent.removeAllChildren();
+        // this.roomListScrollViewContent.height = this.roomListCell.height * ret.length
+        // for (var i = 0; i < ret.length; i++) {
+        //     var newPcell = cc.instantiate(this.roomListCell)
+        //     newPcell.x = 0;
+        //     newPcell.active = true
+        //     // cc.log("this.roomListScrollViewContent:" , this.roomListScrollViewContent)
+        //     // cc.log("this.roomListScrollViewContent_newPcell:" , newPcell)
+        //     this.roomListScrollViewContent.addChild(newPcell)
+        //     newPcell.getComponent("RoomListItem").roadUI(ret[i])
+        //     newPcell.getComponent("RoomListItem").setJiaRuCallBack((roomId , roomType)=>{
+        //         this.joinRoom(roomId,roomType)
+        //     })
+        // }
     },
 
     onBackHall(){
         cc.log("touch back hall")
         // cc.game.end();
+        window.playEff("button");
+        cc.vv.musicManage.stopMusic();
         window.alsc.finish();
     },
 
@@ -200,6 +236,8 @@ cc.Class({
     },
 
     onSeachRoom(){
+        window.playEff("button");
+        if(!this.tipNoNetWork()) return;
         var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
         cc.vv.PrefabMgr.add("prefab/SearchRoomView",(prefabInstance)=>{
             if(prefabInstance){
@@ -212,6 +250,8 @@ cc.Class({
     },
 
     onCrateRoom(){
+        window.playEff("button");
+        if(!this.tipNoNetWork()) return;
         var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
         cc.vv.PrefabMgr.add("prefab/CreatRoom",(prefabInstance)=>{
             if(prefabInstance){
@@ -307,8 +347,9 @@ cc.Class({
 
     sendGetRoomList(){
         var state = cc.vv.webSoket.getSoketState()
-        if(!this.isSendGetList && state == 1){
-            this.isSendGetList = true
+        if(state == 1){
+            cc.log("刷新房间列表")
+            // this.isSendGetList = true
             var sendStr =   {
                 cmd: GlobalConfig.ROOM_LIST,
             }
@@ -331,8 +372,10 @@ cc.Class({
         }
 
         if(cmd!=GlobalConfig.GET_INVITE && data.code!=200){
-            ShowTipsLabel(data.msg || autoi18n.languageData.showText.czerrortips)
+            cc.log("================msg:" , data.msg)
+            ShowTipsLabel( window.showServerTips(data.msg) ||  autoi18n.languageData.showText.czerrortips)
             if(cmd==GlobalConfig.ROOMJIESAN){
+                window.playEff("ksjrsb");
                 this.closePipeiLayer()
             }
             return
@@ -351,6 +394,7 @@ cc.Class({
         }else if(cmd == GlobalConfig.CREATE_ROOM){
             var roomId = result.roomId
             if(roomId){
+                window.playEff("cjfjcg");
                 this.sendjoinRoom(roomId)
                 cc.vv.gameData.setJoinRoomType(1)
             }
@@ -373,6 +417,7 @@ cc.Class({
                 if(!this.isCancelPipei){
                     this.closePipeiLayer()
                     this.sendjoinRoom(result)
+                    window.playEff("cgpipei");
                 }
             }
         }else if(cmd == GlobalConfig.RECOVER_GAME){
@@ -409,7 +454,24 @@ cc.Class({
 
 
     onFastJoin(){
+        window.playEff("button");
+        if(!this.tipNoNetWork()) return;
         this.opnePipeiView()
+    },
+
+    onDestroy(){
+        cc.log("hall scene ondestroy")
+        this._super();
+        this.unschedule(this.updateRoomList)
+    },
+
+
+    tipNoNetWork(){
+        var state = cc.vv.webSoket.getSoketState()
+        var isConect = state==1
+        if(!isConect)
+            ShowTipsLabel(autoi18n.languageData.showText.wldktips)
+        return isConect
     },
 
 });

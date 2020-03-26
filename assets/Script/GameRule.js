@@ -12,20 +12,36 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-
+        gameRuleScrollView:{
+            default:null,
+            type:cc.ScrollView
+        },
+        labelRule:{
+            default:null,
+            type:cc.Label
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
     addAutoI18n(){
-        autoi18n.analysisLanguageData(this.node,'ruleScrollView.view.content.ruleLabel','GameRule');
+        // autoi18n.analysisLanguageData(this.node,'ruleScrollView.view.content.ruleLabel','GameRule');
 
         autoi18n.analysisLanguageSprite(this.node,'title','titleyxgz');
     },
 
     start () {
         this.addAutoI18n();
+
+        this.setRuleString();
+    },
+
+    setRuleString(){
+        this.labelRule.string = autoi18n.languageData.GameRule["ruleScrollView.view.content.ruleLabel"];
+        this.scheduleOnce(()=>{
+            this.gameRuleScrollView.content.height = this.labelRule.node.height;
+        },0)
     },
 
     // update (dt) {},

@@ -3,7 +3,11 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        isJinse:true
+        isJinse:true,
+        label:{
+            default:null,
+            type:cc.Label
+        }
     },
 
 
@@ -12,6 +16,7 @@ cc.Class({
 
     setID(id){
         this.kuangshiId = id
+        this.label.getComponent(cc.Label).string = id
     },
 
     getIsJinse(){

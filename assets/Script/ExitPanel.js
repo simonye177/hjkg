@@ -30,6 +30,7 @@ cc.Class({
     },
 
     onExitGame(){
+        window.playEff("button");
         if(this.QrCallBack){
             this.QrCallBack()
         }
@@ -37,10 +38,12 @@ cc.Class({
     },
 
     onCancleExit(){
+        window.playEff("button");
         this.closeNode()
     },
 
     closeNode(){
+        window.playEff("button");
         var cPopUpManage = PopUpManage().getComponent("PopUpManage");
         cPopUpManage.hide(this.node, true)
     },

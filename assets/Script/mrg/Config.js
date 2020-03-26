@@ -4,7 +4,6 @@
 window.GlobalConfig = {};
 GlobalConfig.token = "";
 GlobalConfig.tipsZidx = 2998; // tips层级
-GlobalConfig.websockstr = "ws://118.178.16.240:2348"
 GlobalConfig.GET_SOKET_MSG = "GET_SOKET_MSG";
 GlobalConfig.SOKET_OPEN = "SOKET_OPEN";
 GlobalConfig.SOKET_CLOSE = "SOKET_CLOSE";
@@ -13,6 +12,7 @@ GlobalConfig.PENGZHUANG_GOLD = "PENGZHUANG_GOLD";
 
 
 GlobalConfig.HttpHost = "118.178.16.240";
+GlobalConfig.websockstr = "ws://" +  GlobalConfig.HttpHost + ":2348";
 GlobalConfig.GetFriendListUrl = "http://" + GlobalConfig.HttpHost + "/api/v1/game/contact";
 GlobalConfig.PostInviteFriendUrl = "http://" + GlobalConfig.HttpHost + "/api/v1/game/invite";
 

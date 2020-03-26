@@ -9,7 +9,6 @@ cc.Class({
             type:cc.Node
         },
 
-
         otherPlaerScrollView:{
             default:null,
             type:cc.ScrollView
@@ -67,9 +66,14 @@ cc.Class({
 
         this.initRoom();
         this.initGame();
-        this.isRecover();
+        let isrecover = this.isRecover();
 
         this.addAutoI18n();
+
+        if(!isrecover){
+            this.startTimerToReady(true);
+        }
+        this.playGameMusic()
     },
 
     start(){
@@ -84,34 +88,37 @@ cc.Class({
         this.myUid = this.myInfo.userId
         cc.log("----------------initRoom_this.myUid:" , this.myUid)
         this.roomInfo = roomInfo
+        this.timerLabel.node.active = false;
 
         this.myName.string = window.subSTotring(this.myInfo.nickName);
+        // this.myName.string = window.subSTotring("胡明明给你想那你");
         this.fanghaoNum.string = this.roomId;
         this.local_mergeUsers(this.roomInfo)
         this.addOterPlayer()
+        this.updateUserAlsc()
 
         this.tipsJoinRoom()
         // this.updateShengLength()
         this.addOperationListen()
         this.addHandlerListen()
-
     },
 
     //断线重连
     isRecover(){
         let isRecover = cc.vv.gameData.getIsRecoverJoinRoom()
         if(isRecover){
-            this.recoverGame()
+            this.recoverGame();
         }
+        return isRecover;
     },
 
     //初始化游戏 每局
     initGame(){
         this.operationState = 0;
         this.gameState = 1;
-        this.myCoin.string = 0;
         this.myScore.string = 0;
         this.timerLabel.string = 0;
+        this.isShowTipsAlscKou = false;
         this.updateOtherReady()
         this.showMyReadyNode(true)
         this.setExitGameBtnType(1)
@@ -136,7 +143,8 @@ cc.Class({
         }
 
         if(data.code!=200){
-            ShowTipsLabel(data.msg || autoi18n.languageData.showText.czerrortips)
+            // ShowTipsLabel(data.msg || autoi18n.languageData.showText.czerrortips)
+            ShowTipsLabel( window.showServerTips(data.msg) ||  autoi18n.languageData.showText.czerrortips)
             return
         }
 
@@ -151,6 +159,11 @@ cc.Class({
                 if(result.timer){
                     this.gameState = 2;
                     this.gameTimer(result.timer)
+                    if(!this.isShowTipsAlscKou){
+                        let tips = autoi18n.languageData.showText.xtydj + " " +this.roomInfo.payAmount  + " ALSC"
+                        ShowTipsLabel(tips);
+                        this.isShowTipsAlscKou = true;
+                    }
                 }
             }
         }else if(cmd == GlobalConfig.GAMESTART){
@@ -171,14 +184,14 @@ cc.Class({
                 // this.updateMyRank();
                 var item = result.item
                 if(item){
-                    cc.log("------------CATCH_MINERAL_this.myUid:" , item.userId , this.myUid , item.userId == this.myUid)
+                    // cc.log("------------CATCH_MINERAL_this.myUid:" , item.userId , this.myUid , item.userId == this.myUid)
                     if(item.userId == this.myUid){
                         //爪子收回要加分
                         this.piaoFenAction(item.score)
                     }else{
                         //移除矿石
                         let node = this.gameRect.getChildByName(item.id)
-                        cc.log("------------item.id:" , item.id , node , this.gameRect)
+                        // cc.log("------------item.id:" , item.id , node , this.gameRect)
 
                         if(node){
                             node.removeFromParent()
@@ -193,6 +206,10 @@ cc.Class({
                 for(let i=0; i<out.length;++i ){
                     if(out[i].userId == this.myUid){
                         window.exitGame()
+                    }else{
+                        //别的玩家被踢出房间 删除那个人的数据并刷新
+                        this.deleteUser(out[i].userId)
+                        this.addOterPlayer()
                     }
                 }
             }
@@ -212,6 +229,19 @@ cc.Class({
                 this.local_mergeUsers(result)
                 this.addOterPlayer()
             }
+        }
+    },
+
+    startTimerToReady(isStart){
+        if(this.roomInfo.roomType!=1){
+            cc.log("---密码房---")
+            return
+        }
+        if(isStart){
+            this.gameTimer(60,true)
+        }else{
+            this.timerLabel.node.active = false;
+            this.unschedule(this.updateCurTime);
         }
     },
 
@@ -259,7 +289,7 @@ cc.Class({
         let nodeZhuaPos = this.zhuazi.parent.convertToNodeSpaceAR(pos)
 
         // cc.log("----------------nodeZhuaPos:" , nodeZhuaPos.x , nodeZhuaPos.y)
-        let speed = this.zhuaziSpeed;
+        let speed = this.zhuaziSpeed * 1.3;
         if(arg && arg.isget){
             speed = this.zhuaziSpeed * 0.8
             if(arg.isgold==1){
@@ -320,6 +350,7 @@ cc.Class({
                 this.operationState = 1
                 this.shengzi.pauseAllActions()
                 var pos = this.CalculationPosition()
+                window.playEff("chugou");
                 this.zhuaziAction(pos,()=>{
                     this.backZhuazi(false)
                 })
@@ -390,7 +421,7 @@ cc.Class({
         ks.x = pos.x * this.gameRect.width/750
         ks.y = pos.y * this.gameRect.height/700
         ks._name = id
-        cc.log("-----------------------chuangjiankuangshi:" , id,i)
+        // cc.log("-----------------------chuangjiankuangshi:" , id,i)
         ks.getComponent("Mineral").setID(id)
         this.gameRect.addChild(ks)
     },
@@ -430,6 +461,10 @@ cc.Class({
                     return
                 }
             }
+            if(!ret.isgold){
+                window.playEff("shitou");
+            }
+            
             this.lastGetGoldTime = curTime
             this.isRuningAct = false
             this.backZhuazi(true,ret)
@@ -446,10 +481,12 @@ cc.Class({
 
     //退出游戏
     onExitGame(){
+        window.playEff("button");
         if(this.exitGameBtnType == 2){
             this.onJieSanTips(autoi18n.languageData.showText.qdtcyx,()=>{
                 // window.exitGame()
                 // cc.game.end()
+                cc.vv.musicManage.stopMusic();
                 window.alsc.finish();
             })
         }else{
@@ -474,6 +511,7 @@ cc.Class({
     },
 
     openGameList(){
+        window.playEff("button");
         var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
         cc.vv.PrefabMgr.add("prefab/GamePlayerList",(prefabInstance)=>{
             if(prefabInstance){
@@ -488,6 +526,7 @@ cc.Class({
     },
 
     openInviteFriend(){
+        window.playEff("button");
         var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
         cc.vv.PrefabMgr.add("prefab/IviteFriend",(prefabInstance)=>{
             if(prefabInstance){
@@ -500,7 +539,7 @@ cc.Class({
     },
     //打开规则
     onOpenRule(){
-
+        window.playEff("button");
         var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
         cc.vv.PrefabMgr.add("prefab/GameRule",(prefabInstance)=>{
             if(prefabInstance){
@@ -528,7 +567,7 @@ cc.Class({
     },
 
 
-    openGmeResult(){
+    openGmeResult(result){
 
         var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
         cc.vv.PrefabMgr.add("prefab/GamePlayerList",(prefabInstance)=>{
@@ -537,9 +576,12 @@ cc.Class({
                 obj.x = 0;
                 obj.y = 100
                 cPopUpManage.show(obj,cc.v2(0,100))
-                let arg_sort = this.getDeepClonUser()
+                // cc.log("sdfasdfasdfa:" , result)
+                var resultTemp = this.local_mergeUsers(result,true)
+                let arg_sort = this.getDeepClonUser(resultTemp)
+                // cc.log("sdfasdfasdfa111:" , arg_sort)
                 obj.getComponent("GamePlayerList").setModeTyppe("youxijiesuan")
-                obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort)
+                obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort,this.myUid)
                 obj.getComponent("GamePlayerList").setGameOverCallBack(
                     ()=>{
                         this.sendExitGame()
@@ -626,16 +668,32 @@ cc.Class({
 
     //点击准备
     onReadyGame(evet , data){
-
-        if(Number(data)==0){
-            //不能取消准备
-            return
+        // let curTime = new Date().getTime();
+        // if(this.touchReadyTime && curTime-this.touchReadyTime < 1000){
+        //     cc.log("点击太频繁了")
+        //     return
+        // }
+        window.playEff("button");
+        var setTouchEnable = (b)=>{
+            this.readyNode.getChildByName("zhunbei").getComponent(cc.Button).interactable = b;
+            this.readyNode.getChildByName("qxzhunbei").getComponent(cc.Button).interactable = b;
         }
+
+        // this.touchReadyTime = curTime;
+        // if(Number(data)==0){
+        //     //不能取消准备
+        //     return
+        // }
         var sendStr =   {
             cmd: GlobalConfig.USERREADY,
             roomId:this.roomId
         }
         cc.vv.webSoket.websocketSend(sendStr)
+
+        setTouchEnable(false);
+        this.scheduleOnce(()=>{
+            setTouchEnable(true);
+        },1)
     },
 
     onJieSan(){
@@ -654,10 +712,13 @@ cc.Class({
         var ret = ret || {}
         for(let i = 0 ; i < ret.length ; i++ ){
             if(ret[i].userId == this.myUid){
-                this.setMyReadState(ret[i].ready)
-                if(ret[i].ready){
-                    this.setExitGameBtnType(2)
-                }
+                let state = ret[i].ready
+                if(this.lastMystate == state)return
+                this.lastMystate = state
+                this.setMyReadState(state)
+                let bstate = state ? 2 : 1
+                this.setExitGameBtnType(bstate)
+                this.startTimerToReady(bstate==1)
             }
         }
     },
@@ -675,6 +736,10 @@ cc.Class({
             // cc.log("num is err:",num)
             return
         }
+
+        window.playEff("addscore");
+
+        cc.log("飘分：" , num)
 
         var piaofenNode = this.node.getChildByName("upNode").getChildByName("piaofen")
         piaofenNode.getComponent(cc.Label).string = '+'+ num;
@@ -713,17 +778,17 @@ cc.Class({
 
     //创建钻石
     createKuangshi(ret){
-        cc.log("---------------------ret0:" , ret.length)
+        // cc.log("---------------------ret0:" , ret.length)
         var ret = ret || {}
         this.scheduleOnce(()=>{
-            cc.log("==================ret.length:" , ret.length)
+            // cc.log("==================ret.length:" , ret.length)
             for(let i = 0 ; i < ret.length ; ++i){
-                var x = 375 - ret[i].x
-                var y = 300 - ret[i].y
+                var x = ret[i].x - 375
+                var y = ret[i].y - 300
                 var isjinKuang = ret[i].gold
                 this.chuangjiankuangshi(ret[i].id , cc.v2(x,y),isjinKuang,i)
             }
-            cc.log("------------------this.gameRect.child:" , this.gameRect.children.length)
+            // cc.log("------------------this.gameRect.child:" , this.gameRect.children.length)
         },0.1)
     },
 
@@ -754,6 +819,7 @@ cc.Class({
         // this.updateMyRank()
         this.gameTimer(result.totalTime);
         this.setExitGameBtnType(2)
+        window.playEff("startgame");
     },
 
     //游戏重连
@@ -787,17 +853,20 @@ cc.Class({
         this.setExitGameBtnType(1)
         this.resetShengziState()
         this.unschedule(this.updateShengLength)
-        this.openGmeResult()
+        this.openGmeResult(result)
         this.updateUserScore(true)
+        this.updateUserAlsc()
     },
 
 
     //游戏倒计时
-    gameTimer( time ){
+    gameTimer( time , event){
         cc.log("gameTimer开始倒计时：" , time)
         if(!time || time<=0){
             return
         }
+        this.timerLabel.node.active = true;
+        this.readyTimer = event;
         this.unschedule(this.updateCurTime);
         this.timer = time
         this.timerLabel.string = this.timer
@@ -810,9 +879,16 @@ cc.Class({
         this.curTimes = new Date().getTime()
         this.timer = Math.ceil((this.endTime - this.curTimes) / 1000)
         this.timerLabel.string = this.timer
+        if(this.timer==3){
+            window.playEff("daojishi");
+        }
         if(this.curTimes>=this.endTime){
                 this.unschedule(this.updateCurTime);
                 this.timerLabel.string = 0;
+                this.timerLabel.node.active = false;
+                if(this.readyTimer){
+                    this.sendExitGame()
+                }
         }
         // if(this.curTimes - this.startTime >= 1000){
         //     this.timer = this.timer-1;
@@ -841,21 +917,26 @@ cc.Class({
         }
     },
 
-    // //更新我的排名
-    // updateMyRank(){
-    //     let arg_sort = this.getDeepClonUser()
-    //     let rankIdx = 1
-    //     arg_sort.forEach((value,index) => {
-    //         if(value.userId == this.myUid){
-    //             rankIdx = Number(index+1)
-    //         }
-    //     });
-    //     this.mypaiming.string = rankIdx;
-    // },
+    //更新玩家alsc
+    updateUserAlsc(){
+        var users = this.roomInfo.users
+        for(let i = 0 ; i < users.length ; ++i){
+            let alsc = Number(users[i].userStore.balance).toFixed(2)
+            if(users[i].userId == this.myUid){
+                this.myCoin.string = "" + alsc
+            }else{
+                var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
+                if(otherNode){
+                    otherNode.getComponent("OtherPlayerItem").setUserAlsc(users[i].userStore.balance)
+                }
+            }
+        }
+    },
 
     //更新别人的准备状态
     updateOtherReady(isHide){  //isHide  是否隐藏其他玩家的准备状态
         let users = this.roomInfo.users
+        // cc.log("========updateOtherReady=====users:" , users)
         for(let i = 0 ; i < users.length ; ++i){
             if(users[i].userId == this.myUid){
             }else{
@@ -870,17 +951,31 @@ cc.Class({
 
 
     //合并数据
-    local_mergeUsers(result){
+    local_mergeUsers(result,isNotFZ){
         if(result==null){
             cc.log("................local_mergeUsers:result==null")
             return
         }
         var users = result.users || this.roomInfo.users
-        this.roomInfo.users = users
+        if(!isNotFZ){
+            this.roomInfo.users = users
+        }
         var userStore = result.userStore || {}
         window.mergeUsers(users,userStore)
+        return users
         //fix 更新玩家信息
         // cc.log("...........local_mergeUsers:" , this.roomInfo.users)
+    },
+
+    deleteUser(uid){
+        var users = this.roomInfo.users
+        for(let i = 0 ; i<users.length ; ++i){
+            if(users[i].userId == uid){
+                users.splice(i, 1);
+                break
+            }
+        }
+
     },
 
 
@@ -903,13 +998,15 @@ cc.Class({
         }
         if(!isHaveSelf){
             window.exitGame()
+        }else{
+            this.addOterPlayer()
         }
     },
 
 
     //深拷贝
-    getDeepClonUser(){
-        let users = window.deepClone(this.roomInfo.users)
+    getDeepClonUser(_users){
+        let users = window.deepClone(_users || this.roomInfo.users)
         //按金币大到小排序 
         var users_sort = users
         if(users.length>=2){
@@ -920,4 +1017,20 @@ cc.Class({
         return users_sort
     },
 
+    playGameMusic(){
+        var path = "mus/gameMusic"
+        cc.vv.musicManage.loadClip(path, function (err, clip) {
+            if (err) {
+                cc.error('playMusic: ', path)
+                return
+            }
+            cc.vv.musicManage.playMusic(clip,true)
+        }); 
+    },
+
+    onDestroy(){
+        cc.log("game scene ondestroy")
+        this._super();
+        cc.vv.musicManage.stopMusic();
+    },
 });

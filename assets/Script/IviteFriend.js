@@ -135,12 +135,14 @@ cc.Class({
     },
 
     onCloseLayer(){
+        window.playEff("button");
         var cPopUpManage = PopUpManage().getComponent("PopUpManage");
         cPopUpManage.hide(this.node, true)
     },
 
 
     quanxuanBtn(){
+        window.playEff("button");
         cc.log("this.ItemArg......length:" , this.ItemArg.length)
         for(var i = 0 ;  i< this.ItemArg.length ; i++){
             this.ItemArg[i].getComponent("InvitePlayerItem").setIsChoose(true)
@@ -148,6 +150,7 @@ cc.Class({
     },
 
     lijiyaoqingbtn(){
+        window.playEff("button");
         let argUid = []
         for(var i = 0 ;  i< this.ItemArg.length ; i++){
             var ischoose = this.ItemArg[i].getComponent("InvitePlayerItem").getIsChoose()

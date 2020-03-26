@@ -2859,7 +2859,7 @@
       "b": 255,
       "a": 255
     },
-    "_N$maxLength": 5,
+    "_N$maxLength": 8,
     "_N$stayOnTop": false,
     "_id": ""
   },
@@ -3263,7 +3263,7 @@
     },
     "_N$returnType": 0,
     "_N$inputFlag": 0,
-    "_N$inputMode": 6,
+    "_N$inputMode": 2,
     "_N$fontSize": 20,
     "_N$lineHeight": 40,
     "_N$fontColor": {

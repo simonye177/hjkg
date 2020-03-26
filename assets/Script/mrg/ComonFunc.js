@@ -1,4 +1,28 @@
 
+
+String.prototype.format = function(args) {
+    var result = this;
+    if (arguments.length > 0) {
+        if (arguments.length == 1 && typeof (args) == "object") {
+            for (var key in args) {
+                if(args[key]!=undefined){
+                    var reg = new RegExp("({" + key + "})", "g");
+                    result = result.replace(reg, args[key]);
+                }
+            }
+        }
+        else {
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] != undefined) {
+                    var reg= new RegExp("({)" + i + "(})", "g");
+                    result = result.replace(reg, arguments[i]);
+                }
+            }
+        }
+    }
+    return result;
+}
+
 //弹窗
 window.PopUpManage = function() {
     var PopUpManage = cc.director.getScene().getChildByName("Canvas").getChildByName("node_popUp")
@@ -16,7 +40,7 @@ window.PrefixInteger = function (num, length) {
 
 window.subSTotring = function (str, leng) {
     str = "" + str
-    leng = leng || 8
+    leng = leng || 4
     if (str.length > leng) {
         return str.substring(0, leng) + "..."
     }
@@ -83,62 +107,76 @@ window.distanceWin = function(pos,pos2){
 },
 
 
+Window.tipsPerfabNode = null
+window.addCommonPrefab = function(){
+    cc.vv.PrefabMgr.add("prefab/showTips", function (perfabInstance) {
+        Window.tipsPerfabNode = perfabInstance
+    })
+},
+
+
+
+
 //显示文本提示
 window.tipsObjList = [];
 window.ShowTipsLabel = function (str, pos) {
-    cc.vv.PrefabMgr.add("prefab/showTips", function (perfabInstance) {
-        var newNode = perfabInstance;
-        var parentNode = cc.director.getScene().getChildByName("Canvas")
-        parentNode.addChild(newNode, GlobalConfig.tipsZidx - window.tipsObjList.length);
+    if(!Window.tipsPerfabNode){
+        cc.error("================tipsNode is null:" )
+        return
+    }
+
+    var newNode = cc.instantiate(Window.tipsPerfabNode);
+    var parentNode = cc.director.getScene().getChildByName("Canvas")
+    parentNode.addChild(newNode, GlobalConfig.tipsZidx - window.tipsObjList.length);
 
 
-        var tipsBg = newNode.getChildByName("tipsBg")
-        var tipsLabel = tipsBg.getChildByName("tipsLabel")
-        tipsLabel.getComponent(cc.Label).string = str
+    var tipsBg = newNode.getChildByName("tipsBg")
+    var tipsLabel = tipsBg.getChildByName("tipsLabel")
+    tipsLabel.getComponent(cc.Label).string = str
 
-        tipsBg.opacity = 255
-        tipsBg.setPosition(cc.v2(0, 0))
+    tipsBg.opacity = 255
+    tipsBg.setPosition(cc.v2(0, 0))
 
-        if (pos) {
-            tipsBg.setPosition(pos)
-        }
+    if (pos) {
+        tipsBg.setPosition(pos)
+    }
 
-        var removeFromList = function (obj) {
-            for (var i = 0; i < window.tipsObjList.length; i++) {
-                if (window.tipsObjList[i].idx == obj.idx) {
-                    window.tipsObjList.splice(i, 1)
-                    break
-                }
-            }
-        }
-
-
-        if (window.tipsObjList.length > 0) {
-            for (var i = 0; i < window.tipsObjList.length; i++) {
-                let act = cc.moveBy(0.3, cc.v2(0, 50))
-                window.tipsObjList[i].runAction(act)
-            }
-        }
-
-
-
-
-        tipsBg.idx = window.tipsObjList.length
-        window.tipsObjList.push(tipsBg)
-        // window.playEff("tips")
-        tipsBg.runAction(cc.sequence(
-            cc.scaleTo(0.1, 0.9),
-            cc.scaleTo(0.1, 1),
-            cc.delayTime(2),
-            cc.fadeOut(0.5),
-            cc.callFunc(function (rec) {
-                removeFromList(tipsBg)
-                // cc.vv.PrefabMgr.remove("prefab/showTips",newNode);
-                newNode.removeFromParent()
-            })
+    newNode.runAction(
+        cc.spawn(
+            cc.moveBy(0.3, cc.v2(0, 50)),
+            cc.sequence(cc.scaleTo(0.1, 0.9),
+                cc.scaleTo(0.1, 1),
+                cc.delayTime(1),
+                cc.fadeOut(0.5),
+                cc.callFunc(function (rec) {
+                    // removeFromList(newNode)
+                    if(newNode && newNode.parent)
+                        newNode.removeFromParent()
+                })
+            )
         ))
-    });
 }
+
+
+window.showServerTips = function( arg ){
+    if(!arg)return;
+    var argT = arg.split("_");
+    if(argT.leng<1){
+        cc.log("argT.leng<1argT.leng<1argT.leng<1!!!!:" , arg)
+        return
+    }
+    let arg1 = argT[0];
+    let  tipString = autoi18n.languageData.serverTips[arg1];
+    if(!tipString){
+        cc.log("tipString is null!!!!:" , tipString)
+        tipString = autoi18n.languageData.showText.czerrortips + "[" + arg1 + "]"
+        return tipString
+    }
+    if(arg1=="Lang10001" || arg1=="Lang10002"){
+        tipString = tipString.format(argT[1] || "")
+    }
+    return tipString
+},
 
 
 
@@ -210,6 +248,19 @@ window.httpPost = function (url, reqData, callback) {
     xhr.send(param);//reqData为字符串形式： "key=value"
 
 }
+
+window.playEff = function(efstr){
+    if(!efstr)return;
+    efstr = "mus/" + efstr
+    cc.vv.musicManage.loadClip(efstr, function (err, clip) {
+        if (err) {
+            cc.error('playEffect: ', efstr)
+            return
+        }
+        cc.vv.musicManage.playEffect(clip)
+    }); 
+}
+
 
 window.deepClone = function(obj){
     let _obj = JSON.stringify(obj),

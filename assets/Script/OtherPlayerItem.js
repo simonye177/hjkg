@@ -19,8 +19,10 @@ cc.Class({
         data = data || {}
         data.userStore = data.userStore || {}
         this.name.string = window.subSTotring(data.nickName);
-        this.money = 0;
-        this.defenNum.string = data.userStore.score || 0;
+        // this.money = Number(data.balance).toFixed(2) || 0;
+        // this.defenNum.string = data.userStore.score || 0;
+        this.setUserScore(data.userStore.score)
+        this.setUserAlsc(data.userStore.balance)
         window.getHeadRes(data.avatarUrl, (sp)=>{
             if(this.headIcon){
                 this.headIcon.getComponent(cc.Sprite).spriteFrame = sp;
@@ -31,7 +33,11 @@ cc.Class({
     },
 
     setUserScore(score){
-        this.defenNum.string = score
+        this.defenNum.string = score || 0
+    },
+
+    setUserAlsc(alsc){
+        this.money.string = Number(alsc).toFixed(2) || 0
     },
 
     setIsReady(isReady){

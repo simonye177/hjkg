@@ -19,8 +19,8 @@ cc.Class({
     addAutoI18n(){
         autoi18n.analysisLanguageSprite(this.node,'bg.title','titlewjlb');
         autoi18n.analysisLanguageSprite(this.node,'bg.titleyxjs','youxijiesuantitle');
-        autoi18n.analysisLanguageSprite(this.node,'youxijieusuanNode.tuichufangjian','qx');
-        autoi18n.analysisLanguageSprite(this.node,'youxijieusuanNode.zailaiyiju','qx');
+        autoi18n.analysisLanguageSprite(this.node,'youxijieusuanNode.tuichufangjian','tuichufangjian');
+        autoi18n.analysisLanguageSprite(this.node,'youxijieusuanNode.zailaiyiju','zailaiyiju');
     },
 
     onLoad () {
@@ -29,7 +29,7 @@ cc.Class({
 
         // this.addPlayerListCell()
         this.addAutoI18n()
-        this.setJiesuanStr(0);
+        // this.setJiesuanStr(0,0);
     },
 
 
@@ -46,9 +46,16 @@ cc.Class({
         }
     },
 
-    setJiesuanStr(num){
+    setJiesuanStr(price,taxPrice){
+        var num = price
+        if(num>0){
+            num = taxPrice
+            window.playEff("yingle");
+        }else{
+            window.playEff("shule");
+        }
         this.node.getChildByName("youxijieusuanNode").getChildByName("bjhdLabel").getComponent(cc.Label).string = autoi18n.languageData.GameScene.bjyxhd;
-        this.node.getChildByName("youxijieusuanNode").getChildByName("LabelMoney").getComponent(cc.Label).string = "+" + num;
+        this.node.getChildByName("youxijieusuanNode").getChildByName("LabelMoney").getComponent(cc.Label).string =  Number(num).toFixed(2);
     },
 
     setGameOverCallBack(callback_exitgame, callback_playeragin ){
@@ -56,8 +63,9 @@ cc.Class({
         this.callback_playeragin = callback_playeragin;
     },
 
-    addPlayerListCell(ret){
-
+    addPlayerListCell(ret,myuid){
+        // cc.log("addPlayerListCell_ret:" , ret)
+        this.myUid = myuid;
         if(!ret || ret.length <= 0){
             return
         }
@@ -78,8 +86,7 @@ cc.Class({
     initCell(node,data,idx){
         let userStore = data.userStore
         node.getChildByName("name").getComponent(cc.Label).string = window.subSTotring(data.nickName)
-        node.getChildByName("money").getComponent(cc.Label).string = 0;
-        node.getChildByName("defenNum").getComponent(cc.Label).string = userStore.score;
+        node.getChildByName("money").getComponent(cc.Label).string = Number(userStore.balance).toFixed(2) || 0;
         node.getChildByName("rank").getComponent(cc.Label).string = "NO." + Number(Number(idx)+1);
         window.getHeadRes(data.avatarUrl, (sp)=>{
             // node.getChildByName("headicon").getComponent(cc.Sprite).spriteFrame = sp
@@ -91,25 +98,34 @@ cc.Class({
             }
         })
 
+        var df = userStore.score || 0;
         if(this.modeType == "wanjialiebiao"){
-
+            // df = userStore.score || 0;
         }else if(this.modeType == "youxijiesuan"){
-
+            // df = userStore.price || 0;
+            if(this.myUid == data.userId){
+                // cc.log("=====================:" , data.price)
+                this.setJiesuanStr(userStore.price||0 , userStore.taxPrice || 0);
+            }
         }
+        node.getChildByName("defenNum").getComponent(cc.Label).string = df;
     },
 
     onCloseLayer(){
+        window.playEff("button");
         var cPopUpManage = PopUpManage().getComponent("PopUpManage");
         cPopUpManage.hide(this.node, true)
     },
 
     onExitGame(){
+        window.playEff("button");
         if(this.callback_exitgame){
             this.callback_exitgame()
         }
     },
 
     onPlayerAgain(){
+        window.playEff("button");
         if(this.callback_playeragin){
             this.callback_playeragin()
         }

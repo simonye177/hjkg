@@ -40,17 +40,18 @@ cc.Class({
         this.searEditBox.node.active = modeType==1;
         this.mimaEditBox.node.active = modeType==2;
 
-        this.fanghaoTitle.active = true
         this.arg = arg
         this.jiaruCallBack = callback
     },
 
     onCloseLayer(){
+        window.playEff("button");
         var cPopUpManage = PopUpManage().getComponent("PopUpManage");
         cPopUpManage.hide(this.node, true)
     },
 
     onLijiJiaRu(){
+        window.playEff("button");
         if(this.modeType == 1){
             var sr = this.searEditBox.getComponent("cc.EditBox").string;
             if(!sr || sr.trim() == ""){

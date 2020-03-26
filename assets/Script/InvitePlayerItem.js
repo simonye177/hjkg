@@ -19,7 +19,7 @@ cc.Class({
     initItemUI(data){
         // cc.log("initItemUI====:" , data)
         this.node.getChildByName("name").getComponent(cc.Label).string = window.subSTotring(data.nickName)
-        this.node.getChildByName("money").getComponent(cc.Label).string = 0;
+        // this.node.getChildByName("money").getComponent(cc.Label).string = Number(data.userStore.balance).toFixed(2) || 0;;
         this.headIcon = this.node.getChildByName("headicon");
         window.getHeadRes(data.avatarUrl, (sp)=>{
             // cc.log("sssssssss:" , this.headIcon)
@@ -29,7 +29,7 @@ cc.Class({
                 this.headIcon.width = 200;
             }
         })
-        this.setPlayerState(false);
+        this.setPlayerState(data.online);
     },
 
     setPlayerState(isIngame){
