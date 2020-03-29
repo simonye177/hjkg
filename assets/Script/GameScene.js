@@ -73,6 +73,8 @@ cc.Class({
         if(!isrecover){
             this.startTimerToReady(true);
         }
+        
+        this.setMusicButtonState()
         this.playGameMusic()
     },
 
@@ -1030,6 +1032,21 @@ cc.Class({
             cc.vv.musicManage.playMusic(clip,true)
         }); 
     },
+
+    setMusicButtonState(){
+        let state = cc.vv.musicManage.getMusicState();
+        this.node.getChildByName("btn_mus_on").active = state;
+        this.node.getChildByName("btn_mus_off").active = !state;
+    },
+
+    onTouchMusic(){
+        window.playEff("button");
+        let state = cc.vv.musicManage.getMusicState();
+        state = !state;
+        cc.vv.musicManage.setMusicState(state);
+        this.setMusicButtonState();
+    },
+
 
     onDestroy(){
         cc.log("game scene ondestroy")
