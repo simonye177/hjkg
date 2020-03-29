@@ -21,21 +21,38 @@ manage.getEffectVolume = ()=> {
     return parseInt(effectvolume)
 }
 
+
+manage.getMusicState = ()=>{
+    var state = cc.sys.localStorage.getItem("musicState");
+    if(state==null)
+        state = "1";
+    var b_state = state == "1" ? true : false;
+    return b_state
+}
+
+manage.setMusicState = (v)=>{
+    var s_v = v ? "1" : "0";
+    cc.sys.localStorage.setItem("musicState" , s_v)
+    manage.setMusicVolume(parseInt(s_v));
+}
+
+
 manage.playMusic = (clip,loop,volume)=>{
     if (!clip || !clip._name) {return}
-    var musicvolume = manage.getMusicVolume()
+    if(!manage.getMusicState()){
+        manage.setMusicVolume(0);
+        return
+    }
     manage.stopMusic()
     cc.audioEngine.playMusic(clip, loop)
-    manage.setMusicVolume(musicvolume)
 }
 
 manage.playEffect = (clip,loop)=>{
     if (!clip || !clip._name) {return}
-    var effectvolume = manage.getEffectVolume()
+    if(!manage.getMusicState()){return}
+    // var effectvolume = manage.getEffectVolume()
     cc.audioEngine.playEffect(clip, loop)
-    manage.setEffectsVolume(effectvolume)
-   
-    
+    // manage.setEffectsVolume(effectvolume)
 }
 
 manage.setMusicVolume = (volume)=>{

@@ -11,7 +11,7 @@ cc.Class({
 
         this.roomId = 0;
 
-        this.fangzhuLabel = this.node.getChildByName("headicondi").getChildByName("l_fangzhu")
+        this.fangzhuLabel = this.node.getChildByName("headicondi").getChildByName("l_fangzhu").getComponent(cc.Label)
         this.headIcon = this.node.getChildByName("headicondi").getChildByName("iconMask").getChildByName("icon")
         this.fangzhuName = this.node.getChildByName("headicondi").getChildByName("l_name").getComponent(cc.Label)
         this.gongkaifang = this.node.getChildByName("roomType_1")
@@ -19,9 +19,18 @@ cc.Class({
         this.wanjiashu = this.node.getChildByName("i_wanjia_n").getComponent(cc.Label)
         this.danzhushu = this.node.getChildByName("i_danzhu_n").getComponent(cc.Label)
         this.fanghao = this.node.getChildByName("i_fanghao_n").getComponent(cc.Label)
+        this.fangzhuLabel._isBold = true
+    },
 
-
-        this.fangzhuLabel.getComponent(cc.Label)._isBold = true
+    setState(state){
+        var color = new cc.color(255,207,58,255);
+        var strState = "准备中";
+        if(state==3){
+            var strState = "游戏中";
+            color = new cc.color(193,209,255,255);
+        }
+        this.fangzhuLabel.node.color = color;
+        this.fangzhuLabel.string = strState;
     },
 
     start () {
@@ -56,6 +65,8 @@ cc.Class({
         this.wanjiashu.string = data.userCount + "/" + data.maxCount;
         this.danzhushu.string = data.payAmount
         this.fanghao.string = data.roomId;
+
+        this.setState(data.status);
 
         window.getHeadRes(data.owner.avatarUrl, (sp)=>{
             // this.headIcon.getComponent(cc.Sprite).spriteFrame = sp

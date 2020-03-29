@@ -123,6 +123,7 @@ cc.Class({
         this.showMyReadyNode(true)
         this.setExitGameBtnType(1)
         this.resetShengziState();
+        this.shengziAction()
         this.unschedule(this.updateShengLength)
         this.removeKuangshi();
         this.setCollision(false);
@@ -232,8 +233,11 @@ cc.Class({
         }
     },
 
+    //开启 关闭 60秒踢出倒计时
     startTimerToReady(isStart){
-        if(this.roomInfo.roomType!=1){
+        var roomInfo = cc.vv.gameData.getCurRoomInfo()
+        cc.log("----------------isMimaFANG:" , roomInfo.roomType)
+        if(roomInfo.roomType!=1){
             cc.log("---密码房---")
             return
         }
@@ -548,7 +552,6 @@ cc.Class({
                 return
             }
         })
-        
     },
 
     onJieSanTips(tipStr , callback){
@@ -811,7 +814,7 @@ cc.Class({
         this.setCollision(true);
         this.showMyReadyNode(false);
         this.createKuangshi(result.screenItems);
-        this.shengziAction();
+        // this.shengziAction();
         this.startShenziSChedule()
         this.tipsGameStarAndOver(true);
         this.updateUserScore();

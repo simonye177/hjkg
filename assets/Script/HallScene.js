@@ -56,6 +56,8 @@ cc.Class({
                 cc.vv.musicManage.playMusic(clip,true)
             }); 
         },1)
+
+        this.setMusicButtonState()
     },
 
     start(){
@@ -235,6 +237,20 @@ cc.Class({
         return null; // 返回参数值
     },
 
+    setMusicButtonState(){
+        let state = cc.vv.musicManage.getMusicState();
+        this.node.getChildByName("hallUI").getChildByName("btn_mus_on").active = state;
+        this.node.getChildByName("hallUI").getChildByName("btn_mus_off").active = !state;
+    },
+
+    onTouchMusic(){
+        window.playEff("button");
+        let state = cc.vv.musicManage.getMusicState();
+        state = !state;
+        cc.vv.musicManage.setMusicState(state);
+        this.setMusicButtonState();
+    },
+
     onSeachRoom(){
         window.playEff("button");
         if(!this.tipNoNetWork()) return;
@@ -257,6 +273,18 @@ cc.Class({
             if(prefabInstance){
                 let obj = prefabInstance
                 cPopUpManage.show(obj , cc.v2(0,-190))
+                return
+            }
+        })
+    },
+
+    onOpenRule(){
+        window.playEff("button");
+        var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+        cc.vv.PrefabMgr.add("prefab/GameRule",(prefabInstance)=>{
+            if(prefabInstance){
+                let obj = prefabInstance
+                cPopUpManage.show(obj)
                 return
             }
         })

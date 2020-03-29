@@ -124,7 +124,7 @@ window.ShowTipsLabel = function (str, pos) {
         cc.error("================tipsNode is null:" )
         return
     }
-
+    
     var newNode = cc.instantiate(Window.tipsPerfabNode);
     var parentNode = cc.director.getScene().getChildByName("Canvas")
     parentNode.addChild(newNode, GlobalConfig.tipsZidx - window.tipsObjList.length);
