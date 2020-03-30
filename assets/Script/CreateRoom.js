@@ -31,6 +31,7 @@ cc.Class({
         autoi18n.analysisLanguageData(this.node,'label_renshu','CreateRoom');
         autoi18n.analysisLanguageData(this.node,'label_time','CreateRoom');
         autoi18n.analysisLanguageData(this.node,'label_jine','CreateRoom');
+        autoi18n.analysisLanguageData(this.node,'label_tips','CreateRoom');
         autoi18n.analysisLanguageData(this.node,'EditBoxRenshu.label_ren','CreateRoom');
         autoi18n.analysisLanguageData(this.node,'EditBoxTime.label_fen','CreateRoom');
         autoi18n.analysisLanguageData(this.node,'EditBoxRenshu.PLACEHOLDER_LABEL','CreateRoom');

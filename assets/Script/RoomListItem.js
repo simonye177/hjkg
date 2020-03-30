@@ -24,9 +24,9 @@ cc.Class({
 
     setState(state){
         var color = new cc.color(255,207,58,255);
-        var strState = "准备中";
+        var strState = autoi18n.languageData.showText.zhunbeizhong;
         if(state==3){
-            var strState = "游戏中";
+            var strState = autoi18n.languageData.showText.youxizhong;
             color = new cc.color(193,209,255,255);
         }
         this.fangzhuLabel.node.color = color;

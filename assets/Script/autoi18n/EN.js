@@ -75,7 +75,7 @@ window.autoi18n['EN'] = {
         "label_renshu":"Game period ",
         "label_time":"Amount for single ",
         "label_jine":"Password of room ",
-        "label_tips":"Creating room shall frozen ",
+        "label_tips":"Creating room shall frozen",
         "EditBoxRenshu.label_ren":"erson ",
         "EditBoxTime.label_fen":"Score ",
         "EditBoxRenshu.PLACEHOLDER_LABEL":"2 people minimum",
