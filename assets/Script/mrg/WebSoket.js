@@ -7,10 +7,15 @@ cc.Class({
 
     init(){
         this.soketState = 0;  //0 未连接  1：连接  2：关闭
+        this.isJihao = false; //是否被挤号了
     },
 
     getSoketState(){
         return this.soketState
+    },
+
+    setIsJiHao(jh){
+        this.isJihao = jh;
     },
 
 
@@ -41,9 +46,14 @@ cc.Class({
 
         this.websock.onclose =  function (e) {
             cc.log("websocket onclose--")
-            self.soketState = 2;
-            ShowTipsLabel(autoi18n.languageData.showText.wldktips)
-            cc.vv.eventMgr.emit(GlobalConfig.SOKET_CLOSE);
+            self.soketState = 2;            
+            this.scheduleOnce(()=>{
+                if(this.isJihao){
+                    return
+                }
+                ShowTipsLabel(autoi18n.languageData.showText.wldktips)
+                cc.vv.eventMgr.emit(GlobalConfig.SOKET_CLOSE);
+            })
         }
 
 

@@ -25,6 +25,11 @@ cc.Class({
         this.tipsStr.string = str;
     },
 
+    setOneButton(){
+        this.node.getChildByName("qxButton").active = false;
+        this.node.getChildByName("qrButton").x = 0;
+    },
+
     setQrCallBack(callback){
         this.QrCallBack = callback;
     },

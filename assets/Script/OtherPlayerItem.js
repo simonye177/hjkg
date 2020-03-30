@@ -6,6 +6,9 @@ cc.Class({
 
     },
 
+    addAutoI18n(){
+        autoi18n.analysisLanguageSprite(this.node,'zhunbei','yizhunbeiz');
+    },
 
     onLoad () {
         this.headIcon = this.node.getChildByName("headicon")
@@ -13,6 +16,7 @@ cc.Class({
         this.name = this.node.getChildByName("name").getComponent(cc.Label)
         this.money = this.node.getChildByName("money").getComponent(cc.Label)
         this.defenNum = this.node.getChildByName("defenNum").getComponent(cc.Label)
+        this.addAutoI18n();
     },
 
     initUI(data){

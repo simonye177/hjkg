@@ -262,6 +262,21 @@ window.playEff = function(efstr){
 }
 
 
+window.showJiHaoTips = (callback)=>{
+    var tipStr = autoi18n.languageData.showText.jhts;
+    var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+    cc.vv.PrefabMgr.add("prefab/ExitPanel",(prefabInstance)=>{
+        if(prefabInstance){
+            let obj = prefabInstance
+            cPopUpManage.show(obj)
+            obj.getComponent("ExitPanel").setTipsStr(tipStr);
+            obj.getComponent("ExitPanel").setQrCallBack(callback)
+            return
+        }
+    })
+}
+
+
 window.deepClone = function(obj){
     let _obj = JSON.stringify(obj),
         objClone = JSON.parse(_obj);

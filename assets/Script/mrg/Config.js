@@ -14,8 +14,8 @@ GlobalConfig.PENGZHUANG_GOLD = "PENGZHUANG_GOLD";
 // GlobalConfig.HttpHost = "118.178.16.240";
 GlobalConfig.HttpHost = "game.cmzzz.top";
 GlobalConfig.websockstr = "ws://" +  GlobalConfig.HttpHost + ":2348";
-GlobalConfig.GetFriendListUrl = "http://" + GlobalConfig.HttpHost + "/api/v1/game/contact";
-GlobalConfig.PostInviteFriendUrl = "http://" + GlobalConfig.HttpHost + "/api/v1/game/invite";
+GlobalConfig.GetFriendListUrl = "https://" + GlobalConfig.HttpHost + "/api/v1/game/contact";
+GlobalConfig.PostInviteFriendUrl = "https://" + GlobalConfig.HttpHost + "/api/v1/game/invite";
 
 GlobalConfig.USER_INFO = 0; //玩家信息
 GlobalConfig.HEART_PACK = 1000; //心跳

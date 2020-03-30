@@ -28,11 +28,12 @@ cc.Class({
         }else if(other.tag ==2){
             var id = other.node.getComponent("Mineral").getID();
             var isgold = other.node.getComponent("Mineral").getIsJinse();
+            var iconId = other.node.getComponent("Mineral").getIconID();
             if(id==0){
                 return
             }
             other.node.removeFromParent()
-            cc.vv.eventMgr.emit(GlobalConfig.PENGZHUANG_GOLD, {id:id,isgold:isgold});
+            cc.vv.eventMgr.emit(GlobalConfig.PENGZHUANG_GOLD, {id:id,isgold:isgold,iconId:iconId});
             // cc.log("peng dao le kuangshi")
 
             var manager = cc.director.getCollisionManager();

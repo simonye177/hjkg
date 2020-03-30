@@ -29,6 +29,8 @@ cc.Class({
         autoi18n.analysisLanguageData(this.node,'upNode.leftdi.nicheng','GameScene');
         autoi18n.analysisLanguageData(this.node,'upNode.leftdi.defen','GameScene');
         autoi18n.analysisLanguageData(this.node,'upNode.rightdi.fanghao','GameScene');
+        autoi18n.analysisLanguageData(this.node,'upNode.leftdi.paiming','GameScene');
+        autoi18n.analysisLanguageData(this.node,'upNode.rightdi.wanjia','GameScene');
 
         autoi18n.analysisLanguageSprite(this.node,'btn_backhall','fhdtbtn');
         autoi18n.analysisLanguageSprite(this.node,'btn_exitgame','exitgame');
@@ -37,6 +39,8 @@ cc.Class({
         autoi18n.analysisLanguageSprite(this.node,'btn_invitefriend','yaoqinghaoyou');
         autoi18n.analysisLanguageSprite(this.node,'zhunbeiNode.zhunbei','zhunbei');
         autoi18n.analysisLanguageSprite(this.node,'zhunbeiNode.qxzhunbei','yizhunbei');
+        autoi18n.analysisLanguageSprite(this.node,'tipNode.cjfjtips','chuangjiansuss');
+        autoi18n.analysisLanguageSprite(this.node,'tipNode.jrfjtips','jiarususs');
     },
 
     //初始化
@@ -63,6 +67,7 @@ cc.Class({
         this.myScore = upNode.getChildByName("leftdi").getChildByName("defenNum").getComponent(cc.Label)
         this.timerLabel = this.node.getChildByName("bottonNode").getChildByName("timeNum").getComponent(cc.Label)
         this.fanghaoNum = upNode.getChildByName("rightdi").getChildByName("fanghaoNum").getComponent(cc.Label)
+        this.wanjiaLabel = upNode.getChildByName("rightdi").getChildByName("wanjiaNum").getComponent(cc.Label)
 
         this.initRoom();
         this.initGame();
@@ -103,6 +108,7 @@ cc.Class({
         // this.updateShengLength()
         this.addOperationListen()
         this.addHandlerListen()
+        this.updatePlayerNum()
     },
 
     //断线重连
@@ -120,6 +126,7 @@ cc.Class({
         this.gameState = 1;
         this.myScore.string = 0;
         this.timerLabel.string = 0;
+        this.mypaiming.string = 0;
         this.isShowTipsAlscKou = false;
         this.updateOtherReady()
         this.showMyReadyNode(true)
@@ -178,6 +185,7 @@ cc.Class({
                 // window.exitGame()
                 this.local_mergeUsers(result)
                 this.outRoom()
+                this.updatePlayerNum()
             }
         }else if(cmd == GlobalConfig.CATCH_MINERAL){
             if(result){
@@ -185,6 +193,7 @@ cc.Class({
                 this.local_mergeUsers(result)
                 this.updateUserScore();
                 // this.updateMyRank();
+                this.updatePlayerRank();
                 var item = result.item
                 if(item){
                     // cc.log("------------CATCH_MINERAL_this.myUid:" , item.userId , this.myUid , item.userId == this.myUid)
@@ -212,7 +221,8 @@ cc.Class({
                     }else{
                         //别的玩家被踢出房间 删除那个人的数据并刷新
                         this.deleteUser(out[i].userId)
-                        this.addOterPlayer()
+                        this.updatePlayerNum();
+                        this.addOterPlayer();
                     }
                 }
             }
@@ -231,6 +241,7 @@ cc.Class({
             if(result){//玩家加入房间 更新玩家列表状态
                 this.local_mergeUsers(result)
                 this.addOterPlayer()
+                this.updatePlayerNum()
             }
         }
     },
@@ -327,7 +338,8 @@ cc.Class({
                 c_node = this.gameJinkuang;
                 isgold = 2;
             }
-            var clonSp = cc.instantiate(c_node)
+            var clonSp = this.getChuangshiIcon(ret.isgold,ret.iconId)
+            // var clonSp = cc.instantiate(c_node)
             clonSp.active = true
             clonSp.x = 20
             clonSp.rotation = -90
@@ -345,6 +357,27 @@ cc.Class({
             this.shengzi.resumeAllActions()
             //给玩家加分
         },{isback:true,isget:isget,isgold:isgold})
+    },
+
+
+    getChuangshiIcon(isGold,idx){
+        let c_node = this.gameshikuang;
+        var godstr = "shitou";
+        if(isGold){
+            c_node = this.gameJinkuang;
+            godstr = "jinkuang";
+        }
+        var clonSp = cc.instantiate(c_node)
+        var imgStr = "kuangshi/" + godstr + idx; 
+        cc.loader.loadRes(imgStr, cc.SpriteFrame, (err, res) => {
+            //加载错误则报错
+            if (err) {
+                console.error(err);
+                return;
+            }
+            clonSp.getComponent(cc.Sprite).spriteFrame = res;
+        });
+        return clonSp
     },
 
     //添加操作层
@@ -418,17 +451,25 @@ cc.Class({
 
     //创建矿石
     chuangjiankuangshi(id , pos,isgold,i){
-        let c_node = this.gameshikuang;
+        var maxIndex = 13;
+        var c_node = this.gameshikuang;
+        var godstr = "shitou";
+
         if(isgold){
+            maxIndex = 9;
+            godstr = "jinkuang";
             c_node = this.gameJinkuang;
         }
-        var ks = cc.instantiate(c_node)
+        var __indexRand =  Math.ceil(Math.random() * maxIndex);
+
+        var ks = this.getChuangshiIcon(isgold,__indexRand)
         ks.active = true
         ks.x = pos.x * this.gameRect.width/750
         ks.y = pos.y * this.gameRect.height/700
         ks._name = id
         // cc.log("-----------------------chuangjiankuangshi:" , id,i)
-        ks.getComponent("Mineral").setID(id)
+        ks.getComponent("Mineral").setID(id);
+        ks.getComponent("Mineral").setIconID(__indexRand);
         this.gameRect.addChild(ks)
     },
 
@@ -823,7 +864,8 @@ cc.Class({
         this.updateOtherReady(true);
         // this.updateMyRank()
         this.gameTimer(result.totalTime);
-        this.setExitGameBtnType(2)
+        this.setExitGameBtnType(2);
+        this.updatePlayerNum();
         window.playEff("startgame");
     },
 
@@ -895,15 +937,6 @@ cc.Class({
                     this.sendExitGame()
                 }
         }
-        // if(this.curTimes - this.startTime >= 1000){
-        //     this.timer = this.timer-1;
-        //     this.timerLabel.string = this.timer
-        //     if(this.timer<=0){
-        //         this.unschedule(this.updateCurTime);
-        //         this.timerLabel.string = 0;
-        //     }
-        //     this.startTime = new Date().getTime();
-        // }
     },
 
     //更新玩家得分
@@ -1008,6 +1041,23 @@ cc.Class({
         }
     },
 
+    updatePlayerRank(){
+        var ret = this.roomInfo.users;
+        this.getDeepClonUser()
+        var rank = 0;
+        for(let i = 0 ; i < ret.length ; i++ ){
+            if(ret[i].userId == this.userId){
+                rank = i;
+            }
+        }
+        this.mypaiming.string = (rank+1);
+    },
+
+    updatePlayerNum(){
+        var roomTotleplayer = cc.vv.gameData.getCurRoomInfo().maxCount || 0;
+        var curPlayerNum = this.roomInfo.users.length;
+        this.wanjiaLabel = curPlayerNum+'/'+roomTotleplayer;
+    },
 
     //深拷贝
     getDeepClonUser(_users){

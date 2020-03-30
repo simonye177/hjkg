@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6095468946643822,
-      "y": 0.6095468946643822,
+      "x": 0.3343328335832084,
+      "y": 0.3343328335832084,
       "z": 1
     },
     "_quat": {
@@ -81,16 +81,19 @@
       },
       {
         "__id__": 99
+      },
+      {
+        "__id__": 190
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 190
+        "__id__": 193
       },
       {
-        "__id__": 191
+        "__id__": 194
       }
     ],
     "_prefab": null,
@@ -463,14 +466,14 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -300.9,
-      "y": 622.5,
+      "x": -293.45,
+      "y": 619.75,
       "z": 0
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.8,
-      "y": 0.8,
+      "x": 0.9,
+      "y": 0.9,
       "z": 1
     },
     "_rotationX": 0,
@@ -666,14 +669,14 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 296.9,
-      "y": 622.5,
+      "x": 289.45,
+      "y": 619.75,
       "z": 0
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.8,
-      "y": 0.8,
+      "x": 0.9,
+      "y": 0.9,
       "z": 1
     },
     "_rotationX": 0,
@@ -1861,14 +1864,14 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -147.9,
-      "y": 622.5,
+      "x": -140.45,
+      "y": 619.75,
       "z": 0
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.8,
-      "y": 0.8,
+      "x": 0.9,
+      "y": 0.9,
       "z": 1
     },
     "_rotationX": 0,
@@ -8384,6 +8387,154 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "c7tDThXCBMebkLVskzcBN/"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": " bgAction",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [
+      {
+        "__id__": 191
+      }
+    ],
+    "_active": false,
+    "_level": 2,
+    "_components": [],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "groupIndex": 0,
+    "_id": "5anuI3XAxOraRDMJWCBYt0"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "New Sprite",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 190
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 3,
+    "_components": [
+      {
+        "__id__": 192
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 40,
+      "height": 36
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "groupIndex": 0,
+    "_id": "a18Bhi4zlCQ5RafCNjLx7X"
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 191
+    },
+    "_enabled": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_state": 0,
+    "_atlas": null,
+    "_id": "34UjTJv+BBhKfLx0jiQHrr"
   },
   {
     "__type__": "cc.Canvas",

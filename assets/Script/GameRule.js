@@ -29,6 +29,7 @@ cc.Class({
         // autoi18n.analysisLanguageData(this.node,'ruleScrollView.view.content.ruleLabel','GameRule');
 
         autoi18n.analysisLanguageSprite(this.node,'title','titleyxgz');
+        this.content = this.gameRuleScrollView.content;
     },
 
     start () {
@@ -38,10 +39,25 @@ cc.Class({
     },
 
     setRuleString(){
-        this.labelRule.string = autoi18n.languageData.GameRule["ruleScrollView.view.content.ruleLabel"];
+        // this.labelRule.string = autoi18n.languageData.GameRule["ruleScrollView.view.content.ruleLabel"];
+        // this.scheduleOnce(()=>{
+        //     this.gameRuleScrollView.content.height = this.labelRule.node.height;
+        // },0)
+
+        var data = autoi18n.languageData.GameRule;
+        this.labelRule.string = "";
+        var ___height = 0 ;
+
+        for(let i = 0 ; i < 8 ; ++i){
+            var stringNode = cc.instantiate(this.labelRule.node);
+            stringNode.getComponent(cc.Label).string = data[i+1];
+            stringNode.parent = this.content;
+            ___height = ___height + stringNode.height;
+        }
+
         this.scheduleOnce(()=>{
-            this.gameRuleScrollView.content.height = this.labelRule.node.height;
-        },0)
+            this.gameRuleScrollView.content.height = ___height;
+        },0.1)
     },
 
     // update (dt) {},
