@@ -1042,21 +1042,21 @@ cc.Class({
     },
 
     updatePlayerRank(){
-        var ret = this.roomInfo.users;
-        this.getDeepClonUser()
+        var ret = this.getDeepClonUser()
         var rank = 0;
         for(let i = 0 ; i < ret.length ; i++ ){
-            if(ret[i].userId == this.userId){
+            if(ret[i].userId == this.myUid){
                 rank = i;
             }
         }
+        cc.log("....................rank:" , rank)
         this.mypaiming.string = (rank+1);
     },
 
     updatePlayerNum(){
         var roomTotleplayer = cc.vv.gameData.getCurRoomInfo().maxCount || 0;
         var curPlayerNum = this.roomInfo.users.length;
-        this.wanjiaLabel = curPlayerNum+'/'+roomTotleplayer;
+        this.wanjiaLabel.string = curPlayerNum+'/'+roomTotleplayer;
     },
 
     //深拷贝

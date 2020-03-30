@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "231afbee-0d8f-413a-a48a-3ccf9c84c085",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "feidie": {
+      "ver": "1.0.4",
+      "uuid": "f0460d5d-8d28-4686-9a53-251ab0206020",
+      "rawTextureUuid": "231afbee-0d8f-413a-a48a-3ccf9c84c085",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 228,
+      "height": 240,
+      "rawWidth": 228,
+      "rawHeight": 240,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

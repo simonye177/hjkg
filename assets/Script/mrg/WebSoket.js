@@ -47,13 +47,13 @@ cc.Class({
         this.websock.onclose =  function (e) {
             cc.log("websocket onclose--")
             self.soketState = 2;            
-            this.scheduleOnce(()=>{
+            self.scheduleOnce(()=>{
                 if(this.isJihao){
                     return
                 }
                 ShowTipsLabel(autoi18n.languageData.showText.wldktips)
                 cc.vv.eventMgr.emit(GlobalConfig.SOKET_CLOSE);
-            })
+            },0.5)
         }
 
 
