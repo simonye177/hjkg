@@ -18,7 +18,7 @@ window.autoi18n['ZH'] = {
         "qdtcyx": "您确定退出游戏吗？",
         "xtydj": "系统已冻结您",
         "bkxyyfz":"游戏时间不可小于一分钟",
-        "jhts" : "您的账号在别处登录",
+        "jhts":"您的账号在别处登录"
     },
     "serverTips":{
         "Lang10001": "您已进入{0}号房间,无法创建房间",
@@ -63,12 +63,12 @@ window.autoi18n['ZH'] = {
     },
 
     "GameScene": {
-        "upNode.leftdi.nicheng": "昵称：",
-        "upNode.leftdi.defen": "得分：",
-        "upNode.leftdi.paiming": "排名：",
-        "upNode.rightdi.fanghao": "房号：",
-        "upNode.rightdi.wanjia": "玩家：",
-        "bjyxhd": "本局游戏您获得",
+        "upNode.leftdi.nicheng": "昵称：",
+        "upNode.leftdi.defen": "得分：",
+        "upNode.leftdi.paiming": "排名：",
+        "upNode.rightdi.fanghao": "房号：",
+        "upNode.rightdi.wanjia": "玩家：",
+        "bjyxhd": "本局游戏您获得",
     },
 
     "CreateRoom": {

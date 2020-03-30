@@ -24,6 +24,7 @@ cc.Class({
         autoi18n.analysisLanguageData(this.node,'RoomListIcon.i_fanghao','HallScene');
 
         autoi18n.analysisLanguageSprite(this.node,'hallUI.btn_backhall','exitgame');
+        autoi18n.analysisLanguageSprite(this.node,'hallUI.btn_gamerule','gamerule');
         autoi18n.analysisLanguageSprite(this.node,'hallUI.btn_seachRoom','ssfjbtn');
         autoi18n.analysisLanguageSprite(this.node,'hallUI.dibg.btn_createRoom','cjfjbtn');
         autoi18n.analysisLanguageSprite(this.node,'hallUI.dibg.btn_FastJoin','ksjrbtn');

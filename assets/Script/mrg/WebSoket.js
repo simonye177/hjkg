@@ -59,7 +59,14 @@ cc.Class({
 
         this.websock.onmessage = function (e) {
             // cc.log("onmessage----------:" ,e)
-            var s_data = JSON.parse(e.data) 
+            var s_data = JSON.parse(e.data)
+            if(s_data.cmd == GlobalConfig.LOGIN_OUT){
+                this.isJihao = true;
+                window.showJiHaoTips(()=>{
+                    window.alsc.finish();
+                })
+                return
+            }
             if(cc.vv.GAME_HIDE){
                 self.messageList.push(s_data)
             }else{

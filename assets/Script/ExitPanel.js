@@ -36,10 +36,10 @@ cc.Class({
 
     onExitGame(){
         window.playEff("button");
+        this.closeNode()
         if(this.QrCallBack){
             this.QrCallBack()
         }
-        this.closeNode()
     },
 
     onCancleExit(){
