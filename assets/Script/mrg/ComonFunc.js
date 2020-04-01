@@ -278,6 +278,16 @@ window.showJiHaoTips = (callback)=>{
 }
 
 
+window.alscOnAndroidKeyBack = ()=>{
+    if(!cc.vv.nowRunScene){
+        return
+    }
+    if(cc.vv.nowRunScene.onExitGame){
+        cc.vv.nowRunScene.onExitGame(true)
+    }
+}
+
+
 window.deepClone = function(obj){
     let _obj = JSON.stringify(obj),
         objClone = JSON.parse(_obj);

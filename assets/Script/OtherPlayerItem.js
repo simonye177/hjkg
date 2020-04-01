@@ -23,8 +23,7 @@ cc.Class({
         data = data || {}
         data.userStore = data.userStore || {}
         this.name.string = window.subSTotring(data.nickName);
-        // this.money = Number(data.balance).toFixed(2) || 0;
-        // this.defenNum.string = data.userStore.score || 0;
+        this.setIsReady(data.userStore.ready)
         this.setUserScore(data.userStore.score)
         this.setUserAlsc(data.userStore.balance)
         window.getHeadRes(data.avatarUrl, (sp)=>{

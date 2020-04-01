@@ -20,9 +20,10 @@ cc.Class({
     },
 
     closeSoket(state){
-        cc.log("...............close soket.............");
+        cc.log("...............close soket.............:" , state);
         this.isCloseGame = state;
-        this.websock.close()
+        if(this.websock)
+            this.websock.close()
     },
 
 
@@ -55,12 +56,16 @@ cc.Class({
             cc.log("websocket onclose--")
             self.soketState = 2;            
             self.scheduleOnce(()=>{
-                if(this.isJihao){
+                if(self.isJihao){
                     return
                 }
-                if(this.isCloseGame){
-                    this.isCloseGame = false;
-                    window.alsc.finish();
+                if(self.isCloseGame){
+                    self.isCloseGame = false;
+                    cc.log("退出游戏了")
+                    if(window.alsc && window.alsc.finish){
+                        window.alsc.finish();
+                    }
+                    return
                 }
                 ShowTipsLabel(autoi18n.languageData.showText.wldktips)
                 cc.vv.eventMgr.emit(GlobalConfig.SOKET_CLOSE);
@@ -72,9 +77,13 @@ cc.Class({
             // cc.log("onmessage----------:" ,e)
             var s_data = JSON.parse(e.data)
             if(s_data.cmd == GlobalConfig.LOGIN_OUT){
-                this.isJihao = true;
+                self.setIsJiHao(true);
                 window.showJiHaoTips(()=>{
-                    c.vv.webSoket.closeSoket(true);
+                    // cc.vv.webSoket.closeSoket(true);
+                    cc.log("挤号退出游戏")
+                    if(window.alsc && window.alsc.finish){
+                        window.alsc.finish();
+                    }
                 })
                 return
             }

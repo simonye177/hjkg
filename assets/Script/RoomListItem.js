@@ -27,7 +27,7 @@ cc.Class({
         var strState = autoi18n.languageData.showText.zhunbeizhong;
         if(state==3){
             strState = autoi18n.languageData.showText.youxizhong;
-            color = new cc.color(193,209,255,255);
+            // color = new cc.color(193,209,255,255);
         }
         this.fangzhuLabel.node.color = color;
         this.fangzhuLabel.string = strState;

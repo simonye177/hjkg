@@ -11,12 +11,12 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // this.label.string = this.text;
-        cc.vv = {}
-        this.initScene("Game")
+        // cc.vv = {}
+        // this.initScene("Game")
     },
 
     onBackHall(){
-        cc.log("touch back hall")
+        // cc.log("touch back hall")
     },
 
     onSeachRoom(){

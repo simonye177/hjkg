@@ -222,7 +222,8 @@ cc.Class({
         // }
     },
 
-    onBackHall(){
+    onExitGame(iskeyBack){
+        if(iskeyBack) return;
         cc.log("touch back hall")
         // cc.game.end();
         window.playEff("button");
@@ -491,6 +492,7 @@ cc.Class({
     onDestroy(){
         cc.log("hall scene ondestroy")
         this._super();
+        cc.vv.musicManage.stopMusic();
         this.unschedule(this.updateRoomList)
     },
 

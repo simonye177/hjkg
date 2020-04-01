@@ -49,12 +49,12 @@ cc.Class({
         this.OtherPlayerItemCotent = this.otherPlaerScrollView.content;
         this.operationState =  0;   // 0代表等候    1代表出钩   2 回钩
         this.gameState = 1; // //1等待玩家  2 准备倒计时 3 游戏已开始  4 游戏结束
-        this.zhuaziSpeed = 300 //爪子速度
+        this.zhuaziSpeed = 600 //爪子速度
         // this.isLeft = false
         this.isRuningAct = false
         this.curScore = 0;
 
-
+        this.initScene("Game")
         this.gameRect = this.node.getChildByName("gameRect")
         this.shengzi = this.node.getChildByName("shengzi")
         this.readyNode = this.node.getChildByName("zhunbeiNode")
@@ -81,10 +81,12 @@ cc.Class({
         
         this.setMusicButtonState()
         this.playGameMusic()
+        
     },
 
     start(){
         cc.log("startstart..")
+
     },
 
     //初始化房间 进来初始化一次
@@ -169,7 +171,7 @@ cc.Class({
                 if(result.timer){
                     this.gameState = 2;
                     this.gameTimer(result.timer)
-                    if(!this.isShowTipsAlscKou){
+                    if(!this.isShowTipsAlscKou && this.lastMystate){
                         let tips = autoi18n.languageData.showText.xtydj + " " +this.roomInfo.payAmount  + " ALSC"
                         ShowTipsLabel(tips);
                         this.isShowTipsAlscKou = true;
@@ -306,11 +308,11 @@ cc.Class({
         let nodeZhuaPos = this.zhuazi.parent.convertToNodeSpaceAR(pos)
 
         // cc.log("----------------nodeZhuaPos:" , nodeZhuaPos.x , nodeZhuaPos.y)
-        let speed = this.zhuaziSpeed * 1.3;
+        let speed = this.zhuaziSpeed;
         if(arg && arg.isget){
-            speed = this.zhuaziSpeed * 0.8
+            speed = this.zhuaziSpeed
             if(arg.isgold==1){
-                speed = this.zhuaziSpeed * 0.5
+                speed = this.zhuaziSpeed * 0.7
             }
         }
         var t = dis / speed
@@ -529,6 +531,7 @@ cc.Class({
 
     //退出游戏
     onExitGame(){
+        cc.log("touch game exit game")
         window.playEff("button");
         if(this.exitGameBtnType == 2){
             this.onJieSanTips(autoi18n.languageData.showText.qdtcyx,()=>{
@@ -536,7 +539,7 @@ cc.Class({
                 // cc.game.end()
                 cc.vv.musicManage.stopMusic();
                 // window.alsc.finish();
-                c.vv.webSoket.closeSoket(true);
+                cc.vv.webSoket.closeSoket(true);
             })
         }else{
             var users = this.roomInfo.users
@@ -762,8 +765,7 @@ cc.Class({
         for(let i = 0 ; i < ret.length ; i++ ){
             if(ret[i].userId == this.myUid){
                 let state = ret[i].ready
-                if(this.lastMystate == state)return
-                this.lastMystate = state
+                if(this.lastMystate == state)return;
                 this.setMyReadState(state)
                 let bstate = state ? 2 : 1
                 this.setExitGameBtnType(bstate)
@@ -774,6 +776,7 @@ cc.Class({
 
     
     setMyReadState(is){
+        this.lastMystate = is;
         this.readyNode.getChildByName("zhunbei").active = !is
         this.readyNode.getChildByName("qxzhunbei").active = is
     },
@@ -983,7 +986,9 @@ cc.Class({
             }else{
                 var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
                 if(otherNode){
-                    let ret = isHide ? false : users[i].userStore.ready
+                    let ret = users[i].userStore.ready
+                    if(isHide) ret = false;
+                    // cc.log("....................ret:" , ret , users[i].userId)
                     otherNode.getComponent("OtherPlayerItem").setIsReady( ret )
                 }
             }
@@ -1052,7 +1057,7 @@ cc.Class({
                 rank = i;
             }
         }
-        cc.log("....................rank:" , rank)
+        // cc.log("....................rank:" , rank)
         this.mypaiming.string = (rank+1);
     },
 
@@ -1076,14 +1081,14 @@ cc.Class({
     },
 
     playGameMusic(){
-        var path = "mus/gameMusic"
-        cc.vv.musicManage.loadClip(path, function (err, clip) {
-            if (err) {
-                cc.error('playMusic: ', path)
-                return
-            }
-            cc.vv.musicManage.playMusic(clip,true)
-        }); 
+        // var path = "mus/gameMusic"
+        // cc.vv.musicManage.loadClip(path, function (err, clip) {
+        //     if (err) {
+        //         cc.error('playMusic: ', path)
+        //         return
+        //     }
+        //     cc.vv.musicManage.playMusic(clip,true)
+        // }); 
     },
 
     setMusicButtonState(){

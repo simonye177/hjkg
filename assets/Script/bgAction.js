@@ -40,6 +40,11 @@ cc.Class({
         pingxingArr:{
             type:[cc.Node],
             default:[]
+        },
+
+        liuxingArr:{
+            type:[cc.Node],
+            default:[]
         }
     },
 
@@ -50,8 +55,8 @@ cc.Class({
     start () {
         cc.log("..................bgAction:start");
         //this.acQiu();
-        this.acLiuXing();
-        this.acFeiDie();
+        // this.acLiuXing();
+        // this.acFeiDie();
         this.renAc();
         // this.huojianAc();
 
@@ -59,7 +64,7 @@ cc.Class({
         this.pingxingArr =  this.pingxingArr || {}
 
         var createPingxing = ()=>{
-            let index = Math.floor(Math.random() * 6);
+            let index = Math.floor(Math.random() * this.pingxingArr.length);
             // cc.log("..................createPingxing.....idx:" , index)
             let time = 5 + Math.random() * 15
             if(this.pingxingArr[index]){
@@ -70,7 +75,19 @@ cc.Class({
             }
         }
 
+        var createLiuXing = ()=>{
+            let index = Math.floor(Math.random() * this.liuxingArr.length);
+            let time = 5 + Math.random() * 8
+            if(this.liuxingArr[index]){
+                this.scheduleOnce(()=>{
+                    this.liuXingMove(this.liuxingArr[index])
+                    createLiuXing();
+                },time)
+            }
+        }
+
         createPingxing();
+        createLiuXing();
     },
 
 
@@ -193,6 +210,26 @@ cc.Class({
         var time = 30 + Math.random()*15;
         node.runAction(cc.sequence(
             cc.moveTo( time , cc.v2(node.x+constX,node.y)),
+            cc.callFunc((rec) => {
+                node.destroy();
+            })
+        ))
+    },
+
+    liuXingMove(node){
+        var node = cc.instantiate(node);
+        node.parent = this.node.parent;
+        node.active = true;
+        node.x = 750/2 + node.width/2;
+        node.y = 1134/2 + node.height;
+        var endx = - 750/2 - node.width/2;
+        var endy = 0;
+        var constY = Math.random() * 767;
+        node.y = node.y - constY;
+
+        var time = 2 + Math.random() * 10;
+        node.runAction(cc.sequence(
+            cc.moveTo( time , cc.v2(endx,endy-constY)),
             cc.callFunc((rec) => {
                 node.destroy();
             })

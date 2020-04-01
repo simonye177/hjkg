@@ -20,6 +20,13 @@ var AppScene = cc.Class({
             // MusicManage.stopAllEffects()
         },this);
 
+        
+        
+        // this.scheduleOnce(()=>{
+        //     cc.log(".............test exit:")
+        //     window.alscOnAndroidKeyBack();
+        // },3)
+
 
         cc.game.on(cc.game.EVENT_SHOW, function(){
             // MusicManage.resumeAllEffects()
