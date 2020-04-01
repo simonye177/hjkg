@@ -18,6 +18,9 @@ window.autoi18n['EN'] = {
         "qdtcyx": "Are you sure to log out game？",
         "xtydj": "System has frozen your account.",
         "bkxyyfz":"Game time could not be less than one minute",
+		"jhts":"Your account is logged in elsewhere",
+        "zhunbeizhong":"preparing",
+        "youxizhong":"in the game",
     },
     "serverTips":{
         "Lang10001": "You have entered into {0} room, and you could not create room",
@@ -75,7 +78,7 @@ window.autoi18n['EN'] = {
         "label_renshu":"Game period ",
         "label_time":"Amount for single ",
         "label_jine":"Password of room ",
-        "label_tips":"Creating room shall frozen",
+        "label_tips":"Creating room shall frozen ",
         "EditBoxRenshu.label_ren":"erson ",
         "EditBoxTime.label_fen":"Score ",
         "EditBoxRenshu.PLACEHOLDER_LABEL":"2 people minimum",
@@ -86,68 +89,67 @@ window.autoi18n['EN'] = {
 
      "GameRule": {
         "1" : 
-        `1、如何创建房间？
+        `1、 how to create a room?？
 
-        玩家登录成功进入下方点击第三个按钮，点击最上方“全民挖矿 等人来战”进入游戏页面，点击左下角“创建房间按钮”，点击后出现创建房间页面，创建房间页面信息：“游戏人数”不得低于2人，最多20人，“游戏时间”最低为1分钟，最高无上限，只可以输入整数，”单注金额”最低为10枚ALSC，最高无上限，每个进入此房间的用户都会冻结创建房间时输入的ALSC。
-        没有开始游戏之前退出房间系统则会返还冻结的ALSC，游戏结束时会根据玩家得分排名分取分数最低的玩家的单注金额，若是分数并列则一并分取，其他玩家冻结的单注金额则会自动退还。
-        若ALSC不足测无法创建房间、也无法进入房间，“房间密码”选填，如果创建房间时输入了密码，其他玩家进入此房间都需要密码，输入所有信息后点击“立即创建”按钮即可成功创建房间 。
-        房间类型分为公共房和密码房 公共房:此房间所有玩家都可以进入 密码房：需要输入密码进入 创建房间成功后页面最上方会显示，“返回大厅”按钮、“游戏规则”按钮、“玩家列表”按钮、“邀请好友”按钮，下方一栏显示 玩家得分、昵称、ALSC、房间号等信息。
-        `,
+        After the player has successfully logged in, get to the bottom and click the third button, click the topmost "Everyone Mining, Come to Fight" to enter the game page. Click the button "Create Room" in the lower left corner, after clicking, the create room page appears. Page Information for create room: The "number of players" must not be less than 2 and the maximum is 20, The minimum "game time" is 1 minute, and the maximum is unlimited, and only integers can be entered. The "single bet amount" is a minimum of 10 ALSC, and the maximum is unlimited, the ALSC amount will be frozen when creating the room for users whoever entered this room.
+        Exiting the room system before starting the game will return the frozen ALSC. When the game finishes,the bet amount of the player with the lowest score will be shared according to the player score ranking, if the scores are tied, the single bet amount will be shared together, the frozen single bet amount of other players will be refunded automatically.
+        If ALSC is insufficient, then it is unable to create a room nor enter the room, "room password" is optional, if a password is entered when creating a room, other players will also need the password to enter this room, after entering all the information, click the "create now" button to successfully create a room.
+		The room types are divided into public rooms and password rooms. Public rooms: All players can enter this room. Password room: Need to enter password to enter the room. After successful creation of the room, the top of the page will be displaying: "Back to game center" button, "Game rules" button, "Player list" button, "Invite friends" button, the lower column displays: player score, nickname, ALSC, room number and other information.
+		`,
 
 
         "2" : 
-        `2、如何邀请好友？
+        `2、How to invite friends？
         
-        创建房间成功后，可以看到页面最上方第四个按钮为“邀请好友”，点击此按钮出现邀请好友页面，可以看到好友的状态（游戏中、空闲中、离线，）选中要邀请的好友点击立即邀请，好友收到邀请信息，进入房间，可以在准备按钮下方看到好友信息，只可以邀请空闲中、离线的好友
+        After successfully creating a room, you can see that the fourth button at the top of the page is "invite friends". Click this button to display the Invite friends page. You can see the status of the friends (in game, available, offline, etc.). Choose the friends you want to invite and click invite now, when friends receive the invitation information, they can enter the room, you can see the friend information under the ready button, you can only only invite friends who are available or offline.
         `,
 
 
         "3" :
         `3、如何加入房间？
         
-        登录成功进入下方点击第三个按钮，点击最上方“全民挖矿 等人来战”进入游戏页面，在“房间列表页面”可以看到每个房间的具体信息，如“房间状态”，“房号”，“玩家人数”，“单注金额，”，“公开房”，“密码房”等信息。
-        点击“房间列表”右侧“搜索房间”按钮输入房间号点击立即加入即可加入房间，可以点击房间信息处“立即加入”按钮即可加入房间，也可以点击最下方“快速加入”按钮即可加入 距离游戏开始时间最快的房间，正在游戏中的房间则不可以加入，成功加入房间后系统会冻结此房间创建时输入的的单注金额，待游戏结束时进行结算。
+        After login successfully, click the third button below, and click the "Everyone Mining, Come to Fight" at the top to enter the game page. On the page "Room List", you can see the specific information of each room, such as "Room Status", "Room No. "," Number of players "," Single bet amount "," Public room", “Password room" and other information.
+        Click the "Search Room" button to the right of the "Room List" and enter the room number. You can click the "Join Now" button at the room information to join the room, or click the "Quick Join" button at the bottom to join the room which is with the fastest time to the start of the game. You cannot join rooms which their games are in progress. After successfully joining the room, the system will freeze the single bet amount entered when the room was created and will be settled when the game ends
         `,
 
         "4" :
-        `4、如何开始游戏？
+        `4、How to start a game?？
         
-        创建房间或者加入房间成功后进入游戏页面，点击屏幕下方“准备”按钮 当准备人数达到此房间创建时输入的“游戏人数”的一半时，“准备”按钮下方会出现倒计时，此时玩家不可以取消准备。当下方倒计时结束时开始游戏并且踢出所有没有准备的玩家。
-        如：创建房间时输入的“游戏人数”为10当5位玩家准备后，开始倒计时，倒计时结束时开始游戏并且踢出所有没有准备的玩家，如果10位玩家都点击准备后则会立马开始游戏。
+        After successfully creating a room or joining a room, enter the game page, and click the "Ready" button at the bottom of the screen. When the number of ready players reaches half of the "player number" entered when the room was created, a countdown will appear under the "Ready" button, players cannot cancel ready at this time. The game starts when the countdown ends and kicks out all unready players.
+        For example, the "player number" entered when creating the room is 10. When 5 players are ready, the countdown starts. When the countdown ends, the game starts and all players who are not ready will be kicked out. If all 10 players click on ready, the game will start immediately .
         `,
 
         "5" :
-        `5、开始游戏后
+        `5、After starting the game
         
-        开始游戏后玩家最上方的“退出游戏”按钮，“游戏规则”按钮，“玩家列表”按钮，“邀请好友”按钮，
-        点击“”游戏规则“按钮会出现游戏玩法介绍，
-        点击“玩家列表”按钮时会出现本局所有玩家到目前的排名，得分，等信息，
-        点击“邀请好友”按钮则会出现好友状态 游戏中、空闲中、离线，此时邀请好友，好  友无法加入房间
-        游戏中间页面会出现金矿，石头，抓取到金矿时金矿分数为1-100之间的随机数，抓取到石头是石头不计分，若多个玩家抓取到同一矿石时，最先勾到金矿的玩家进行得分，其他玩家不计分。
-        当金矿和石头剩余三分之一时则会出现新一轮矿石。金矿、石头页面下方中间则会出现以倒计时的形式距离游戏结束时还有多久，此处倒计时时间以创建房间时输入的游戏时间为准，倒计时为0时游戏结束，如：玩家突然进到电话聊了30秒，此处倒计时也会过30秒不会暂停。
-        最下方一排会显示此玩家的得分、昵称、ALSC数量、房号等信息，最下方则会显示每个玩家的 昵称 ALSC数量 目前得分等信息。
+        The "Exit Game" button, "Game Rules" button, "Player List" button, "Invite Friends" button at the top of the player after starting the game,
+        Click on the "Game Rules" button to get an introduction to gameplay,
+        Click the "Player List" button, all the players in the game to the current ranking, score, and other information will appear.
+        Click the "Invite friends" button, the status of friends will appear. In-game, available, offline, if invite friends at this time, friends can not join the room
+        The middle page of the game will appear gold mines, stones. When the gold mines are captured, the gold mine score will be a random number between 1-100. If the stones are captured, the stones are not scored. The player who first hooks up a gold mine will get the gold mine scores, other players do not score at the same gold mine.
+        AThe bottom row will show the player's score, nickname, ALSC number, room number and other information, and the bottom row will show each player's nickname ALSC number, current score and other information.
         `,
 
         "6" :
-        `6、游戏结束后游戏结算
+        `6、Game settlement after the game
         
-        倒计时为0时游戏结束出现结算页面，此页面中间会显示本局玩家的排名，得分，系统会根据此页面的得分，
-        排名进行计算分取排名最低的玩家的单注金额（如果有并列玩家，则一起分取），除排名得分最低玩家之外的其他玩家需要收取玩家赢取的ALSC的一定的矿工费，除排名得分最低玩家之外其他玩家的单注金额会自动退回账户，玩家在排名得分下方可以看到本局游戏获得了多少ALSC。
-        如果房间只有2位玩家，2位玩家得分相同，系统则不会进行计算，并且退出冻结的单注金额
-        本局游戏获得了多少ALSC的下方会有两个按钮 “退出房间”、“再来一局”点击“退出房间”按钮即会回到房间列表页面，点击“再来一局”按钮即会回到房间页面，开始新的一轮，每轮都会冻结创建房间时输入的单注金额，待游戏结束时进行结算。
-        `,
+        At the end of the game when the countdown is 0, a settlement page will appear. At the center of this page the ranking and score of the player in the game will be displayed, according to the scores on this page, the system will: 
+        Rank and calculate to share the single bet amount of the players who are with the lowest ranking (if there are side-by-side players, they are shared together), other players except the players with the lowest ranking score will need to charge a certain miner fee of ALSC won by the player. The single bet amount of players other than the lowest scoring players will be automatically returned to the account. Below the ranking score, players can see how much ALSC they have earned in the game.
+        If there are only 2 players in the room and the 2 players score the same, the system will not calculate and return the frozen single bet amount
+        There are two buttons below the ALSC obtained in this game: "Exit the room" and "One more game". Click the "Exit room" button to return to the room list page. Click the "One more game" button to return to the room page, a new round will be started, each round will freeze the single bet amount entered when creating the room, and will be settled when the game is over.
+		`,
 
         "7":
-        `7、断线重连
+        `7、Reconnection after disconnection
         
-        黄金矿工有断线重连功能，玩家可能接电话，回信息，手机没电，切出APP，网络掉线或者网络不稳定等，再次登录游戏点击重新连接按钮可以继续游戏，返回原来的页面。
-        断线重连有着时间限制，断线时游戏内的倒计时不会停止的，玩家重新连接后如果倒计时没有结束会继续游戏，如果本局游戏已经结束则会跳转到游戏结算页面。
-        `,
+        The gold miner has a function for reconnection after disconnection. The player may come across issues like receive a call, return a message, out of power, cut out the APP, disconnected the network, unstable network. Log in to the game again and click the reconnect button to continue the game, the original page can be returned
+        There is a time limit for reconnection after disconnection. When the disconnection occurs, the countdown in the game will not stop. If the countdown does not end after the player reconnects, the game will continue. If the game has ended, the game will jump to the game settlement page.
+		`,
 
         "8":
-        `8、游戏中临时离开
+        `8、Temporary leave during the game
         
-        游戏中临时离开时点击“退出游戏”按钮时则可以退出“黄金矿工”页面，去进行投资理财或者转账，点击“全民挖矿 等人来战”时如果倒计时没结束则会跳转到游戏中，倒计时结束时跳转到结算页面`,
+        When you temporarily leave the game and click the "Exit Game" button, you can exit the "Gold Miner" page to go for your investment or money transferring. When the countdown has not ended when you click the "Everyone Mining, Come to Fight", it will jump to the game, if the countdown has ended, it will jump to the settlement page at the end of the countdown`,
      },
 
      "GetInvite": {

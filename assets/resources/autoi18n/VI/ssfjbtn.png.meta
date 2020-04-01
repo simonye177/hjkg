@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "50e94b70-0d58-42ab-97e6-95db4cd7fcf8",
+  "uuid": "8a4a46b8-f5d4-40e2-aa27-83f8dc96286f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "ssfjbtn": {
       "ver": "1.0.4",
-      "uuid": "0b73bc07-5c84-472f-a02c-a96f6040dd6a",
-      "rawTextureUuid": "50e94b70-0d58-42ab-97e6-95db4cd7fcf8",
+      "uuid": "42735cc4-ec9a-42a0-b7cd-1386d44323d0",
+      "rawTextureUuid": "8a4a46b8-f5d4-40e2-aa27-83f8dc96286f",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

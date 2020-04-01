@@ -18,6 +18,9 @@ window.autoi18n['VI'] = {
         "Qdtcyx": "Bạn có chắc chắn muốn thoát khỏi trò chơi không?",
         "xtydj": "Hệ thống đã đóng băng bạn",
         "bkxyyfz": "Thời gian chơi không thể ít hơn một phút",
+		"jhts":"Tài khoản của bạn đã đăng nhập ở nơi khác",
+        "zhunbeizhong":"Đang chuẩn bị",
+        "youxizhong":"Trong trò chơi",
     },
     "serverTips":{
         "Lang10001": "Bạn đã vào phòng  số{0}, không thể tạo phòng mới",
@@ -86,68 +89,67 @@ window.autoi18n['VI'] = {
 
      "GameRule": {
         "1" : 
-        `1、如何创建房间？
+        `1、Cách tạo phòng？
 
-        玩家登录成功进入下方点击第三个按钮，点击最上方“全民挖矿 等人来战”进入游戏页面，点击左下角“创建房间按钮”，点击后出现创建房间页面，创建房间页面信息：“游戏人数”不得低于2人，最多20人，“游戏时间”最低为1分钟，最高无上限，只可以输入整数，”单注金额”最低为10枚ALSC，最高无上限，每个进入此房间的用户都会冻结创建房间时输入的ALSC。
-        没有开始游戏之前退出房间系统则会返还冻结的ALSC，游戏结束时会根据玩家得分排名分取分数最低的玩家的单注金额，若是分数并列则一并分取，其他玩家冻结的单注金额则会自动退还。
-        若ALSC不足测无法创建房间、也无法进入房间，“房间密码”选填，如果创建房间时输入了密码，其他玩家进入此房间都需要密码，输入所有信息后点击“立即创建”按钮即可成功创建房间 。
-        房间类型分为公共房和密码房 公共房:此房间所有玩家都可以进入 密码房：需要输入密码进入 创建房间成功后页面最上方会显示，“返回大厅”按钮、“游戏规则”按钮、“玩家列表”按钮、“邀请好友”按钮，下方一栏显示 玩家得分、昵称、ALSC、房间号等信息。
-        `,
+        Sau khi người chơi đã đăng nhập thành công, hãy nhập vào dưới cùng và nhấp vào nút thứ ba. Nhấp vào trên cùng "Mọi người khai thác và những người khác để chiến đấu" để vào trang trò chơi. Số người không được ít hơn 2 người và tối đa là 20. "Thời gian trò chơi" tối thiểu là 1 phút và tối đa là không giới hạn. Bạn chỉ có thể nhập một số nguyên. Số tiền tối thiểu cho một lần đặt cược là 10 ALSC. Trong số người dùng đóng băng ALSC đã nhập khi tạo phòng.
+        Thoát khỏi hệ thống phòng trước khi bắt đầu trò chơi sẽ trả lại ALSC bị đóng băng. Vào cuối trò chơi, số tiền đặt cược duy nhất của người chơi có điểm thấp nhất sẽ được chia theo xếp hạng điểm của người chơi. Nó sẽ được hoàn trả tự động.
+        Nếu ALSC không đủ, bạn không thể tạo phòng hoặc vào phòng. "Mật khẩu phòng" là tùy chọn. Nếu bạn nhập mật khẩu khi tạo phòng, người chơi khác cần mật khẩu để vào phòng này. Sau khi nhập tất cả thông tin, hãy nhấp vào nút "Tạo ngay" để thành công. Tạo một căn phòng.
+        Các loại phòng được chia thành phòng công cộng và phòng mật khẩu. Phòng công cộng: Tất cả người chơi trong phòng này có thể vào phòng mật khẩu: Bạn cần nhập mật khẩu để vào phòng. Sau khi tạo thành công, phòng trên cùng sẽ được hiển thị. Nút liệt kê ", nút" Mời bạn bè ", cột bên dưới hiển thị điểm người chơi, biệt danh, ALSC, số phòng và các thông tin khác.
+        `,
 
 
         "2" : 
-        `2、如何邀请好友？
+        `2、Cách mời bạn bè？
         
-        创建房间成功后，可以看到页面最上方第四个按钮为“邀请好友”，点击此按钮出现邀请好友页面，可以看到好友的状态（游戏中、空闲中、离线，）选中要邀请的好友点击立即邀请，好友收到邀请信息，进入房间，可以在准备按钮下方看到好友信息，只可以邀请空闲中、离线的好友
-        `,
+        Sau khi tạo phòng thành công, bạn có thể thấy nút thứ tư ở đầu trang là "Mời bạn bè". Nhấp vào nút này để hiển thị trang Mời bạn bè. Bạn có thể thấy trạng thái của bạn bè (trong trò chơi, nhàn rỗi, ngoại tuyến, v.v.). Nhấp vào Mời ngay, bạn bè nhận thông tin mời, vào phòng, bạn có thể xem thông tin bạn bè dưới nút chuẩn bị, bạn chỉ có thể mời bạn bè đang rảnh hoặc ngoại tuyến
+         `,
 
 
         "3" :
-        `3、如何加入房间？
+        `3、Cách tham gia phòng？
         
-        登录成功进入下方点击第三个按钮，点击最上方“全民挖矿 等人来战”进入游戏页面，在“房间列表页面”可以看到每个房间的具体信息，如“房间状态”，“房号”，“玩家人数”，“单注金额，”，“公开房”，“密码房”等信息。
-        点击“房间列表”右侧“搜索房间”按钮输入房间号点击立即加入即可加入房间，可以点击房间信息处“立即加入”按钮即可加入房间，也可以点击最下方“快速加入”按钮即可加入 距离游戏开始时间最快的房间，正在游戏中的房间则不可以加入，成功加入房间后系统会冻结此房间创建时输入的的单注金额，待游戏结束时进行结算。
-        `,
+        Sau khi đăng nhập thành công, nhấp vào nút thứ ba bên dưới và nhấp vào "Hầu hết mọi người và những người khác để chiến đấu" ở trên cùng để vào trang trò chơi. Trên "Trang danh sách phòng", bạn có thể xem thông tin cụ thể của từng phòng, như "Tình trạng phòng", "Phòng Không. "," Số lượng người chơi "," Số tiền đặt cược duy nhất "," Phòng công cộng "," Phòng mật khẩu "và các thông tin khác.
+        Nhấp vào nút "Tìm kiếm phòng" ở bên phải "Danh sách phòng" và nhập số phòng. Nhấp vào Tham gia ngay để tham gia phòng. Bạn có thể nhấp vào nút "Tham gia ngay" tại thông tin phòng để tham gia phòng hoặc nhấp vào nút "Tham gia nhanh" ở phía dưới. Thêm phòng với thời gian nhanh nhất để bắt đầu trò chơi. Bạn không thể tham gia phòng trong khi trò chơi đang diễn ra. Sau khi tham gia phòng thành công, hệ thống sẽ đóng băng số tiền đặt cược duy nhất được nhập khi phòng được tạo và sẽ được giải quyết khi trò chơi kết thúc.
+        `,
 
         "4" :
-        `4、如何开始游戏？
+        `4、Làm thế nào để bắt đầu trò chơi？
         
-        创建房间或者加入房间成功后进入游戏页面，点击屏幕下方“准备”按钮 当准备人数达到此房间创建时输入的“游戏人数”的一半时，“准备”按钮下方会出现倒计时，此时玩家不可以取消准备。当下方倒计时结束时开始游戏并且踢出所有没有准备的玩家。
-        如：创建房间时输入的“游戏人数”为10当5位玩家准备后，开始倒计时，倒计时结束时开始游戏并且踢出所有没有准备的玩家，如果10位玩家都点击准备后则会立马开始游戏。
-        `,
+        Sau khi tạo thành công phòng hoặc tham gia phòng, hãy vào trang trò chơi và nhấp vào nút "Sẵn sàng" ở cuối màn hình. Khi số người chơi sẵn sàng đạt một nửa "số người chơi" được nhập khi phòng được tạo, đếm ngược sẽ xuất hiện dưới nút "Sẵn sàng". Hủy bỏ chuẩn bị. Trò chơi bắt đầu khi đếm ngược kết thúc và đuổi tất cả những người chơi chưa chuẩn bị.
+        Ví dụ: "số người chơi" đã nhập khi tạo phòng là 10. Khi 5 người chơi sẵn sàng, bắt đầu đếm ngược. Khi đếm ngược kết thúc, bắt đầu trò chơi và đuổi tất cả người chơi chưa sẵn sàng. Nếu tất cả 10 người chơi nhấp vào sẵn sàng, trò chơi sẽ bắt đầu ngay lập tức. .
+        `,
 
         "5" :
-        `5、开始游戏后
-        
-        开始游戏后玩家最上方的“退出游戏”按钮，“游戏规则”按钮，“玩家列表”按钮，“邀请好友”按钮，
-        点击“”游戏规则“按钮会出现游戏玩法介绍，
-        点击“玩家列表”按钮时会出现本局所有玩家到目前的排名，得分，等信息，
-        点击“邀请好友”按钮则会出现好友状态 游戏中、空闲中、离线，此时邀请好友，好  友无法加入房间
-        游戏中间页面会出现金矿，石头，抓取到金矿时金矿分数为1-100之间的随机数，抓取到石头是石头不计分，若多个玩家抓取到同一矿石时，最先勾到金矿的玩家进行得分，其他玩家不计分。
-        当金矿和石头剩余三分之一时则会出现新一轮矿石。金矿、石头页面下方中间则会出现以倒计时的形式距离游戏结束时还有多久，此处倒计时时间以创建房间时输入的游戏时间为准，倒计时为0时游戏结束，如：玩家突然进到电话聊了30秒，此处倒计时也会过30秒不会暂停。
-        最下方一排会显示此玩家的得分、昵称、ALSC数量、房号等信息，最下方则会显示每个玩家的 昵称 ALSC数量 目前得分等信息。
-        `,
+        `5、Sau khi bắt đầu trò chơi
+        Nút "Thoát trò chơi", nút "Luật chơi", nút "Danh sách người chơi", nút "Mời bạn bè" ở đầu trình phát sau khi bắt đầu trò chơi,
+        Nhấp vào nút "Quy tắc trò chơi" để có phần giới thiệu về trò chơi,
+        Khi bạn nhấp vào nút "Danh sách người chơi", tất cả người chơi trong trò chơi sẽ xếp hạng hiện tại, điểm số và các thông tin khác sẽ xuất hiện.
+        Nhấp vào nút "Mời bạn bè" và trạng thái của bạn bè sẽ xuất hiện. Trong trò chơi, nhàn rỗi, ngoại tuyến, mời bạn bè vào thời điểm này, những người bạn tốt không thể tham gia phòng
+        Trang giữa của trò chơi sẽ xuất hiện các mỏ vàng, đá. Khi các mỏ vàng bị bắt, điểm số của mỏ vàng là một con số ngẫu nhiên trong khoảng 1-100. Nếu các viên đá bị bắt, các viên đá sẽ không được ghi. Nếu nhiều người chơi bắt được cùng một loại quặng, nhiều nhất Người chơi đầu tiên móc được điểm vàng, người chơi khác không ghi bàn.
+        Một vòng quặng mới xuất hiện khi một phần ba số vàng và đá vẫn còn. Ở giữa cuối trang vàng và đá, sẽ có đếm ngược thời gian trước khi trò chơi kết thúc. Thời gian đếm ngược ở đây dựa trên thời gian trò chơi được nhập khi phòng được tạo. Trò chơi kết thúc khi đếm ngược bằng 0. Ví dụ: nếu người chơi đột nhiên vào Điện thoại đã nói chuyện trong 30 giây và việc đếm ngược sẽ không bị tạm dừng sau 30 giây.
+        Hàng dưới cùng sẽ hiển thị điểm số, biệt danh, số ALSC, số phòng và thông tin khác của người chơi và hàng dưới cùng sẽ hiển thị số biệt danh ALSC của người chơi, số điểm hiện tại và các thông tin khác.
+        `,
 
         "6" :
-        `6、游戏结束后游戏结算
+        `6、Giải quyết trò chơi sau trò chơi
         
-        倒计时为0时游戏结束出现结算页面，此页面中间会显示本局玩家的排名，得分，系统会根据此页面的得分，
-        排名进行计算分取排名最低的玩家的单注金额（如果有并列玩家，则一起分取），除排名得分最低玩家之外的其他玩家需要收取玩家赢取的ALSC的一定的矿工费，除排名得分最低玩家之外其他玩家的单注金额会自动退回账户，玩家在排名得分下方可以看到本局游戏获得了多少ALSC。
-        如果房间只有2位玩家，2位玩家得分相同，系统则不会进行计算，并且退出冻结的单注金额
-        本局游戏获得了多少ALSC的下方会有两个按钮 “退出房间”、“再来一局”点击“退出房间”按钮即会回到房间列表页面，点击“再来一局”按钮即会回到房间页面，开始新的一轮，每轮都会冻结创建房间时输入的单注金额，待游戏结束时进行结算。
-        `,
+        Vào cuối trò chơi khi đếm ngược bằng 0, một trang thanh toán xuất hiện. Ở giữa trang này hiển thị thứ hạng và điểm của người chơi trong trò chơi. Hệ thống sẽ tính điểm dựa trên trang này.
+        Tính thứ hạng để có được số tiền đặt cược duy nhất của người chơi có thứ hạng thấp nhất (nếu có người chơi phụ, chia sẻ với nhau), những người chơi khác ngoại trừ người chơi có điểm xếp hạng thấp nhất sẽ cần phải trả một khoản phí khai thác ALSC nhất định mà người chơi giành được. Số tiền đặt cược duy nhất của người chơi không phải là người chơi có điểm thấp nhất sẽ được tự động quay lại tài khoản. Dưới điểm số xếp hạng, người chơi có thể thấy trò chơi ALSC đã kiếm được bao nhiêu.
+        Nếu chỉ có 2 người chơi trong phòng và 2 người chơi cùng điểm, hệ thống sẽ không tính toán và thoát số tiền đặt cược đơn bị đóng băng
+        Có hai nút bên dưới ALSC thu được trong trò chơi này. Có hai nút "Thoát khỏi phòng" và "Thêm một trò chơi". Nhấp vào nút "Thoát khỏi phòng" để trở về trang danh sách phòng. Nhấp vào nút "Một trò chơi" để trở về trang phòng , Bắt đầu một vòng mới, mỗi vòng sẽ đóng băng số tiền đặt cược duy nhất được nhập khi tạo phòng và sẽ được giải quyết khi trò chơi kết thúc.
+        `,
 
         "7":
-        `7、断线重连
+        `7、Ngắt kết nối và kết nối lại
         
-        黄金矿工有断线重连功能，玩家可能接电话，回信息，手机没电，切出APP，网络掉线或者网络不稳定等，再次登录游戏点击重新连接按钮可以继续游戏，返回原来的页面。
-        断线重连有着时间限制，断线时游戏内的倒计时不会停止的，玩家重新连接后如果倒计时没有结束会继续游戏，如果本局游戏已经结束则会跳转到游戏结算页面。
-        `,
+        Công cụ khai thác vàng có chức năng ngắt kết nối và kết nối lại. Người chơi có thể nhận cuộc gọi, trả lại tin nhắn, điện thoại bị mất điện, cắt APP, mạng bị ngắt kết nối hoặc mạng không ổn định. Đăng nhập lại vào trò chơi và nhấp vào nút kết nối lại để tiếp tục trò chơi.
+        Có giới hạn thời gian ngắt kết nối và kết nối lại. Khi ngắt kết nối xảy ra, quá trình đếm ngược trong trò chơi sẽ không dừng lại. Nếu đếm ngược không kết thúc sau khi người chơi kết nối lại, trò chơi sẽ tiếp tục. Nếu trò chơi kết thúc, trò chơi sẽ chuyển sang trang giải quyết trò chơi.
+        `,
 
         "8":
-        `8、游戏中临时离开
+        `8、Rời đi tạm thời trong trò chơi
         
-        游戏中临时离开时点击“退出游戏”按钮时则可以退出“黄金矿工”页面，去进行投资理财或者转账，点击“全民挖矿 等人来战”时如果倒计时没结束则会跳转到游戏中，倒计时结束时跳转到结算页面`,
+        Khi bạn tạm thời rời khỏi trò chơi và nhấp vào nút "Thoát trò chơi", bạn có thể thoát khỏi trang "Công cụ khai thác vàng" để đầu tư hoặc quản lý tiền hoặc chuyển tiền. Nếu bạn nhấp vào "Mọi người khai thác và những người khác tham chiến", trò chơi sẽ nhảy vào trò chơi nếu quá trình đếm ngược không kết thúc , Chuyển đến trang thanh toán vào cuối đếm ngược`,
      },
 
      "GetInvite": {

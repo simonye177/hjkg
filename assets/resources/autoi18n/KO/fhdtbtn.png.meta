@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "2981b670-8db4-4292-90e3-c1d128a30516",
+  "uuid": "d6346477-6573-416a-8edd-9cb4abe289e2",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "fhdtbtn": {
       "ver": "1.0.4",
-      "uuid": "62f5cd08-928d-4d69-b6c1-dc7a303e2509",
-      "rawTextureUuid": "2981b670-8db4-4292-90e3-c1d128a30516",
+      "uuid": "2341d9b4-a3bd-4769-b1ab-2f8e52434526",
+      "rawTextureUuid": "d6346477-6573-416a-8edd-9cb4abe289e2",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

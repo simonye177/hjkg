@@ -148,7 +148,7 @@ cc.Class({
             window.sendHeart()
             return
         }
-        if(cmd==2000){
+        if(cmd==2000||cmd==2010){
             return
         }
 
@@ -515,6 +515,7 @@ cc.Class({
             this.lastGetGoldTime = curTime
             this.isRuningAct = false
             this.backZhuazi(true,ret)
+            this.playFireAction(ret.isgold);
             var sendStr =   {
                 cmd: GlobalConfig.CATCH_MINERAL,
                 roomId:this.roomId,
@@ -534,7 +535,8 @@ cc.Class({
                 // window.exitGame()
                 // cc.game.end()
                 cc.vv.musicManage.stopMusic();
-                window.alsc.finish();
+                // window.alsc.finish();
+                c.vv.webSoket.closeSoket(true);
             })
         }else{
             var users = this.roomInfo.users
@@ -669,7 +671,8 @@ cc.Class({
 
 
     //开始和结束的动画
-    tipsGameStarAndOver(isgameStart){
+    tipsGameStarAndOver(isgameStart , isrecover){
+        if(isrecover)return;
         var tipNode = this.node.getChildByName("tipNode")
         var tStr = "gameover"
         if(isgameStart){//自己创的房
@@ -859,7 +862,7 @@ cc.Class({
         this.createKuangshi(result.screenItems);
         // this.shengziAction();
         this.startShenziSChedule()
-        this.tipsGameStarAndOver(true);
+        this.tipsGameStarAndOver(true,isrecover);
         this.updateUserScore();
         this.updateOtherReady(true);
         // this.updateMyRank()
@@ -1097,6 +1100,13 @@ cc.Class({
         this.setMusicButtonState();
     },
 
+    playFireAction(isgold){
+        if(!isgold)return;
+        var fireNode = this.node.getChildByName("upNode").getChildByName("headdi").getChildByName("fire")
+        var anim = fireNode.getComponent(cc.Animation);
+        anim.stop()
+        anim.play();
+    },
 
     onDestroy(){
         cc.log("game scene ondestroy")

@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "b0eef293-3e36-477c-a1bb-a8017e183f5d",
+  "uuid": "a0efd522-bdb0-4d96-8961-4c792e667a5b",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "lijijiaru": {
       "ver": "1.0.4",
-      "uuid": "86b04fd6-8d39-41f6-be76-a82aeb7d7005",
-      "rawTextureUuid": "b0eef293-3e36-477c-a1bb-a8017e183f5d",
+      "uuid": "6246fe47-3e28-4020-a7ce-3f45ef674ff4",
+      "rawTextureUuid": "a0efd522-bdb0-4d96-8961-4c792e667a5b",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

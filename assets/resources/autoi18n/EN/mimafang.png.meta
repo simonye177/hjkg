@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "6577b103-fd5c-4372-8d49-6be6cda23885",
+  "uuid": "454e28ee-c2be-42a7-8a9f-6aa04b83216a",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "mimafang": {
       "ver": "1.0.4",
-      "uuid": "37a63626-8791-4130-9354-982cec4f2d32",
-      "rawTextureUuid": "6577b103-fd5c-4372-8d49-6be6cda23885",
+      "uuid": "e6f0e657-7745-48e8-91d5-c1dd6c3ea2f8",
+      "rawTextureUuid": "454e28ee-c2be-42a7-8a9f-6aa04b83216a",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

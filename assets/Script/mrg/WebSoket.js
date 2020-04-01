@@ -8,6 +8,7 @@ cc.Class({
     init(){
         this.soketState = 0;  //0 未连接  1：连接  2：关闭
         this.isJihao = false; //是否被挤号了
+        this.isCloseGame = false;//是否是退游戏
     },
 
     getSoketState(){
@@ -16,6 +17,12 @@ cc.Class({
 
     setIsJiHao(jh){
         this.isJihao = jh;
+    },
+
+    closeSoket(state){
+        cc.log("...............close soket.............");
+        this.isCloseGame = state;
+        this.websock.close()
     },
 
 
@@ -51,6 +58,10 @@ cc.Class({
                 if(this.isJihao){
                     return
                 }
+                if(this.isCloseGame){
+                    this.isCloseGame = false;
+                    window.alsc.finish();
+                }
                 ShowTipsLabel(autoi18n.languageData.showText.wldktips)
                 cc.vv.eventMgr.emit(GlobalConfig.SOKET_CLOSE);
             },0.5)
@@ -63,7 +74,7 @@ cc.Class({
             if(s_data.cmd == GlobalConfig.LOGIN_OUT){
                 this.isJihao = true;
                 window.showJiHaoTips(()=>{
-                    window.alsc.finish();
+                    c.vv.webSoket.closeSoket(true);
                 })
                 return
             }

@@ -18,9 +18,9 @@ window.autoi18n['ZH'] = {
         "qdtcyx": "您确定退出游戏吗？",
         "xtydj": "系统已冻结您",
         "bkxyyfz":"游戏时间不可小于一分钟",
-        "jhts":"您的账号在别处登录",
-        "zhunbeizhong:":"准备中",
-        "youxizhong:":"游戏中",
+		"jhts":"您的账号在别处登录",
+        "zhunbeizhong":"准备中",
+        "youxizhong":"游戏中",
     },
     "serverTips":{
         "Lang10001": "您已进入{0}号房间,无法创建房间",

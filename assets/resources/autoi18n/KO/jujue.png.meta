@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "a8219bb1-1bae-4bec-a34b-20be192d7575",
+  "uuid": "3224c0f5-2b71-4388-b8cb-b51b4ed4615e",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "jujue": {
       "ver": "1.0.4",
-      "uuid": "b4257ce9-7cdc-4d6c-915b-3a9518cda700",
-      "rawTextureUuid": "a8219bb1-1bae-4bec-a34b-20be192d7575",
+      "uuid": "5519a37b-cf1e-4cab-8a49-a6f425e8e27c",
+      "rawTextureUuid": "3224c0f5-2b71-4388-b8cb-b51b4ed4615e",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

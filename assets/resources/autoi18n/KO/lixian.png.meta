@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "6bec8623-03e3-4290-bf23-b90d4904afdd",
+  "uuid": "117c75bc-e42e-49b2-8bca-b92b6a4dc8cb",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "lixian": {
       "ver": "1.0.4",
-      "uuid": "5951efbd-2a22-4225-a763-de04306d0281",
-      "rawTextureUuid": "6bec8623-03e3-4290-bf23-b90d4904afdd",
+      "uuid": "d3971d21-a6da-440f-95de-0dbbdc8bea0d",
+      "rawTextureUuid": "117c75bc-e42e-49b2-8bca-b92b6a4dc8cb",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

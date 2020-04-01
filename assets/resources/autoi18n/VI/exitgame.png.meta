@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "31ee6a23-ea2f-4798-87c7-8d00765c5747",
+  "uuid": "95a42456-eb16-4d05-b6dc-74348c709d7a",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "exitgame": {
       "ver": "1.0.4",
-      "uuid": "0cd9ef52-b7a3-40b2-9efb-cc2633d7efcb",
-      "rawTextureUuid": "31ee6a23-ea2f-4798-87c7-8d00765c5747",
+      "uuid": "4ef57e02-645f-412f-b355-27025bb926c9",
+      "rawTextureUuid": "95a42456-eb16-4d05-b6dc-74348c709d7a",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

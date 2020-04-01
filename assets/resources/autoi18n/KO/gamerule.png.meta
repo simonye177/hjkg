@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "8f69f29c-717e-42d4-838a-240b8945ec6d",
+  "uuid": "4bd84d44-10f6-40c3-83c0-c4e836f92fd6",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "gamerule": {
       "ver": "1.0.4",
-      "uuid": "f7622439-8a3a-411b-9159-cc7f8eec67d5",
-      "rawTextureUuid": "8f69f29c-717e-42d4-838a-240b8945ec6d",
+      "uuid": "5e497687-9e0a-4aad-8515-5b0f9475bcd8",
+      "rawTextureUuid": "4bd84d44-10f6-40c3-83c0-c4e836f92fd6",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

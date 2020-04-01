@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "cb80f263-2d3e-4196-acaa-dff34844bd80",
+  "uuid": "bb244dcc-181d-415d-9714-ddf2950e27d9",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "- invite friends -": {
       "ver": "1.0.4",
-      "uuid": "fa00e610-83d6-457f-b54d-d2518155e313",
-      "rawTextureUuid": "cb80f263-2d3e-4196-acaa-dff34844bd80",
+      "uuid": "e6829865-909d-4554-9eae-48e6894f1fd3",
+      "rawTextureUuid": "bb244dcc-181d-415d-9714-ddf2950e27d9",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

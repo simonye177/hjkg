@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "8575af96-e72e-4dec-89c7-d9fff336026a",
+  "uuid": "fb7c2802-e754-430e-b633-4fc4d0488f85",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "gongkaifang": {
       "ver": "1.0.4",
-      "uuid": "6427effb-a407-42f6-9015-6d2a98364166",
-      "rawTextureUuid": "8575af96-e72e-4dec-89c7-d9fff336026a",
+      "uuid": "fda1b5e3-2ce6-42d6-a7ee-4d4fa151631f",
+      "rawTextureUuid": "fb7c2802-e754-430e-b633-4fc4d0488f85",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

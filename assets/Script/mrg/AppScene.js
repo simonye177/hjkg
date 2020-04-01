@@ -41,7 +41,7 @@ var AppScene = cc.Class({
     },
 
     backApp(){
-        window.alsc.finish()
+        // window.alsc.finish()
     },
 
     // 处理消息事件堆栈

@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "0c42a251-0bf6-4cb5-9058-07c23a2014c8",
+  "uuid": "77335cd0-c733-49ba-a453-b8941b066230",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "jiarususs": {
       "ver": "1.0.4",
-      "uuid": "b18c312a-def1-42c3-9b50-fb5c1055030b",
-      "rawTextureUuid": "0c42a251-0bf6-4cb5-9058-07c23a2014c8",
+      "uuid": "0b3ca996-332a-4bb5-bace-aabd7eafd1c5",
+      "rawTextureUuid": "77335cd0-c733-49ba-a453-b8941b066230",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "4d16cb95-8850-4a7c-bac4-4a536d4f09bc",
+  "uuid": "223d8d96-4cb9-4c26-b03d-85139e446d53",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "jiaru": {
       "ver": "1.0.4",
-      "uuid": "3393e966-47e3-4fa1-bcb7-500487f64f89",
-      "rawTextureUuid": "4d16cb95-8850-4a7c-bac4-4a536d4f09bc",
+      "uuid": "e8680867-60f5-4e80-95ee-e3be670f193c",
+      "rawTextureUuid": "223d8d96-4cb9-4c26-b03d-85139e446d53",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -227,7 +227,7 @@ cc.Class({
         // cc.game.end();
         window.playEff("button");
         cc.vv.musicManage.stopMusic();
-        window.alsc.finish();
+        cc.vv.webSoket.closeSoket(true);
     },
 
     // JS`正则表达式`获取地址栏url参数：
@@ -396,7 +396,7 @@ cc.Class({
             window.sendHeart()
             return
         }
-        if(cmd==2000){
+        if(cmd==2000||cmd==2010){
             return
         }
 

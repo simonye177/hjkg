@@ -38,6 +38,12 @@ cc.Class({
         this.setRuleString();
     },
 
+    onCloseLayer(){
+        window.playEff("button");
+        var cPopUpManage = PopUpManage().getComponent("PopUpManage");
+        cPopUpManage.hide(this.node, true)
+    },
+
     setRuleString(){
         // this.labelRule.string = autoi18n.languageData.GameRule["ruleScrollView.view.content.ruleLabel"];
         // this.scheduleOnce(()=>{

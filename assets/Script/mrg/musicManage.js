@@ -33,7 +33,7 @@ manage.getMusicState = ()=>{
 manage.setMusicState = (v)=>{
     var s_v = v ? "1" : "0";
     cc.sys.localStorage.setItem("musicState" , s_v)
-    manage.setMusicVolume(parseInt(s_v));
+    manage.setMusicVolume(parseInt(s_v*100));
 }
 
 

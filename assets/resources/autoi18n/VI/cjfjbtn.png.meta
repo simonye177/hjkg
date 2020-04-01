@@ -1,6 +1,6 @@
 {
   "ver": "2.2.0",
-  "uuid": "67e8b66b-7579-4f0e-b14c-d362e7cd9dfa",
+  "uuid": "856709ef-3d4a-4ab5-88bc-b38d4e5ac554",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -8,8 +8,8 @@
   "subMetas": {
     "cjfjbtn": {
       "ver": "1.0.4",
-      "uuid": "d2d30ed2-0f9a-469e-87b3-a4f1ef3a8131",
-      "rawTextureUuid": "67e8b66b-7579-4f0e-b14c-d362e7cd9dfa",
+      "uuid": "7aa6b4d2-b4d3-4f01-bcb0-de036c514167",
+      "rawTextureUuid": "856709ef-3d4a-4ab5-88bc-b38d4e5ac554",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

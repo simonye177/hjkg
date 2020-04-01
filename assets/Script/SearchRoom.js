@@ -63,7 +63,8 @@ cc.Class({
                 cmd: GlobalConfig.SOCKTE_SEARCH_ROOM,
                 roomId: sr
             }
-            cc.vv.webSoket.websocketSend(sendStr)
+            cc.vv.webSoket.websocketSend(sendStr);
+            this.onCloseLayer();
         }else if(this.modeType == 2){
             var sr = this.mimaEditBox.getComponent("cc.EditBox").string;
             if(!sr || sr.trim() == ""){
@@ -73,6 +74,7 @@ cc.Class({
             if(this.jiaruCallBack){
                 this.jiaruCallBack(sr)
             }
+            this.onCloseLayer();
         }
     },
 
