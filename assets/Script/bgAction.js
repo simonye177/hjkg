@@ -220,6 +220,7 @@ cc.Class({
         var node = cc.instantiate(node);
         node.parent = this.node.parent;
         node.active = true;
+        node.opacity = 65;
         node.x = 750/2 + node.width/2;
         node.y = 1134/2 + node.height;
         var endx = - 750/2 - node.width/2;
@@ -227,7 +228,7 @@ cc.Class({
         var constY = Math.random() * 767;
         node.y = node.y - constY;
 
-        var time = 2 + Math.random() * 10;
+        var time = 5 + Math.random() * 15;
         node.runAction(cc.sequence(
             cc.moveTo( time , cc.v2(endx,endy-constY)),
             cc.callFunc((rec) => {
