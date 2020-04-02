@@ -146,21 +146,25 @@ cc.Class({
             return
         }
         var cmd = Number(data.cmd)
+
+        var have = cc.vv.webSoket.findKeyIsHave(cmd)
+        if(!have){
+            cc.log("收到非游戏协议：" , cmd)
+            return
+        }
+
         if(cmd==1000){
             window.sendHeart()
             return
         }
-        if(cmd==2000||cmd==2010){
-            return
-        }
 
-        if(data.code!=200){
+        if(cmd!=GlobalConfig.GET_INVITE && data.code!=200){
             // ShowTipsLabel(data.msg || autoi18n.languageData.showText.czerrortips)
             ShowTipsLabel( window.showServerTips(data.msg) ||  autoi18n.languageData.showText.czerrortips)
             return
         }
 
-        cc.log("cmd.game....................." ,cmd)
+        // cc.log("cmd.game....................." ,cmd)
         var result = data.result || {}
         if(cmd == GlobalConfig.USERREADY){
             if(result!=null){

@@ -222,13 +222,20 @@ cc.Class({
         // }
     },
 
-    onExitGame(iskeyBack){
+    onExitGame(event,iskeyBack){
         if(iskeyBack) return;
         cc.log("touch back hall")
         // cc.game.end();
         window.playEff("button");
         cc.vv.musicManage.stopMusic();
-        cc.vv.webSoket.closeSoket(true);
+        if(cc.vv.webSoket.getSoketState() == 1 ){
+            cc.vv.webSoket.closeSoket(true);
+        }else{
+            cc.log("无网络直接退出游戏")
+            if(window.alsc && window.alsc.finish){
+                window.alsc.finish();
+            }
+        }
     },
 
     // JS`正则表达式`获取地址栏url参数：
@@ -393,11 +400,15 @@ cc.Class({
             return
         }
         var cmd = Number(data.cmd)
-        if(cmd==1000){
-            window.sendHeart()
+
+        var have = cc.vv.webSoket.findKeyIsHave(cmd)
+        if(!have){
+            cc.log("收到非游戏协议：" , cmd)
             return
         }
-        if(cmd==2000||cmd==2010){
+
+        if(cmd==1000){
+            window.sendHeart()
             return
         }
 
@@ -411,7 +422,7 @@ cc.Class({
             return
         }
 
-        cc.log("cmd.hall....................." ,cmd)
+        // cc.log("cmd.hall....................." ,cmd)
         var result = data.result || {}
         if(cmd == GlobalConfig.SOCKTE_SEARCH_ROOM){
             var roomId = result.roomId

@@ -115,4 +115,14 @@ cc.Class({
 
         this.messageList = [];
     },
+
+    findKeyIsHave(key){
+        var have = false;
+        for(let i = 0 ; i < GlobalConfig.wsArg.length ; i++){
+            if(key == GlobalConfig.wsArg[i]){
+                have = true;
+            }
+        }
+        return have
+    },
 });
