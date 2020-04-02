@@ -47,6 +47,7 @@ cc.Class({
         this.addAutoI18n();
 
         this.schedule(this.updateRoomList,5)
+        // //大厅音乐
         this.scheduleOnce(()=>{
             var path = "mus/joinhall"
             cc.vv.musicManage.loadClip(path, function (err, clip) {

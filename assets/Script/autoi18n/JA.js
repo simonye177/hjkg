@@ -1,5 +1,5 @@
 if (!window.autoi18n) window.autoi18n = {};
-window.autoi18n['ZH'] = {
+window.autoi18n['JA'] = {
     "showText": {
         "cjfjtips": "ルーム情報を入力してください",
         "rssrtips": "プレイヤー数は2〜20名",

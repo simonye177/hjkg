@@ -89,7 +89,7 @@ cc.Class({
             return
         }
 
-        if(Number(str_renshu)<=1 || Number(str_renshu)>20){
+        if(Number(str_renshu)<=2 || Number(str_renshu)>20){
             window.playEff("srxxyw");
             ShowTipsLabel(autoi18n.languageData.showText.rssrtips)
             return   

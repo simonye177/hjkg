@@ -33,26 +33,22 @@ manage.getMusicState = ()=>{
 manage.setMusicState = (v)=>{
     var s_v = v ? "1" : "0";
     cc.sys.localStorage.setItem("musicState" , s_v)
-    manage.setMusicVolume(parseInt(s_v*100));
+    manage.setMusicVolume(parseInt(s_v));
 }
 
 
 manage.playMusic = (clip,loop,volume)=>{
     if (!clip || !clip._name) {return}
-    if(!manage.getMusicState()){
-        manage.setMusicVolume(0);
-        return
-    }
+    let state = manage.getMusicState()
     manage.stopMusic()
+    manage.setMusicVolume(state?1:0);
     cc.audioEngine.playMusic(clip, loop)
 }
 
 manage.playEffect = (clip,loop)=>{
     if (!clip || !clip._name) {return}
     if(!manage.getMusicState()){return}
-    // var effectvolume = manage.getEffectVolume()
     cc.audioEngine.playEffect(clip, loop)
-    // manage.setEffectsVolume(effectvolume)
 }
 
 manage.setMusicVolume = (volume)=>{
@@ -75,6 +71,7 @@ manage.resumeMusic = ()=>{
 }
 
 manage.stopMusic = ()=>{
+    cc.log("manage.——————————stopMusic：");
     cc.audioEngine.stopMusic()
     // cc.sys.localStorage.setItem("musicvolume", 0)
 }
@@ -118,7 +115,6 @@ manage.releaseClip = ()=>{
         for (var i = 0; i < manage.resList.length; i++) {
             cc.loader.releaseRes(manage.resList[i],cc.AudioClip);
         }
-
         manage.resList = null;
         manage.resList = [];
     }

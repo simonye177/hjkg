@@ -35,6 +35,10 @@ var AppScene = cc.Class({
             console.log("重新返回游戏---",backGameTime)
             // 客户端只多处理5秒内的事件
             cc.vv.GAME_HIDE = false;
+            if(cc.vv.webSoket){
+                cc.vv.webSoket.closeSoket(); 
+            }
+            
             if((backGameTime-this.hideGameTime)/1000 >=10){
                 // this.backApp()
             }else{

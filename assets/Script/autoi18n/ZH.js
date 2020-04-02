@@ -2,7 +2,7 @@ if (!window.autoi18n) window.autoi18n = {};
 window.autoi18n['ZH'] = {
     "showText": {
         "cjfjtips": "请输入创建房间信息",
-        "rssrtips": "游戏人数为2-20",
+        "rssrtips": "游戏人数为3-20",
         "jrsrtips": "金额输入有误，最小不小于10",
         "sjsrtips": "游戏时间为1-3分钟",
         "czerrortips": "操作错误",

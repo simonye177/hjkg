@@ -1085,14 +1085,14 @@ cc.Class({
     },
 
     playGameMusic(){
-        // var path = "mus/gameMusic"
-        // cc.vv.musicManage.loadClip(path, function (err, clip) {
-        //     if (err) {
-        //         cc.error('playMusic: ', path)
-        //         return
-        //     }
-        //     cc.vv.musicManage.playMusic(clip,true)
-        // }); 
+        var path = "mus/gameMusic"
+        cc.vv.musicManage.loadClip(path, function (err, clip) {
+            if (err) {
+                cc.error('playMusic: ', path)
+                return
+            }
+            cc.vv.musicManage.playMusic(clip,true)
+        }); 
     },
 
     setMusicButtonState(){
