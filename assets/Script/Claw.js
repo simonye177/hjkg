@@ -19,8 +19,8 @@ cc.Class({
      * @param  {Collider} self  产生碰撞的自身的碰撞组件
      */
     onCollisionEnter: function (other, self) {
-        console.log('.....................on collision enter..............other:' , other);
-
+        // console.log('.....................on collision enter..............other:' , other);
+        cc.log("---碰撞了---:" , other.tag)
         if(other.tag == 1){
             // cc.log("peng dao le qiang bi")
             cc.vv.eventMgr.emit(GlobalConfig.PENGZHUANG_WALL, null);

@@ -11,8 +11,8 @@ GlobalConfig.PENGZHUANG_WALL = "PENGZHUANG_WALL";
 GlobalConfig.PENGZHUANG_GOLD = "PENGZHUANG_GOLD";
 
 
-// GlobalConfig.HttpHost = "118.178.16.240";
-GlobalConfig.HttpHost = "game.cmzzz.top";
+GlobalConfig.HttpHost = "118.178.16.240";
+// GlobalConfig.HttpHost = "game.cmzzz.top";
 GlobalConfig.websockstr = "ws://" +  GlobalConfig.HttpHost + ":2348";
 GlobalConfig.GetFriendListUrl = "https://" + GlobalConfig.HttpHost + "/api/v1/game/contact";
 GlobalConfig.PostInviteFriendUrl = "https://" + GlobalConfig.HttpHost + "/api/v1/game/invite";

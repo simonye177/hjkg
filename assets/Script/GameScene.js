@@ -69,18 +69,24 @@ cc.Class({
         this.fanghaoNum = upNode.getChildByName("rightdi").getChildByName("fanghaoNum").getComponent(cc.Label)
         this.wanjiaLabel = upNode.getChildByName("rightdi").getChildByName("wanjiaNum").getComponent(cc.Label)
 
-        this.initRoom();
-        this.initGame();
         let isrecover = this.isRecover();
+
+        this.initRoom(isrecover);
+        this.initGame();
 
         this.addAutoI18n();
 
         if(!isrecover){
             this.startTimerToReady(true);
+        }else{
+            this.recoverGame();
         }
         
         this.setMusicButtonState()
-        this.playGameMusic()
+
+        this.scheduleOnce(()=>{
+            this.playGameMusic()
+        },0.5)
         
     },
 
@@ -90,7 +96,7 @@ cc.Class({
     },
 
     //初始化房间 进来初始化一次
-    initRoom(){
+    initRoom(isrecover){
         var roomInfo = cc.vv.gameData.getCurRoomInfo()
         this.roomId = roomInfo.roomId
         this.myInfo = cc.vv.gameData.getUserInfo()
@@ -106,7 +112,7 @@ cc.Class({
         this.addOterPlayer()
         this.updateUserAlsc()
 
-        this.tipsJoinRoom()
+        this.tipsJoinRoom(isrecover)
         // this.updateShengLength()
         this.addOperationListen()
         this.addHandlerListen()
@@ -116,9 +122,6 @@ cc.Class({
     //断线重连
     isRecover(){
         let isRecover = cc.vv.gameData.getIsRecoverJoinRoom()
-        if(isRecover){
-            this.recoverGame();
-        }
         return isRecover;
     },
 
@@ -261,7 +264,13 @@ cc.Class({
             return
         }
         if(isStart){
-            this.gameTimer(60,true)
+            let curtime = new Date().getTime();
+            let totleTile = 60;
+            // if(this.lastDjsTime && curtime - totleTile < 60000){
+            //     totleTile = 60 - (curtime - totleTile) / 1000;
+            // }
+            // this.lastDjsTime = curtime;
+            this.gameTimer(totleTile,true)
         }else{
             this.timerLabel.node.active = false;
             this.unschedule(this.updateCurTime);
@@ -484,6 +493,7 @@ cc.Class({
     setCollision(b){
         var manager = cc.director.getCollisionManager();
         manager.enabled = b;
+        cc.log("............设置碰撞：" , b)
         // manager.enabledDebugDraw = true;
     },
 
@@ -510,7 +520,8 @@ cc.Class({
             var curTime = new Date().getTime();
             if(this.lastGetGoldTime){
                 let chaVule = curTime - this.lastGetGoldTime;
-                if(chaVule<=1000){
+                if(chaVule<=100){
+                    cc.log("抓取太快了")
                     return
                 }
             }
@@ -691,7 +702,8 @@ cc.Class({
 
 
     //加入房间提示
-    tipsJoinRoom(){
+    tipsJoinRoom(isrecover){
+        if(isrecover)return;
         var myUid = cc.vv.gameData.getUserInfo().userId
         var owerUid = cc.vv.gameData.getCurRoomCreatorInfo().userId
         var tipNode = this.node.getChildByName("tipNode")
@@ -769,11 +781,12 @@ cc.Class({
         for(let i = 0 ; i < ret.length ; i++ ){
             if(ret[i].userId == this.myUid){
                 let state = ret[i].ready
-                if(this.lastMystate == state)return;
+                if(this.lastMystate == state)return state;
                 this.setMyReadState(state)
                 let bstate = state ? 2 : 1
                 this.setExitGameBtnType(bstate)
                 this.startTimerToReady(bstate==1)
+                return state;
             }
         }
     },
@@ -895,7 +908,9 @@ cc.Class({
         }else{
             this.showMyReadyNode(true)
             if(status == 1 || status == 2){
-                this.setReadState(result.userStore)
+                let myReadState = this.setReadState(result.userStore)
+                if(!myReadState)
+                    this.startTimerToReady(true)
             }
             this.local_mergeUsers(result)
             this.addOterPlayer()
