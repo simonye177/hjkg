@@ -121,6 +121,9 @@ cc.Class({
 
         window.addCommonPrefab();
 
+        this.scheduleOnce(()=>{
+            this.postNotice();
+        },1)
     },
 
 
@@ -295,6 +298,19 @@ cc.Class({
             if(prefabInstance){
                 let obj = prefabInstance
                 cPopUpManage.show(obj)
+                return
+            }
+        })
+    },
+
+
+    showGameUpdateTips(data){
+        var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+        cc.vv.PrefabMgr.add("prefab/GameUpdateTips",(prefabInstance)=>{
+            if(prefabInstance){
+                let obj = prefabInstance
+                cPopUpManage.show(obj)
+                obj.getComponent("GameUpdateTips").setData(data);
                 return
             }
         })
@@ -501,14 +517,30 @@ cc.Class({
         this.opnePipeiView()
     },
 
-    onDestroy(){
-        cc.log("hall scene ondestroy")
-        this._super();
-        cc.vv.musicManage.stopMusic();
-        this.unschedule(this.updateRoomList)
+    //请求公告
+    postNotice(){
+        let url = GlobalConfig.PostNotice;
+        window.httpPost(url,{token:GlobalConfig.token || ""},(ret)=>{
+            cc.log("postNoticeret:" , ret)
+            if(ret){
+                let notice = ret.data.notice;
+                if(notice){
+                    this.showGameUpdateTips(notice)
+                    this.posRead(notice.article_id);
+                }
+            }
+        })
     },
 
+    posRead(readid){
+        if(!readid) return;
+        let url = GlobalConfig.PostRead;
+        window.httpPost(url,{token:GlobalConfig.token || "" , id:readid},(ret)=>{
+            cc.log("posRead:" , ret)
+        })
+    },
 
+    
     tipNoNetWork(){
         var state = cc.vv.webSoket.getSoketState()
         var isConect = state==1
@@ -517,4 +549,11 @@ cc.Class({
         return isConect
     },
 
+
+    onDestroy(){
+        cc.log("hall scene ondestroy")
+        this._super();
+        cc.vv.musicManage.stopMusic();
+        this.unschedule(this.updateRoomList)
+    },
 });

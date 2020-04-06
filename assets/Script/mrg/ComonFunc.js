@@ -221,7 +221,7 @@ window.httpPost = function (url, reqData, callback) {
         param += item + "=" + reqData[item] + "&";
     }
 
-    cc.log("posparam:" , param)
+    cc.log("posparam:" , url , param)
 
     //2.发起请求
     var xhr = new XMLHttpRequest();

@@ -11,11 +11,21 @@ GlobalConfig.PENGZHUANG_WALL = "PENGZHUANG_WALL";
 GlobalConfig.PENGZHUANG_GOLD = "PENGZHUANG_GOLD";
 
 
+
+GlobalConfig.appHost = "154.221.25.57";
 GlobalConfig.HttpHost = "118.178.16.240";
+
+
 // GlobalConfig.HttpHost = "game.cmzzz.top";
+// GlobalConfig.appHost = "main2.alsc1319.vip";
+
 GlobalConfig.websockstr = "ws://" +  GlobalConfig.HttpHost + ":2348";
 GlobalConfig.GetFriendListUrl = "https://" + GlobalConfig.HttpHost + "/api/v1/game/contact";
 GlobalConfig.PostInviteFriendUrl = "https://" + GlobalConfig.HttpHost + "/api/v1/game/invite";
+
+GlobalConfig.PostNotice = "http://" + GlobalConfig.appHost + "/api/game_notice";
+GlobalConfig.PostRead = "http://" + GlobalConfig.appHost + "/api/read";
+
 
 GlobalConfig.USER_INFO = 0; //玩家信息
 GlobalConfig.HEART_PACK = 1000; //心跳

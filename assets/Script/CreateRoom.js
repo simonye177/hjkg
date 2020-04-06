@@ -53,6 +53,8 @@ cc.Class({
 
         this.editbox_renshu.node.on('editing-did-ended' , this.xiandingxiaoshu, this);
         this.editbox_shijian.node.on('editing-did-ended' , this.xiandingxiaoshu, this);
+
+        // this.editbox_shijian.getComponent(cc.EditBox).string = '60';
     },
 
     jineCallback(editbox){
@@ -62,6 +64,7 @@ cc.Class({
 
     xiandingxiaoshu(editbox){
         var str_editbox = editbox.string;
+        str_editbox = str_editbox + "";
 
          if(str_editbox.indexOf(".") != -1){
             editbox.string = parseInt(str_editbox)
@@ -74,6 +77,10 @@ cc.Class({
         var str_shijian = this.editbox_shijian.getComponent(cc.EditBox).string;
         var str_jine = this.editbox_jine.getComponent(cc.EditBox).string;
         var str_mima = this.editbox_mima.getComponent(cc.EditBox).string;
+
+        if(!str_shijian){
+            str_shijian = "60";
+        }
         
         window.playEff("button");
 
@@ -89,19 +96,19 @@ cc.Class({
             return
         }
 
-        if(Number(str_renshu)<=2 || Number(str_renshu)>20){
+        if(Number(str_renshu)<3 || Number(str_renshu)>6){
             window.playEff("srxxyw");
             ShowTipsLabel(autoi18n.languageData.showText.rssrtips)
             return   
         }
 
-        if(Number(str_jine)<10){
+        if(Number(str_jine)<100 || Number(str_jine)%10!=0){
             window.playEff("srxxyw");
             ShowTipsLabel(autoi18n.languageData.showText.jrsrtips)
             return   
         }
 
-        if(Number(str_shijian)<1 || Number(str_shijian)>3){
+        if(Number(str_shijian)<60 || Number(str_shijian)>90){
             window.playEff("srxxyw");
             ShowTipsLabel(autoi18n.languageData.showText.sjsrtips)
             return   
@@ -110,7 +117,7 @@ cc.Class({
         var sendStr =   {
             cmd: GlobalConfig.CREATE_ROOM,
             maxCount: str_renshu,
-            totalTime:str_shijian*60,
+            totalTime:str_shijian,
             payAmount:str_jine,
             password:str_mima
         }
