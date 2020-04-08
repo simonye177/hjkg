@@ -35,6 +35,7 @@ cc.Class({
     },
 
     setData(data){
+
         data = data || {};
         let lang = window.autoi18n.lang;
         let title = data.title || "";
@@ -50,6 +51,7 @@ cc.Class({
         this.scheduleOnce(()=>{
             this.scrollView.content.height = this.labelTips.height;
         },0.1)
+        
     },
 
     onCloseLayer(){

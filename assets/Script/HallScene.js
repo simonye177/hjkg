@@ -124,6 +124,8 @@ cc.Class({
         this.scheduleOnce(()=>{
             this.postNotice();
         },1)
+
+        this.simonTest();
     },
 
 
@@ -173,6 +175,48 @@ cc.Class({
         })
         idx = Number(Number(idx) + 1)
         cc.sys.localStorage.setItem('loginAccountArgIdx',idx);
+    },
+
+    simonTest(){
+        let tempArg = {roomId:10086 , time : new Date().getTime()}
+        let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArgt')
+        let newArg = [];
+        if(ExitArg){
+            newArg = JSON.parse(ExitArg);
+        }
+        newArg.push(tempArg)
+        cc.sys.localStorage.setItem('UserExitTimeArgt', JSON.stringify(newArg));
+
+        let ret = this.checkIsCannotJoin(10086);
+        if(!ret){
+
+        }
+    },
+
+
+    checkIsCannotJoin(_roomId){
+        let isnot = false;
+        let ExitArg1 = cc.sys.localStorage.getItem('UserExitTimeArgt')
+        let newArg1 = [];
+        if(ExitArg1){
+            newArg1 = JSON.parse(ExitArg1);
+            for(var i = newArg1.length-1; i >= 0; i-- ){
+                var curTime = new Date().getTime();
+                if(curTime - newArg1[i].time > (1000 * 60 * 5) ){
+                    cc.log("checkIsCannotJoin 删除了一个元素:" , newArg1[i].roomId)
+                    newArg1.splice(i,1)
+                }else{
+                    if(newArg1[i].roomId == _roomId){
+                        let timeMiao = (curTime - newArg1[i].time) / 1000
+                        ShowTipsLabel(autoi18n.languageData.showText.tcfjti.format(timeMiao))
+                        isnot = true;
+                        cc.log("checkIsCannotJoin 检测到房间号:" , newArg1[i].roomId , timeMiao)
+                        break;
+                    }
+                }
+            }
+        }
+        return isnot;
     },
 
 

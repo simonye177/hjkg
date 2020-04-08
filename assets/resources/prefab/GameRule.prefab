@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "GameUpdateTips",
+    "_name": "GameRule",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -344,8 +344,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 182.76,
-      "height": 35
+      "width": 487,
+      "height": 58
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -379,28 +379,31 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 10
     },
     "_enabled": true,
-    "_useOriginalSize": true,
-    "_string": "- 更新提示 -",
-    "_N$string": "- 更新提示 -",
-    "_fontSize": 35,
-    "_lineHeight": 35,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_batchAsBitmap": false,
-    "_N$horizontalAlign": 0,
-    "_N$verticalAlign": 0,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
-    "_N$cacheMode": 0,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "7ac9866d-eabc-42c1-a296-6a22dafc2f2a"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_state": 0,
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -606,7 +609,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {
@@ -637,7 +640,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 232,
+      "y": 240,
       "z": 0
     },
     "_scale": {
@@ -701,7 +704,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "ScrollView",
+    "_name": "ruleScrollView",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -1103,13 +1106,19 @@
     "sync": false
   },
   {
-    "__type__": "a7a46m7wjxEJrnw5JcBRy6T",
+    "__type__": "d41c9WWfUFBnIFjYJKbLkAR",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
+    "gameRuleScrollView": {
+      "__id__": 31
+    },
+    "labelRule": {
+      "__id__": 25
+    },
     "_id": ""
   },
   {

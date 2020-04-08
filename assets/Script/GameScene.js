@@ -52,7 +52,8 @@ cc.Class({
         this.zhuaziSpeed = 600 //爪子速度
         // this.isLeft = false
         this.isRuningAct = false
-        this.curScore = 0;
+        this.qxzbTimes = 0; //取消准备的次数
+        this.exitGameType = 0; //退出房间类型  0 就是游戏结算   1 就是被踢出的  2 主动退出
 
         this.initScene("Game")
         this.gameRect = this.node.getChildByName("gameRect")
@@ -104,7 +105,6 @@ cc.Class({
         cc.log("----------------initRoom_this.myUid:" , this.myUid)
         this.roomInfo = roomInfo
         this.timerLabel.node.active = false;
-
         this.myName.string = window.subSTotring(this.myInfo.nickName);
         // this.myName.string = window.subSTotring("胡明明给你想那你");
         this.fanghaoNum.string = this.roomId;
@@ -132,6 +132,7 @@ cc.Class({
         this.myScore.string = 0;
         this.timerLabel.string = 0;
         this.mypaiming.string = 0;
+        this.qxzbTimes = 0
         this.isShowTipsAlscKou = false;
         this.updateOtherReady()
         this.showMyReadyNode(true)
@@ -193,8 +194,8 @@ cc.Class({
             if(result){
                 // window.exitGame()
                 this.local_mergeUsers(result)
-                this.outRoom()
                 this.updatePlayerNum()
+                this.outRoom()
             }
         }else if(cmd == GlobalConfig.CATCH_MINERAL){
             if(result){
@@ -265,7 +266,10 @@ cc.Class({
         }
         if(isStart){
             let curtime = new Date().getTime();
-            let totleTile = 60;
+            let totleTile = 30;
+            if(this.qxzbTimes==1){
+                totleTile = 10;
+            }
             // if(this.lastDjsTime && curtime - totleTile < 60000){
             //     totleTile = 60 - (curtime - totleTile) / 1000;
             // }
@@ -560,16 +564,17 @@ cc.Class({
             var users = this.roomInfo.users
             if(users.length==1 && users[0].userId == this.myUid){
                 this.onJieSanTips(autoi18n.languageData.showText.zhwjtc,()=>{
-                    this.sendExitGame()
+                    this.sendExitGame(2)
                 })
                 return
             }
-            this.sendExitGame()
+            this.sendExitGame(2)
         }
     },
 
     //发送退出游戏
-    sendExitGame(){
+    sendExitGame(exitType){
+        this.exitGameType = exitType;
         var sendStr =   {
             cmd: GlobalConfig.EXITGAME,
             roomId:this.roomId
@@ -650,7 +655,7 @@ cc.Class({
                 obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort,this.myUid)
                 obj.getComponent("GamePlayerList").setGameOverCallBack(
                     ()=>{
-                        this.sendExitGame()
+                        this.sendExitGame(0)
                     },
                     ()=>{
                         //还原game
@@ -748,10 +753,17 @@ cc.Class({
         }
 
         // this.touchReadyTime = curTime;
-        // if(Number(data)==0){
-        //     //不能取消准备
-        //     return
-        // }
+
+        //记录当局取消准备的次数
+        if(Number(data)==0){
+            this.qxzbTimes += 1;
+            if(this.qxzbTimes == 1){
+                ShowTipsLabel(autoi18n.languageData.showText.qxzbtips)
+            }else if(this.qxzbTimes==2){
+                this.sendExitGame(1)
+                return
+            }
+        }
         var sendStr =   {
             cmd: GlobalConfig.USERREADY,
             roomId:this.roomId
@@ -959,7 +971,7 @@ cc.Class({
                 this.timerLabel.string = 0;
                 this.timerLabel.node.active = false;
                 if(this.readyTimer){
-                    this.sendExitGame()
+                    this.sendExitGame(1)
                 }
         }
     },
@@ -1061,7 +1073,18 @@ cc.Class({
                 break
             }
         }
+        //没有自己了 说明自己已经被踢了
         if(!isHaveSelf){
+            if(this.exitGameType>0){
+                let tempArg = {roomId:this.roomInfo.roomId , time : new Date().getTime()}
+                let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArg')
+                let newArg = [];
+                if(ExitArg)
+                    newArg = JSON.parse(ExitArg);
+                newArg.push(tempArg)
+                cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
+                cc.log("UserExitTimeArg=====:" , newArg)
+            }
             window.exitGame()
         }else{
             this.addOterPlayer()

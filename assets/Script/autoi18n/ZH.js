@@ -1,4 +1,4 @@
-if (!window.autoi18n) window.autoi18n = {};
+﻿if (!window.autoi18n) window.autoi18n = {};
 window.autoi18n['ZH'] = {
     "showText": {
         "cjfjtips": "请输入创建房间信息",
@@ -21,6 +21,8 @@ window.autoi18n['ZH'] = {
 		"jhts":"您的账号在别处登录",
         "zhunbeizhong":"准备中",
         "youxizhong":"游戏中",
+        "qxzbtips":"再次取消准备将被踢出房间且五分钟不能加入该房间",
+        "tcfjti":"还有{0}秒您才可以加入此房间",
     },
     "serverTips":{
         "Lang10001": "您已进入{0}号房间,无法创建房间",
