@@ -1083,7 +1083,7 @@ cc.Class({
                     newArg = JSON.parse(ExitArg);
                 newArg.push(tempArg)
                 cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
-                cc.log("UserExitTimeArg=====:" , newArg)
+                // cc.log("UserExitTimeArg=====:" , newArg)
             }
             window.exitGame()
         }else{

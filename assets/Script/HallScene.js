@@ -125,7 +125,7 @@ cc.Class({
             this.postNotice();
         },1)
 
-        this.simonTest();
+        // this.simonTest();
     },
 
 
@@ -179,13 +179,13 @@ cc.Class({
 
     simonTest(){
         let tempArg = {roomId:10086 , time : new Date().getTime()}
-        let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArgt')
+        let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArg')
         let newArg = [];
         if(ExitArg){
             newArg = JSON.parse(ExitArg);
         }
         newArg.push(tempArg)
-        cc.sys.localStorage.setItem('UserExitTimeArgt', JSON.stringify(newArg));
+        cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
 
         let ret = this.checkIsCannotJoin(10086);
         if(!ret){
@@ -196,7 +196,7 @@ cc.Class({
 
     checkIsCannotJoin(_roomId){
         let isnot = false;
-        let ExitArg1 = cc.sys.localStorage.getItem('UserExitTimeArgt')
+        let ExitArg1 = cc.sys.localStorage.getItem('UserExitTimeArg')
         let newArg1 = [];
         if(ExitArg1){
             newArg1 = JSON.parse(ExitArg1);
@@ -250,7 +250,10 @@ cc.Class({
         this.roomListScrollView.node.getComponent("roomListScrollView").joinRoomCallBack((roomId , roomType)=>{
             window.playEff("button");
             if(!this.tipNoNetWork()) return;
-            this.joinRoom(roomId,roomType)
+            let ret = this.checkIsCannotJoin(roomId);
+            if(!ret){
+                this.joinRoom(roomId,roomType)
+            }
         })
 
 
