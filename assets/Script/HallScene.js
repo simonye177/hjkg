@@ -121,9 +121,7 @@ cc.Class({
 
         window.addCommonPrefab();
 
-        this.scheduleOnce(()=>{
-            this.postNotice();
-        },1)
+        this.postNotice();
 
         // this.simonTest();
     },
@@ -207,7 +205,7 @@ cc.Class({
                     newArg1.splice(i,1)
                 }else{
                     if(newArg1[i].roomId == _roomId){
-                        let timeMiao = (curTime - newArg1[i].time) / 1000
+                        let timeMiao = 300 - Math.ceil((curTime - newArg1[i].time) / 1000)
                         ShowTipsLabel(autoi18n.languageData.showText.tcfjti.format(timeMiao))
                         isnot = true;
                         cc.log("checkIsCannotJoin 检测到房间号:" , newArg1[i].roomId , timeMiao)
@@ -251,9 +249,8 @@ cc.Class({
             window.playEff("button");
             if(!this.tipNoNetWork()) return;
             let ret = this.checkIsCannotJoin(roomId);
-            if(!ret){
-                this.joinRoom(roomId,roomType)
-            }
+            if(ret) return;
+            this.joinRoom(roomId,roomType)
         })
 
 
@@ -319,7 +316,15 @@ cc.Class({
             if(prefabInstance){
                 let obj = prefabInstance
                 cPopUpManage.show(obj)
-                obj.getComponent("SearchRoom").setMode(1)
+                obj.getComponent("SearchRoom").setMode(1,null,(str)=>{
+                    let ret = this.checkIsCannotJoin(str);
+                    if(ret) return;
+                    var sendStr =   {
+                        cmd: GlobalConfig.SOCKTE_SEARCH_ROOM,
+                        roomId: str
+                    }
+                    cc.vv.webSoket.websocketSend(sendStr);
+                })
                 return
             }
         })
@@ -432,8 +437,10 @@ cc.Class({
         cc.vv.eventMgr.addHandler(GlobalConfig.SOKET_OPEN, function (data) {
             self.sendGetRoomList()
             if(this.shareRoomId){
-                this.sendjoinRoom(this.shareRoomId,"" , "share")
                 this.shareRoomId = null
+                let ret = this.checkIsCannotJoin(this.shareRoomId);
+                if(ret) return;
+                this.sendjoinRoom(this.shareRoomId,"" , "share")
             }
         },this);
 
@@ -521,6 +528,8 @@ cc.Class({
             if(result){
                 if(!this.isCancelPipei){
                     this.closePipeiLayer()
+                    let ret = this.checkIsCannotJoin(result);
+                    if(ret) return;
                     this.sendjoinRoom(result)
                     window.playEff("cgpipei");
                 }
