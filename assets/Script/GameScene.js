@@ -86,7 +86,8 @@ cc.Class({
         this.setMusicButtonState()
 
         this.scheduleOnce(()=>{
-            this.playGameMusic()
+            this.playGameMusic();
+            this.addAcNode();
         },0.5)
         
     },
@@ -635,6 +636,15 @@ cc.Class({
             }
         })
         
+    },
+
+
+    addAcNode(){
+        cc.vv.PrefabMgr.add("prefab/AcNode",(prefabInstance)=>{
+            if(prefabInstance){
+                prefabInstance.parent = this.node.getChildByName("bg")
+            }
+        })
     },
 
 
