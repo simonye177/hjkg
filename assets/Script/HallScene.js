@@ -178,44 +178,44 @@ cc.Class({
     },
 
     simonTest(){
-        let tempArg = {roomId:10086 , time : new Date().getTime()}
-        let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArg')
-        let newArg = [];
-        if(ExitArg){
-            newArg = JSON.parse(ExitArg);
-        }
-        newArg.push(tempArg)
-        cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
+        // let tempArg = {roomId:10086 , time : new Date().getTime()}
+        // let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArg')
+        // let newArg = [];
+        // if(ExitArg){
+        //     newArg = JSON.parse(ExitArg);
+        // }
+        // newArg.push(tempArg)
+        // cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
 
-        let ret = this.checkIsCannotJoin(10086);
-        if(!ret){
+        // let ret = this.checkIsCannotJoin(10086);
+        // if(!ret){
 
-        }
+        // }
     },
 
 
     checkIsCannotJoin(_roomId){
         let isnot = false;
-        let ExitArg1 = cc.sys.localStorage.getItem('UserExitTimeArg')
-        let newArg1 = [];
-        if(ExitArg1){
-            newArg1 = JSON.parse(ExitArg1);
-            for(var i = newArg1.length-1; i >= 0; i-- ){
-                var curTime = new Date().getTime();
-                if(curTime - newArg1[i].time > (1000 * 60 * 5) ){
-                    cc.log("checkIsCannotJoin 删除了一个元素:" , newArg1[i].roomId)
-                    newArg1.splice(i,1)
-                }else{
-                    if(newArg1[i].roomId == _roomId){
-                        let timeMiao = (curTime - newArg1[i].time) / 1000
-                        ShowTipsLabel(autoi18n.languageData.showText.tcfjti.format(timeMiao))
-                        isnot = true;
-                        cc.log("checkIsCannotJoin 检测到房间号:" , newArg1[i].roomId , timeMiao)
-                        break;
-                    }
-                }
-            }
-        }
+        // let ExitArg1 = cc.sys.localStorage.getItem('UserExitTimeArg')
+        // let newArg1 = [];
+        // if(ExitArg1){
+        //     newArg1 = JSON.parse(ExitArg1);
+        //     for(var i = newArg1.length-1; i >= 0; i-- ){
+        //         var curTime = new Date().getTime();
+        //         if(curTime - newArg1[i].time > (1000 * 60 * 5) ){
+        //             cc.log("checkIsCannotJoin 删除了一个元素:" , newArg1[i].roomId)
+        //             newArg1.splice(i,1)
+        //         }else{
+        //             if(newArg1[i].roomId == _roomId){
+        //                 let timeMiao = 300 - Math.ceil((curTime - newArg1[i].time) / 1000)
+        //                 ShowTipsLabel(autoi18n.languageData.showText.tcfjti.format(timeMiao))
+        //                 isnot = true;
+        //                 cc.log("checkIsCannotJoin 检测到房间号:" , newArg1[i].roomId , timeMiao)
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
         return isnot;
     },
 
@@ -251,9 +251,8 @@ cc.Class({
             window.playEff("button");
             if(!this.tipNoNetWork()) return;
             let ret = this.checkIsCannotJoin(roomId);
-            if(!ret){
-                this.joinRoom(roomId,roomType)
-            }
+            if(ret) return;
+            this.joinRoom(roomId,roomType)
         })
 
 
@@ -319,7 +318,15 @@ cc.Class({
             if(prefabInstance){
                 let obj = prefabInstance
                 cPopUpManage.show(obj)
-                obj.getComponent("SearchRoom").setMode(1)
+                obj.getComponent("SearchRoom").setMode(1,null,(str)=>{
+                    let ret = this.checkIsCannotJoin(str);
+                    if(ret) return;
+                    var sendStr =   {
+                        cmd: GlobalConfig.SOCKTE_SEARCH_ROOM,
+                        roomId: str
+                    }
+                    cc.vv.webSoket.websocketSend(sendStr);
+                })
                 return
             }
         })
@@ -432,8 +439,10 @@ cc.Class({
         cc.vv.eventMgr.addHandler(GlobalConfig.SOKET_OPEN, function (data) {
             self.sendGetRoomList()
             if(this.shareRoomId){
-                this.sendjoinRoom(this.shareRoomId,"" , "share")
                 this.shareRoomId = null
+                let ret = this.checkIsCannotJoin(this.shareRoomId);
+                if(ret) return;
+                this.sendjoinRoom(this.shareRoomId,"" , "share")
             }
         },this);
 
@@ -521,6 +530,8 @@ cc.Class({
             if(result){
                 if(!this.isCancelPipei){
                     this.closePipeiLayer()
+                    let ret = this.checkIsCannotJoin(result);
+                    if(ret) return;
                     this.sendjoinRoom(result)
                     window.playEff("cgpipei");
                 }
