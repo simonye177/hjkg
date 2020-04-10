@@ -63,6 +63,7 @@ cc.Class({
     },
 
     start(){
+        this._super();
         if(cc.vv.gameData.getBackInfo()){
             cc.vv.gameData.setBackInfo(null)
             this.hallwebSocketInit()

@@ -91,12 +91,14 @@ window.mergeUsers=function( users ,userStore ){
 window.joinGame = function(data,isrecover){
     cc.vv.gameData.setCurRoomInfo(data)
     cc.vv.gameData.setIsRecoverJoinRoom(isrecover)
+    cc.vv.webSoket.setIsLoadingScene(true);
     cc.director.loadScene("game")
 },
 
 window.exitGame = function( isrecover ){
     cc.vv.gameData.setBackInfo(isrecover)
     cc.vv.gameData.cleanRoomInfo()
+    cc.vv.webSoket.setIsLoadingScene(true);
     cc.director.loadScene("hall")
 },
 

@@ -7,6 +7,15 @@ var AppScene = cc.Class({
         // },
     },
 
+    onLoad(){
+        
+    },
+
+    start(){
+        cc.log(".............AppScene class start...............")
+        cc.vv.webSoket.setIsLoadingScene(false);
+    },
+
     //子类需要实现这个方法
     initScene(sceneName){
         cc.vv.nowRunScene = this; //单例

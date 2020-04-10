@@ -9,6 +9,7 @@ cc.Class({
         this.soketState = 0;  //0 未连接  1：连接  2：关闭
         this.isJihao = false; //是否被挤号了
         this.isCloseGame = false;//是否是退游戏
+        this.isLoadScene = false;
     },
 
     getSoketState(){
@@ -17,6 +18,13 @@ cc.Class({
 
     setIsJiHao(jh){
         this.isJihao = jh;
+    },
+
+    setIsLoadingScene( isLoadScene ){
+        this.isLoadScene = isLoadScene;
+        if(isLoadScene == false){
+            this.doMessageList()
+        }
     },
 
     closeSoket(state){
@@ -87,7 +95,7 @@ cc.Class({
                 })
                 return
             }
-            if(cc.vv.GAME_HIDE){
+            if(this.isLoadScene){
                 self.messageList.push(s_data)
             }else{
                 // self.websocketMessage(s_data)
@@ -104,7 +112,7 @@ cc.Class({
     },
 
     doMessageList(){
-        cc.log("处理断线消息----------",this.messageList)
+        cc.log("处理缓存消息----------",this.messageList)
         if(!this.messageList){
             return
         }

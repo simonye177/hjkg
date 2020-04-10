@@ -93,6 +93,7 @@ cc.Class({
     },
 
     start(){
+        this._super();
         cc.log("startstart..")
 
     },
@@ -240,7 +241,7 @@ cc.Class({
         }else if(cmd == GlobalConfig.ADD_MINERAL){
             if(result){
                 let newItems = result.newItems || {}
-                this.createKuangshi(newItems)
+                this.createKuangshi(newItems);
             }
         }else if(cmd == GlobalConfig.GAME_OVER){
             //游戏结束
@@ -256,7 +257,7 @@ cc.Class({
             }
         }else if(cmd == GlobalConfig.READ_TIME){
             if(result){
-                this.startTimerReadyServer();
+                this.startTimerReadyServer(result.timer);
             }
         }
     },
@@ -778,15 +779,15 @@ cc.Class({
         // this.touchReadyTime = curTime;
 
         //记录当局取消准备的次数
-        if(Number(data)==0){
-            this.qxzbTimes += 1;
-            if(this.qxzbTimes == 1){
-                ShowTipsLabel(autoi18n.languageData.showText.qxzbtips)
-            }else if(this.qxzbTimes==2){
-                this.sendExitGame(1)
-                return
-            }
-        }
+        // if(Number(data)==0){
+        //     this.qxzbTimes += 1;
+        //     if(this.qxzbTimes == 1){
+        //         ShowTipsLabel(autoi18n.languageData.showText.qxzbtips)
+        //     }else if(this.qxzbTimes==2){
+        //         this.sendExitGame(1)
+        //         return
+        //     }
+        // }
         var sendStr =   {
             cmd: GlobalConfig.USERREADY,
             roomId:this.roomId
@@ -882,18 +883,19 @@ cc.Class({
 
     //创建钻石
     createKuangshi(ret){
-        // cc.log("---------------------ret0:" , ret.length)
         var ret = ret || {}
-        this.scheduleOnce(()=>{
-            // cc.log("==================ret.length:" , ret.length)
-            for(let i = 0 ; i < ret.length ; ++i){
-                var x = ret[i].x - 375
-                var y = ret[i].y - 300
-                var isjinKuang = ret[i].gold
-                this.chuangjiankuangshi(ret[i].id , cc.v2(x,y),isjinKuang,i)
-            }
-            // cc.log("------------------this.gameRect.child:" , this.gameRect.children.length)
-        },0.1)
+        var myItems = ret[this.myUid];
+        if(myItems){
+            let items = Object.values(myItems);
+            this.scheduleOnce(()=>{
+                for(let i = 0 ; i < items.length ; ++i){
+                    var x = items[i].x - 375
+                    var y = items[i].y - 300
+                    var isjinKuang = items[i].gold
+                    this.chuangjiankuangshi(items[i].id , cc.v2(x,y),isjinKuang,i)
+                }
+            },0.1)
+        }
     },
 
     removeKuangshi(){
