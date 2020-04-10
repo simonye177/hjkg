@@ -59,11 +59,9 @@ cc.Class({
                 return
             }
             cc.log("lijijiaru-----:" , sr)
-            var sendStr =   {
-                cmd: GlobalConfig.SOCKTE_SEARCH_ROOM,
-                roomId: sr
+            if(this.jiaruCallBack){
+                this.jiaruCallBack(sr)
             }
-            cc.vv.webSoket.websocketSend(sendStr);
             this.onCloseLayer();
         }else if(this.modeType == 2){
             var sr = this.mimaEditBox.getComponent("cc.EditBox").string;

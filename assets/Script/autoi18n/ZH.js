@@ -84,7 +84,7 @@ window.autoi18n['ZH'] = {
         "EditBoxRenshu.label_ren": "人",
         "EditBoxTime.label_fen": "秒",
         "EditBoxRenshu.PLACEHOLDER_LABEL": "最低3人",
-        "EditBoxTime.PLACEHOLDER_LABEL": "游戏时间60-90秒",
+        "EditBoxTime.PLACEHOLDER_LABEL": "60",
         "EditBoxJine.PLACEHOLDER_LABEL": "最低100枚ALSC",
         "EditBoxMima.PLACEHOLDER_LABEL": "可不填",
     },
