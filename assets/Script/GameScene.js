@@ -254,28 +254,41 @@ cc.Class({
                 this.addOterPlayer()
                 this.updatePlayerNum()
             }
+        }else if(cmd == GlobalConfig.READ_TIME){
+            if(result){
+                this.startTimerReadyServer();
+            }
         }
     },
 
-    //开启 关闭 60秒踢出倒计时
+    //开启 关闭 60秒踢出倒计时  功能不用前端做了
     startTimerToReady(isStart){
-        var roomInfo = cc.vv.gameData.getCurRoomInfo()
-        cc.log("----------------isMimaFANG:" , roomInfo.roomType)
-        if(roomInfo.roomType!=1){
-            cc.log("---密码房---")
-            return
-        }
-        if(isStart){
-            let curtime = new Date().getTime();
-            let totleTile = 30;
-            if(this.qxzbTimes==1){
-                totleTile = 10;
-            }
-            // if(this.lastDjsTime && curtime - totleTile < 60000){
-            //     totleTile = 60 - (curtime - totleTile) / 1000;
-            // }
-            // this.lastDjsTime = curtime;
-            this.gameTimer(totleTile,true)
+        // var roomInfo = cc.vv.gameData.getCurRoomInfo()
+        // cc.log("----------------isMimaFANG:" , roomInfo.roomType)
+        // if(roomInfo.roomType!=1){
+        //     cc.log("---密码房---")
+        //     return
+        // }
+        // if(isStart){
+        //     let curtime = new Date().getTime();
+        //     let totleTile = 30;
+        //     if(this.qxzbTimes==1){
+        //         totleTile = 10;
+        //     }
+        //     // if(this.lastDjsTime && curtime - totleTile < 60000){
+        //     //     totleTile = 60 - (curtime - totleTile) / 1000;
+        //     // }
+        //     // this.lastDjsTime = curtime;
+        //     this.gameTimer(totleTile,true)
+        // }else{
+        //     this.timerLabel.node.active = false;
+        //     this.unschedule(this.updateCurTime);
+        // }
+    },
+
+    startTimerReadyServer(time){
+        if(time){
+            this.gameTimer(time)
         }else{
             this.timerLabel.node.active = false;
             this.unschedule(this.updateCurTime);
