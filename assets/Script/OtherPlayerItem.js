@@ -52,6 +52,8 @@ cc.Class({
     },
 
     updateTime(_time){
+        if(_time==null || _time == undefined) return;
+        _time = Number(_time).toFixed(3);
         this.time.node.active = true;
         this.time.string = _time + " ms";
     },

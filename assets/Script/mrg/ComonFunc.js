@@ -289,6 +289,20 @@ window.alscOnAndroidKeyBack = ()=>{
     }
 }
 
+window.w_loadPrefabStatic = (pbArg)=>{
+    pbArg = pbArg || {}
+    let presFunc = ()=>{
+        let curpb = pbArg.shift()
+        cc.vv.PrefabMgr.add(curpb,(prefabInstance)=>{
+            cc.log("............load" + curpb + "suss!!");
+            if(pbArg.length>0)
+                presFunc()
+        });
+    }
+
+    presFunc();
+}
+
 
 window.deepClone = function(obj){
     let _obj = JSON.stringify(obj),

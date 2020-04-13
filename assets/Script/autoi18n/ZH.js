@@ -76,6 +76,7 @@ window.autoi18n['ZH'] = {
         "upNode.rightdi.fanghao": "房号：",
         "upNode.rightdi.wanjia": "玩家：",
         "bjyxhd": "本局游戏您获得",
+        "upNode.leftUp.kszl": "矿石总量：",
     },
 
     "CreateRoom": {
@@ -88,7 +89,7 @@ window.autoi18n['ZH'] = {
         "EditBoxTime.label_fen": "秒",
         "EditBoxRenshu.PLACEHOLDER_LABEL": "最低3人",
         "EditBoxTime.PLACEHOLDER_LABEL": "60",
-        "EditBoxJine.PLACEHOLDER_LABEL": "最低100枚ALSC",
+        "EditBoxJine.PLACEHOLDER_LABEL": "100",
         "EditBoxMima.PLACEHOLDER_LABEL": "可不填",
     },
 

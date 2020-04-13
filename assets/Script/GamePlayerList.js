@@ -43,6 +43,12 @@ cc.Class({
             this.node.getChildByName("bg").getChildByName("titleyxjs").active = true
             this.node.getChildByName("bg").getChildByName("closebtn").active = false
             this.node.getChildByName("mask").getComponent("mask").setIsNeedClose(false)
+
+            this.scheduleOnce(()=>{
+                if(this.callback_playeragin)
+                    this.callback_playeragin();
+                this.onCloseLayer()
+            },10)
         }
     },
 
@@ -107,8 +113,12 @@ cc.Class({
                 // cc.log("=====================:" , data.price)
                 this.setJiesuanStr(userStore.price||0 , userStore.taxPrice || 0);
             }
+            node.getChildByName("time").getComponent(cc.Label).string = "Time：" + (Number(userStore.catchTime || 0)).toFixed(3) + " ms"
         }
-        node.getChildByName("defenNum").getComponent(cc.Label).string = Numbler(df).toFixed(2) ;
+        node.getChildByName("time").active = this.modeType == "youxijiesuan";
+        node.getChildByName("kuangshiicon").active = this.modeType == "wanjialiebiao";
+        node.getChildByName("money").active = this.modeType == "wanjialiebiao";
+        node.getChildByName("defenNum").getComponent(cc.Label).string = Number(df).toFixed(2) ;
     },
 
     onCloseLayer(){

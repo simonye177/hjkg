@@ -31,6 +31,7 @@ cc.Class({
         autoi18n.analysisLanguageData(this.node,'upNode.rightdi.fanghao','GameScene');
         autoi18n.analysisLanguageData(this.node,'upNode.leftdi.paiming','GameScene');
         autoi18n.analysisLanguageData(this.node,'upNode.rightdi.wanjia','GameScene');
+        autoi18n.analysisLanguageData(this.node,'upNode.leftUp.kszl','GameScene');
 
         autoi18n.analysisLanguageSprite(this.node,'btn_backhall','fhdtbtn');
         autoi18n.analysisLanguageSprite(this.node,'btn_exitgame','exitgame');
@@ -69,7 +70,8 @@ cc.Class({
         this.timerLabel = this.node.getChildByName("bottonNode").getChildByName("timeNum").getComponent(cc.Label)
         this.fanghaoNum = upNode.getChildByName("rightdi").getChildByName("fanghaoNum").getComponent(cc.Label)
         this.wanjiaLabel = upNode.getChildByName("rightdi").getChildByName("wanjiaNum").getComponent(cc.Label)
-
+        this.cszlLabel = upNode.getChildByName("leftUp").getChildByName("kszlNum").getComponent(cc.Label)
+        this.mylastcathtime = upNode.getChildByName("mylastcathtime").getComponent(cc.Label)
         let isrecover = this.isRecover();
 
         this.initRoom(isrecover);
@@ -90,6 +92,7 @@ cc.Class({
             this.addAcNode();
         },0.5)
         
+        this.presPrefab();
     },
 
     start(){
@@ -107,6 +110,7 @@ cc.Class({
         cc.log("----------------initRoom_this.myUid:" , this.myUid)
         this.roomInfo = roomInfo
         this.timerLabel.node.active = false;
+        this.cszlLabel.string = roomInfo.payAmount;
         this.myName.string = window.subSTotring(this.myInfo.nickName);
         // this.myName.string = window.subSTotring("胡明明给你想那你");
         this.fanghaoNum.string = this.roomId;
@@ -205,7 +209,7 @@ cc.Class({
                 //抓到矿石
                 this.local_mergeUsers(result)
                 this.updateUserScore();
-                this.updatePlayerRank();
+                this.updatePlayerRankAndTime();
                 var item = result.item
                 if(item){
                     // cc.log("------------CATCH_MINERAL_this.myUid:" , item.userId , this.myUid , item.userId == this.myUid)
@@ -213,13 +217,11 @@ cc.Class({
                         //爪子收回要加分
                         this.piaoFenAction(item.score)
                     }else{
-                        //移除矿石
-                        let node = this.gameRect.getChildByName(item.id)
-                        // cc.log("------------item.id:" , item.id , node , this.gameRect)
-
-                        if(node){
-                            node.removeFromParent()
-                        }
+                        // //移除矿石
+                        // let node = this.gameRect.getChildByName(item.id)
+                        // if(node){
+                        //     node.removeFromParent()
+                        // }
                     }
                 }
             }
@@ -992,6 +994,7 @@ cc.Class({
         if(!time || time<=0){
             return
         }
+        this.isDaojishi = false;
         this.timerLabel.node.active = true;
         this.readyTimer = event;
         this.unschedule(this.updateCurTime);
@@ -1004,9 +1007,10 @@ cc.Class({
 
     updateCurTime(){
         this.curTimes = new Date().getTime()
-        this.timer = Math.ceil((this.endTime - this.curTimes) / 1000)
+        this.timer = Number((this.endTime - this.curTimes) / 1000).toFixed(3)
         this.timerLabel.string = this.timer
-        if(this.timer==3){
+        if(this.timer<3 && !this.isDaojishi){
+            this.isDaojishi = true;
             window.playEff("daojishi");
         }
         if(this.curTimes>=this.endTime){
@@ -1134,21 +1138,23 @@ cc.Class({
         }
     },
 
-    updatePlayerRank(isHide){
+    updatePlayerRankAndTime(){
         var ret = this.getDeepClonUser()
-        var rank = 0;
+        var rank = 0, lastTime = 0;
         for(let i = 0 ; i < ret.length ; i++ ){
             if(ret[i].userId == this.myUid){
                 rank = i;
+                lastTime = ret[i].userStore.catchTime || 0;
             }
             var otherNode = this.OtherPlayerItemCotent.getChildByName(ret[i].userId)
             if(otherNode){
                 otherNode.getComponent("OtherPlayerItem").updateRank(i+1)
-                otherNode.getComponent("OtherPlayerItem").updateTime(0)
+                otherNode.getComponent("OtherPlayerItem").updateTime(ret[i].userStore.catchTime)
             }
         }
         // cc.log("....................rank:" , rank)
         this.mypaiming.string = (rank+1);
+        this.mylastcathtime.string = Number(lastTime).toFixed(3) + " ms";
     },
 
     updatePlayerNum(){
@@ -1201,6 +1207,17 @@ cc.Class({
         var anim = fireNode.getComponent(cc.Animation);
         anim.stop()
         anim.play();
+    },
+
+    presPrefab(){
+        let pbArg = [
+            "prefab/GamePlayerList",
+            "prefab/IviteFriend",
+            "prefab/GameRule",
+            "prefab/ExitPanel",
+            "prefab/AcNode",
+        ];
+        window.w_loadPrefabStatic(pbArg);
     },
 
     onDestroy(){

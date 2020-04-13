@@ -68,14 +68,14 @@ cc.Class({
 
         this.setState(data.status);
 
-        window.getHeadRes(data.owner.avatarUrl, (sp)=>{
-            // this.headIcon.getComponent(cc.Sprite).spriteFrame = sp
-            if(this.headIcon){
-                this.headIcon.getComponent(cc.Sprite).spriteFrame = sp;
-                this.headIcon.height = 200;
-                this.headIcon.width = 200;
-            }
-        })
+        // window.getHeadRes(data.owner.avatarUrl, (sp)=>{
+        //     // this.headIcon.getComponent(cc.Sprite).spriteFrame = sp
+        //     if(this.headIcon){
+        //         this.headIcon.getComponent(cc.Sprite).spriteFrame = sp;
+        //         this.headIcon.height = 200;
+        //         this.headIcon.width = 200;
+        //     }
+        // })
     },
 
 

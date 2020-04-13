@@ -81,6 +81,10 @@ cc.Class({
         if(!str_shijian){
             str_shijian = "60";
         }
+
+        if(!str_jine){
+            str_jine = "100";
+        }
         
         window.playEff("button");
 

@@ -57,9 +57,11 @@ cc.Class({
                 }
                 cc.vv.musicManage.playMusic(clip,true)
             }); 
+            this.presPrefab();
         },1)
 
         this.setMusicButtonState()
+
     },
 
     start(){
@@ -606,6 +608,16 @@ cc.Class({
         if(!isConect)
             ShowTipsLabel(autoi18n.languageData.showText.wldktips)
         return isConect
+    },
+
+    presPrefab(){
+        let pbArg = [
+            "prefab/SearchRoomView",
+            "prefab/CreatRoom",
+            "prefab/GameRule",
+            "prefab/GameUpdateTips",
+        ];
+        window.w_loadPrefabStatic(pbArg);
     },
 
 
