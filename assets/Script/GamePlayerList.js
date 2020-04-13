@@ -108,7 +108,7 @@ cc.Class({
                 this.setJiesuanStr(userStore.price||0 , userStore.taxPrice || 0);
             }
         }
-        node.getChildByName("defenNum").getComponent(cc.Label).string = df;
+        node.getChildByName("defenNum").getComponent(cc.Label).string = Numbler(df).toFixed(2) ;
     },
 
     onCloseLayer(){

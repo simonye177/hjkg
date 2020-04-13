@@ -111,7 +111,7 @@ cc.Class({
         // this.myName.string = window.subSTotring("胡明明给你想那你");
         this.fanghaoNum.string = this.roomId;
         this.local_mergeUsers(this.roomInfo)
-        this.addOterPlayer()
+        // this.updateOterPlayer(true)
         this.updateUserAlsc()
 
         this.tipsJoinRoom(isrecover)
@@ -144,6 +144,7 @@ cc.Class({
         this.unschedule(this.updateShengLength)
         this.removeKuangshi();
         this.setCollision(false);
+        this.updateOterPlayer(true)
     },
 
     //收到消息
@@ -204,7 +205,6 @@ cc.Class({
                 //抓到矿石
                 this.local_mergeUsers(result)
                 this.updateUserScore();
-                // this.updateMyRank();
                 this.updatePlayerRank();
                 var item = result.item
                 if(item){
@@ -234,7 +234,7 @@ cc.Class({
                         //别的玩家被踢出房间 删除那个人的数据并刷新
                         this.deleteUser(out[i].userId)
                         this.updatePlayerNum();
-                        this.addOterPlayer();
+                        this.updateOterPlayer(true);
                     }
                 }
             }
@@ -252,7 +252,7 @@ cc.Class({
         }else if(cmd == GlobalConfig.JOIN_ROOM){
             if(result){//玩家加入房间 更新玩家列表状态
                 this.local_mergeUsers(result)
-                this.addOterPlayer()
+                this.updateOterPlayer(true)
                 this.updatePlayerNum()
             }
         }else if(cmd == GlobalConfig.READ_TIME){
@@ -694,12 +694,19 @@ cc.Class({
     },
 
     //添加其他玩家
-    addPlayerItem(ret){
+    addPlayerItem(ret , isInit){
         ret = ret || {}
+        var cloneret = window.deepClone(ret)
+
+        if(cloneret.length>=2){
+            cloneret.sort(function(a,b){
+                return b.userStore.score-a.userStore.score;
+            });
+        }
 
         this.OtherPlayerItemCotent.removeAllChildren();
 
-        var size = ret.length
+        var size = cloneret.length
         var hangshu = size % 3 == 0 ? size/3 : Math.ceil(size/3)
         this.OtherPlayerItemCotent.height = this.OtherPlayerItem.height * hangshu
 
@@ -709,12 +716,22 @@ cc.Class({
             newPcell.x = i%3 == 1 ? 0 : (i%3 == 0 ? -constIntever:constIntever);
             newPcell.y =  - Math.floor(i/3) * this.OtherPlayerItem.height  - this.OtherPlayerItem.height / 2 
             newPcell.active = true
-            newPcell._name = ret[i].userId
+            newPcell._name = cloneret[i].userId
             this.OtherPlayerItemCotent.addChild(newPcell)
-            newPcell.getComponent("OtherPlayerItem").initUI(ret[i])
+            newPcell.getComponent("OtherPlayerItem").initUI(cloneret[i] , size , isInit)
         }
-        
     },
+
+    // //复原其他玩家
+    // initOtherPlayerItem(){
+    //     let children = this.OtherPlayerItemCotent.children;
+    //     for(let i = 0 ; i < children.length ; ++i){
+    //         let node = children[i].getComponent("OtherPlayerItem");
+    //         if(node){
+    //             node.initState();
+    //         }
+    //     }
+    // },
 
 
     //开始和结束的动画
@@ -841,6 +858,7 @@ cc.Class({
             // cc.log("num is err:",num)
             return
         }
+        num = Number(num).toFixed(2);
 
         window.playEff("addscore");
 
@@ -869,7 +887,7 @@ cc.Class({
     },
 
     //添加其他用户
-    addOterPlayer(){
+    updateOterPlayer(isInit){
         var ret = this.roomInfo.users || {}
         var retOther = []
         for(let i = 0 ; i < ret.length ; i++ ){
@@ -878,7 +896,7 @@ cc.Class({
                 retOther.push(ret[i])
             }
         }
-        this.addPlayerItem(retOther)
+        this.addPlayerItem(retOther , isInit)
     },
 
     //创建钻石
@@ -913,7 +931,7 @@ cc.Class({
         this.gameState = result.status;
         //合并数据
         this.local_mergeUsers(result);
-        this.addOterPlayer();
+        this.updateOterPlayer(true);
         this.setCollision(true);
         this.showMyReadyNode(false);
         this.createKuangshi(result.screenItems);
@@ -950,7 +968,7 @@ cc.Class({
                     this.startTimerToReady(true)
             }
             this.local_mergeUsers(result)
-            this.addOterPlayer()
+            this.updateOterPlayer(true)
             this.updateOtherReady()
         }
     },
@@ -1007,30 +1025,30 @@ cc.Class({
         var users = this.roomInfo.users
         for(let i = 0 ; i < users.length ; ++i){
             if(users[i].userId == this.myUid){
-                this.myScore.string = isInit ? 0 : users[i].userStore.score
+                this.myScore.string = isInit ? 0 : Number(users[i].userStore.score).toFixed(2);
             }else{
-                var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
-                if(otherNode){
-                    otherNode.getComponent("OtherPlayerItem").setUserScore(isInit ? 0 : users[i].userStore.score)
-                }
+                // var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
+                // if(otherNode){
+                //     otherNode.getComponent("OtherPlayerItem").setUserScore(isInit ? 0 : users[i].userStore.score)
+                // }
             }
         }
     },
 
     //更新玩家alsc
     updateUserAlsc(){
-        var users = this.roomInfo.users
-        for(let i = 0 ; i < users.length ; ++i){
-            let alsc = Number(users[i].userStore.balance).toFixed(2)
-            if(users[i].userId == this.myUid){
-                this.myCoin.string = "" + alsc
-            }else{
-                var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
-                if(otherNode){
-                    otherNode.getComponent("OtherPlayerItem").setUserAlsc(users[i].userStore.balance)
-                }
-            }
-        }
+        // var users = this.roomInfo.users
+        // for(let i = 0 ; i < users.length ; ++i){
+        //     let alsc = Number(users[i].userStore.balance).toFixed(2)
+        //     if(users[i].userId == this.myUid){
+        //         this.myCoin.string = "" + alsc
+        //     }else{
+        //         var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
+        //         if(otherNode){
+        //             otherNode.getComponent("OtherPlayerItem").setUserAlsc(users[i].userStore.balance)
+        //         }
+        //     }
+        // }
     },
 
     //更新别人的准备状态
@@ -1112,16 +1130,21 @@ cc.Class({
             }
             window.exitGame()
         }else{
-            this.addOterPlayer()
+            this.updateOterPlayer(true)
         }
     },
 
-    updatePlayerRank(){
+    updatePlayerRank(isHide){
         var ret = this.getDeepClonUser()
         var rank = 0;
         for(let i = 0 ; i < ret.length ; i++ ){
             if(ret[i].userId == this.myUid){
                 rank = i;
+            }
+            var otherNode = this.OtherPlayerItemCotent.getChildByName(ret[i].userId)
+            if(otherNode){
+                otherNode.getComponent("OtherPlayerItem").updateRank(i+1)
+                otherNode.getComponent("OtherPlayerItem").updateTime(0)
             }
         }
         // cc.log("....................rank:" , rank)
