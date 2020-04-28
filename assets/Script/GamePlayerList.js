@@ -58,6 +58,7 @@ cc.Class({
             num = taxPrice
             window.playEff("yingle");
         }else{
+            num = 0;
             window.playEff("shule");
         }
         this.node.getChildByName("youxijieusuanNode").getChildByName("bjhdLabel").getComponent(cc.Label).string = autoi18n.languageData.GameScene.bjyxhd;

@@ -57,7 +57,7 @@ cc.Class({
                 }
                 cc.vv.musicManage.playMusic(clip,true)
             }); 
-            this.presPrefab();
+            // this.presPrefab();
         },1)
 
         this.setMusicButtonState()
@@ -199,26 +199,30 @@ cc.Class({
 
     checkIsCannotJoin(_roomId){
         let isnot = false;
-        // let ExitArg1 = cc.sys.localStorage.getItem('UserExitTimeArg')
-        // let newArg1 = [];
-        // if(ExitArg1){
-        //     newArg1 = JSON.parse(ExitArg1);
-        //     for(var i = newArg1.length-1; i >= 0; i-- ){
-        //         var curTime = new Date().getTime();
-        //         if(curTime - newArg1[i].time > (1000 * 60 * 5) ){
-        //             cc.log("checkIsCannotJoin 删除了一个元素:" , newArg1[i].roomId)
-        //             newArg1.splice(i,1)
-        //         }else{
-        //             if(newArg1[i].roomId == _roomId){
-        //                 let timeMiao = 300 - Math.ceil((curTime - newArg1[i].time) / 1000)
-        //                 ShowTipsLabel(autoi18n.languageData.showText.tcfjti.format(timeMiao))
-        //                 isnot = true;
-        //                 cc.log("checkIsCannotJoin 检测到房间号:" , newArg1[i].roomId , timeMiao)
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // }
+
+
+        let ExitArg1 = cc.sys.localStorage.getItem('UserExitTimeArg')
+        let newArg1 = [];
+        if(ExitArg1){
+            newArg1 = JSON.parse(ExitArg1);
+            for(var i = newArg1.length-1; i >= 0; i-- ){
+                var curTime = new Date().getTime();
+                if(curTime - newArg1[i].time > (1000 * 60 * 5) ){
+                    cc.log("checkIsCannotJoin 删除了一个元素:" , newArg1[i].roomId)
+                    newArg1.splice(i,1)
+                }else{
+                    if(newArg1[i].roomId == _roomId){
+                        let timeMiao = 300 - Math.ceil((curTime - newArg1[i].time) / 1000)
+                        ShowTipsLabel(autoi18n.languageData.showText.tcfjti.format(timeMiao))
+                        isnot = true;
+                        cc.log("checkIsCannotJoin 检测到房间号:" , newArg1[i].roomId , timeMiao)
+                        break;
+                    }
+                }
+            }
+        }
+
+        
         return isnot;
     },
 

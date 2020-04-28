@@ -266,27 +266,27 @@ cc.Class({
 
     //开启 关闭 60秒踢出倒计时  功能不用前端做了
     startTimerToReady(isStart){
-        // var roomInfo = cc.vv.gameData.getCurRoomInfo()
-        // cc.log("----------------isMimaFANG:" , roomInfo.roomType)
-        // if(roomInfo.roomType!=1){
-        //     cc.log("---密码房---")
-        //     return
-        // }
-        // if(isStart){
-        //     let curtime = new Date().getTime();
-        //     let totleTile = 30;
-        //     if(this.qxzbTimes==1){
-        //         totleTile = 10;
-        //     }
-        //     // if(this.lastDjsTime && curtime - totleTile < 60000){
-        //     //     totleTile = 60 - (curtime - totleTile) / 1000;
-        //     // }
-        //     // this.lastDjsTime = curtime;
-        //     this.gameTimer(totleTile,true)
-        // }else{
-        //     this.timerLabel.node.active = false;
-        //     this.unschedule(this.updateCurTime);
-        // }
+        var roomInfo = cc.vv.gameData.getCurRoomInfo()
+        cc.log("----------------isMimaFANG:" , roomInfo.roomType)
+        if(roomInfo.roomType!=1){
+            cc.log("---密码房---")
+            return
+        }
+        if(isStart){
+            let curtime = new Date().getTime();
+            let totleTile = 30;
+            if(this.qxzbTimes==1){
+                totleTile = 10;
+            }
+            // if(this.lastDjsTime && curtime - totleTile < 60000){
+            //     totleTile = 60 - (curtime - totleTile) / 1000;
+            // }
+            // this.lastDjsTime = curtime;
+            this.gameTimer(totleTile,true)
+        }else{
+            this.timerLabel.node.active = false;
+            this.unschedule(this.updateCurTime);
+        }
     },
 
     startTimerReadyServer(time){
@@ -798,15 +798,15 @@ cc.Class({
         // this.touchReadyTime = curTime;
 
         //记录当局取消准备的次数
-        // if(Number(data)==0){
-        //     this.qxzbTimes += 1;
-        //     if(this.qxzbTimes == 1){
-        //         ShowTipsLabel(autoi18n.languageData.showText.qxzbtips)
-        //     }else if(this.qxzbTimes==2){
-        //         this.sendExitGame(1)
-        //         return
-        //     }
-        // }
+        if(Number(data)==0){
+            this.qxzbTimes += 1;
+            if(this.qxzbTimes == 1){
+                ShowTipsLabel(autoi18n.languageData.showText.qxzbtips)
+            }else if(this.qxzbTimes==2){
+                this.sendExitGame(1)
+                return
+            }
+        }
         var sendStr =   {
             cmd: GlobalConfig.USERREADY,
             roomId:this.roomId
@@ -1041,18 +1041,18 @@ cc.Class({
 
     //更新玩家alsc
     updateUserAlsc(){
-        // var users = this.roomInfo.users
-        // for(let i = 0 ; i < users.length ; ++i){
-        //     let alsc = Number(users[i].userStore.balance).toFixed(2)
-        //     if(users[i].userId == this.myUid){
-        //         this.myCoin.string = "" + alsc
-        //     }else{
-        //         var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
-        //         if(otherNode){
-        //             otherNode.getComponent("OtherPlayerItem").setUserAlsc(users[i].userStore.balance)
-        //         }
-        //     }
-        // }
+        var users = this.roomInfo.users
+        for(let i = 0 ; i < users.length ; ++i){
+            let alsc = Number(users[i].userStore.balance).toFixed(2)
+            if(users[i].userId == this.myUid){
+                this.myCoin.string = "" + alsc
+            }else{
+                var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
+                if(otherNode){
+                    otherNode.getComponent("OtherPlayerItem").setUserAlsc(users[i].userStore.balance)
+                }
+            }
+        }
     },
 
     //更新别人的准备状态
