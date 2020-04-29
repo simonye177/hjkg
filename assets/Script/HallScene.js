@@ -128,7 +128,7 @@ cc.Class({
             this.postNotice();
         },1)
 
-        // this.simonTest();
+        this.simonTest();
     },
 
 

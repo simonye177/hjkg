@@ -54,7 +54,7 @@ cc.Class({
         // this.isLeft = false
         this.isRuningAct = false
         this.qxzbTimes = 0; //取消准备的次数
-        this.exitGameType = 0; //退出房间类型  0 就是游戏结算   1 就是被踢出的  2 主动退出
+        this.exitGameType = 0; //退出房间类型  3 就是游戏结算   1 就是被踢出的  2 主动退出
 
         this.initScene("Game")
         this.gameRect = this.node.getChildByName("gameRect")
@@ -201,7 +201,6 @@ cc.Class({
             if(result){
                 // window.exitGame()
                 this.local_mergeUsers(result)
-                this.updatePlayerNum()
                 this.outRoom()
             }
         }else if(cmd == GlobalConfig.CATCH_MINERAL){
@@ -231,7 +230,9 @@ cc.Class({
                 var out = result.out || {}
                 for(let i=0; i<out.length;++i ){
                     if(out[i].userId == this.myUid){
-                        window.exitGame()
+                        this.exitGameType = 1;
+                        this.saveUserExitTimeArg();
+                        window.exitGame();
                     }else{
                         //别的玩家被踢出房间 删除那个人的数据并刷新
                         this.deleteUser(out[i].userId)
@@ -681,7 +682,7 @@ cc.Class({
                 obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort,this.myUid)
                 obj.getComponent("GamePlayerList").setGameOverCallBack(
                     ()=>{
-                        this.sendExitGame(0)
+                        this.sendExitGame(3)
                     },
                     ()=>{
                         //还原game
@@ -699,16 +700,21 @@ cc.Class({
     addPlayerItem(ret , isInit){
         ret = ret || {}
         var cloneret = window.deepClone(ret)
+        var size = cloneret.length
 
-        if(cloneret.length>=2){
+        if(size>=2){
             cloneret.sort(function(a,b){
                 return b.userStore.score-a.userStore.score;
             });
         }
+        //大于3时候要把最后一个插入到第三个位置
+        if(size>3){
+            let lastData = cloneret.pop();
+            cloneret.splice(2,0,lastData);
+        }
 
         this.OtherPlayerItemCotent.removeAllChildren();
 
-        var size = cloneret.length
         var hangshu = size % 3 == 0 ? size/3 : Math.ceil(size/3)
         this.OtherPlayerItemCotent.height = this.OtherPlayerItem.height * hangshu
 
@@ -798,7 +804,7 @@ cc.Class({
         // this.touchReadyTime = curTime;
 
         //记录当局取消准备的次数
-        if(Number(data)==0){
+        if(Number(data)==0 && this.roomInfo.roomType == 1){
             this.qxzbTimes += 1;
             if(this.qxzbTimes == 1){
                 ShowTipsLabel(autoi18n.languageData.showText.qxzbtips)
@@ -1122,21 +1128,29 @@ cc.Class({
         }
         //没有自己了 说明自己已经被踢了
         if(!isHaveSelf){
-            if(this.exitGameType>0){
-                let tempArg = {roomId:this.roomInfo.roomId , time : new Date().getTime()}
-                let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArg')
-                let newArg = [];
-                if(ExitArg)
-                    newArg = JSON.parse(ExitArg);
-                newArg.push(tempArg)
-                cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
-                // cc.log("UserExitTimeArg=====:" , newArg)
-            }
-            window.exitGame()
+            this.saveUserExitTimeArg();
+            window.exitGame();
         }else{
+            this.updatePlayerNum()
             this.updateOterPlayer(true)
         }
     },
+
+
+    saveUserExitTimeArg(){
+        if(this.exitGameType==1){
+            let tempArg = {roomId:this.roomInfo.roomId , time : new Date().getTime()}
+            let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArg')
+            let newArg = [];
+            if(ExitArg)
+                newArg = JSON.parse(ExitArg);
+            newArg.push(tempArg)
+            cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
+        }
+    },
+
+
+
 
     updatePlayerRankAndTime(){
         var ret = this.getDeepClonUser()
