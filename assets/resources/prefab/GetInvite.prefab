@@ -641,8 +641,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0.8,
-      "y": 49,
+      "x": -9,
+      "y": 36,
       "z": 0
     },
     "_scale": {
@@ -810,7 +810,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {
@@ -911,7 +911,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {

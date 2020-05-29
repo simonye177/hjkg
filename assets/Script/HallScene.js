@@ -386,6 +386,8 @@ cc.Class({
                 cPopUpManage.show(obj)
                 obj.getComponent("GetInvite").initMsg(data)
                 obj.getComponent("GetInvite").setAgreeCallBack(()=>{
+                    let ret = this.checkIsCannotJoin(str);
+                    if(ret) return;
                     this.sendjoinRoom(data.roomId,"" , "share")
                 })
                 return

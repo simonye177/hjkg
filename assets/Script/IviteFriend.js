@@ -62,8 +62,7 @@ cc.Class({
         })
     },
 
-    posFriend(idsArg){
-        let url = GlobalConfig.PostInviteFriendUrl;
+    posFriend(idsArg,url,type){
         let jsonObj = { contactIds : idsArg ,
             msg:{
                 cmd:3020 , 
@@ -94,10 +93,13 @@ cc.Class({
                     // }else{
                     //     console.log("返回数据不存在")
                     // }
-                    ShowTipsLabel(autoi18n.languageData.showText.fsyqxxsustips)
+                    if(type==1){
+                        ShowTipsLabel(autoi18n.languageData.showText.fsyqxxsustips)
+                    }
+                    cc.log("..................发送邀请成功:" , url)
                     this.onCloseLayer()
                 }else{
-                    console.log("post请求失败")
+                    // console.log("post请求失败")
                 }
             }
         };
@@ -160,7 +162,8 @@ cc.Class({
         }
 
         if(argUid.length){
-            this.posFriend(argUid);
+            this.posFriend(argUid,GlobalConfig.PostInviteFriendUrl,1);
+            this.posFriend(argUid,GlobalConfig.PostInviteFriendUrlGame,2);
         }else{
             ShowTipsLabel(autoi18n.languageData.showText.xzyqhytips)
         }

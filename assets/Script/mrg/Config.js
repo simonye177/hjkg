@@ -14,7 +14,7 @@ GlobalConfig.PENGZHUANG_GOLD = "PENGZHUANG_GOLD";
 //测试地址
 // GlobalConfig.appHost = "154.221.25.57";
 // GlobalConfig.HttpHost = "118.178.16.240";
-//GlobalConfig.friendHost = "118.178.16.240";
+// GlobalConfig.friendHost = "154.221.25.57";
 
 
 //正式地址
@@ -26,6 +26,8 @@ GlobalConfig.websockstr = "ws://" +  GlobalConfig.HttpHost + ":2348";
 
 GlobalConfig.GetFriendListUrl = "https://" + GlobalConfig.friendHost + "/api/v1/game/contact";
 GlobalConfig.PostInviteFriendUrl = "https://" + GlobalConfig.friendHost + "/api/v1/game/invite";
+GlobalConfig.PostInviteFriendUrlGame = "https://" + GlobalConfig.HttpHost + "/api/v1/game/invite";
+
 
 GlobalConfig.PostNotice = "http://" + GlobalConfig.appHost + "/api/game_notice";
 GlobalConfig.PostRead = "http://" + GlobalConfig.appHost + "/api/read";
