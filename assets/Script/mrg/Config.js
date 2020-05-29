@@ -19,7 +19,7 @@ GlobalConfig.PENGZHUANG_GOLD = "PENGZHUANG_GOLD";
 
 //正式地址
 GlobalConfig.HttpHost = "game.alsc1319.org";
-GlobalConfig.appHost = "main2.alsc1319.vip";
+GlobalConfig.appHost = "mainr1.alsc1319.io";
 GlobalConfig.friendHost = "lt.alsc1319.org";
 
 GlobalConfig.websockstr = "ws://" +  GlobalConfig.HttpHost + ":2348";
@@ -29,8 +29,8 @@ GlobalConfig.PostInviteFriendUrl = "https://" + GlobalConfig.friendHost + "/api/
 GlobalConfig.PostInviteFriendUrlGame = "https://" + GlobalConfig.HttpHost + "/api/v1/game/invite";
 
 
-GlobalConfig.PostNotice = "http://" + GlobalConfig.appHost + "/api/game_notice";
-GlobalConfig.PostRead = "http://" + GlobalConfig.appHost + "/api/read";
+GlobalConfig.PostNotice = "https://" + GlobalConfig.appHost + "/api/game_notice";
+GlobalConfig.PostRead = "https://" + GlobalConfig.appHost + "/api/read";
 
 
 GlobalConfig.USER_INFO = 0; //玩家信息
