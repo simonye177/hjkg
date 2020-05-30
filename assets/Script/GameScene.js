@@ -384,7 +384,8 @@ cc.Class({
             this.clonSp = clonSp
         }
         this.zhuaziAction(this.zhuaziStartPos,()=>{
-            this.operationState = 0
+            this.operationState = 0;
+            this.shengzi.width = 50;
             this.setCollision(true)
 
             if(this.clonSp){
@@ -467,7 +468,7 @@ cc.Class({
 
     //开启绳子更新长度
     startShenziSChedule(){
-         this.schedule(this.updateShengLength,0.01)
+         this.schedule(this.updateShengLength)
     },
 
     //更新绳子长度
