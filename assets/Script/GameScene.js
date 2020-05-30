@@ -50,7 +50,7 @@ cc.Class({
         this.OtherPlayerItemCotent = this.otherPlaerScrollView.content;
         this.operationState =  0;   // 0代表等候    1代表出钩   2 回钩
         this.gameState = 1; // //1等待玩家  2 准备倒计时 3 游戏已开始  4 游戏结束
-        this.zhuaziSpeed = 600 //爪子速度
+        this.zhuaziSpeed = 500 //爪子速度
         // this.isLeft = false
         this.isRuningAct = false
         this.qxzbTimes = 0; //取消准备的次数
@@ -468,7 +468,7 @@ cc.Class({
 
     //开启绳子更新长度
     startShenziSChedule(){
-         this.schedule(this.updateShengLength)
+         this.schedule(this.updateShengLength,0)
     },
 
     //更新绳子长度
