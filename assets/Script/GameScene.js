@@ -1048,10 +1048,12 @@ cc.Class({
     //更新玩家alsc
     updateUserAlsc(){
         var users = this.roomInfo.users
+        cc.log("......更新玩家alsc.....users:" , users)
         for(let i = 0 ; i < users.length ; ++i){
             let alsc = Number(users[i].userStore.balance).toFixed(2)
             if(users[i].userId == this.myUid){
-                this.myCoin.string = "" + alsc
+                if(alsc && alsc > 0)
+                    this.myCoin.string = "" + alsc
             }else{
                 var otherNode = this.OtherPlayerItemCotent.getChildByName(users[i].userId)
                 if(otherNode){

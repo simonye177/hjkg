@@ -194,6 +194,8 @@ cc.Class({
         // if(!ret){
 
         // }
+
+        // this.showGameUpdateTips();
     },
 
 
@@ -448,10 +450,10 @@ cc.Class({
         cc.vv.eventMgr.addHandler(GlobalConfig.SOKET_OPEN, function (data) {
             self.sendGetRoomList()
             if(this.shareRoomId){
-                this.shareRoomId = null
                 let ret = this.checkIsCannotJoin(this.shareRoomId);
                 if(ret) return;
                 this.sendjoinRoom(this.shareRoomId,"" , "share")
+                this.shareRoomId = null
             }
         },this);
 
