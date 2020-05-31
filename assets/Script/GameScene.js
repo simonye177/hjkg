@@ -119,7 +119,6 @@ cc.Class({
         this.updateUserAlsc()
 
         this.tipsJoinRoom(isrecover)
-        // this.updateShengLength()
         this.addOperationListen()
         this.addHandlerListen()
         this.updatePlayerNum()
@@ -316,11 +315,15 @@ cc.Class({
         this.shengzi.rotation = 0;
         this.shengzi.width = 50;
         this.shengzi.stopAllActions();
+        this._resetZhuaziState();
+        this.isRuningAct = false;
+    },
+
+    _resetZhuaziState(){
         this.zhuazi.stopAllActions();
         this.zhuazi.removeAllChildren();
         this.zhuazi.x = 51;
         this.zhuazi.y = 0;
-        this.isRuningAct = false;
     },
 
 
@@ -384,15 +387,19 @@ cc.Class({
             this.clonSp = clonSp
         }
         this.zhuaziAction(this.zhuaziStartPos,()=>{
-            this.operationState = 0;
             this.shengzi.width = 50;
-            this.setCollision(true)
+            this.scheduleOnce(()=>{
+                this.operationState = 0; //延迟更改状态  避免绳子不更新
+            },0.5)
 
             if(this.clonSp){
                 this.clonSp.removeFromParent()
                 this.clonSp = null
             }
             this.shengzi.resumeAllActions()
+            this._resetZhuaziState();
+            this.setCollision(true)
+
             //给玩家加分
         },{isback:true,isget:isget,isgold:isgold})
     },
@@ -428,6 +435,7 @@ cc.Class({
                 this.shengzi.pauseAllActions()
                 var pos = this.CalculationPosition()
                 window.playEff("chugou");
+                this._resetZhuaziState();
                 this.zhuaziAction(pos,()=>{
                     this.backZhuazi(false)
                 })
@@ -944,12 +952,10 @@ cc.Class({
         this.setCollision(true);
         this.showMyReadyNode(false);
         this.createKuangshi(result.screenItems);
-        // this.shengziAction();
         this.startShenziSChedule()
         this.tipsGameStarAndOver(true,isrecover);
         this.updateUserScore();
         this.updateOtherReady(true);
-        // this.updateMyRank()
         this.gameTimer(result.totalTime);
         this.setExitGameBtnType(2);
         this.updatePlayerNum();
