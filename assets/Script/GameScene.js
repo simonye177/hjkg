@@ -390,7 +390,7 @@ cc.Class({
             this.shengzi.width = 50;
             this.scheduleOnce(()=>{
                 this.operationState = 0; //延迟更改状态  避免绳子不更新
-            },0.5)
+            },0.1)
 
             if(this.clonSp){
                 this.clonSp.removeFromParent()
@@ -427,6 +427,7 @@ cc.Class({
 
     //添加操作层
     addOperationListen(){
+
 
         this.gameRect.on('touchend', function (event) {
 
