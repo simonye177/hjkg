@@ -139,6 +139,7 @@ cc.Class({
         this.mypaiming.string = 0;
         this.qxzbTimes = 0
         this.isShowTipsAlscKou = false;
+        this._myReadState = false;
         this.updateOtherReady()
         this.showMyReadyNode(true)
         this.setExitGameBtnType(1)
@@ -851,6 +852,7 @@ cc.Class({
             if(ret[i].userId == this.myUid){
                 let state = ret[i].ready
                 if(this.lastMystate == state)return state;
+                this._myReadState = state;
                 this.setMyReadState(state)
                 let bstate = state ? 2 : 1
                 this.setExitGameBtnType(bstate)
@@ -1029,7 +1031,7 @@ cc.Class({
                 this.unschedule(this.updateCurTime);
                 this.timerLabel.string = 0;
                 this.timerLabel.node.active = false;
-                if(this.readyTimer){
+                if(this.readyTimer && !this._myReadState ){
                     this.sendExitGame(1)
                 }
         }
