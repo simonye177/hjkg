@@ -87,9 +87,9 @@ window.autoi18n['ZH'] = {
         "label_tips": "创建房间需要冻结",
         "EditBoxRenshu.label_ren": "人",
         "EditBoxTime.label_fen": "秒",
-        "EditBoxRenshu.PLACEHOLDER_LABEL": "最低3人",
-        "EditBoxTime.PLACEHOLDER_LABEL": "60",
-        "EditBoxJine.PLACEHOLDER_LABEL": "100",
+        "EditBoxRenshu.PLACEHOLDER_LABEL": "3-6",
+        "EditBoxTime.PLACEHOLDER_LABEL": "60-90",
+        "EditBoxJine.PLACEHOLDER_LABEL": "100-1000",
         "EditBoxMima.PLACEHOLDER_LABEL": "可不填",
     },
 

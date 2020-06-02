@@ -274,14 +274,10 @@ cc.Class({
         }
         if(isStart){
             let curtime = new Date().getTime();
-            let totleTile = 30;
-            if(this.qxzbTimes==1){
-                totleTile = 10;
-            }
-            // if(this.lastDjsTime && curtime - totleTile < 60000){
-            //     totleTile = 60 - (curtime - totleTile) / 1000;
+            let totleTile = 40;
+            // if(this.qxzbTimes==1){
+            //     totleTile = 10;
             // }
-            // this.lastDjsTime = curtime;
             this.gameTimer(totleTile,true)
         }else{
             this.timerLabel.node.active = false;
@@ -540,6 +536,7 @@ cc.Class({
 
         cc.vv.eventMgr.addHandler(GlobalConfig.PENGZHUANG_WALL, (ret)=>{
             this.isRuningAct = false
+            window.playEff("shitou");
             this.backZhuazi(false)
         },this);
 
@@ -813,16 +810,17 @@ cc.Class({
 
         // this.touchReadyTime = curTime;
 
-        //记录当局取消准备的次数
-        if(Number(data)==0 && this.roomInfo.roomType == 1){
-            this.qxzbTimes += 1;
-            if(this.qxzbTimes == 1){
-                ShowTipsLabel(autoi18n.languageData.showText.qxzbtips)
-            }else if(this.qxzbTimes==2){
-                this.sendExitGame(1)
-                return
-            }
-        }
+        // //记录当局取消准备的次数
+        // if(Number(data)==0 && this.roomInfo.roomType == 1){
+        //     this.qxzbTimes += 1;
+        //     if(this.qxzbTimes == 1){
+        //         ShowTipsLabel(autoi18n.languageData.showText.qxzbtips)
+        //     }else if(this.qxzbTimes==2){
+        //         this.sendExitGame(1)
+        //         return
+        //     }
+        // }
+
         var sendStr =   {
             cmd: GlobalConfig.USERREADY,
             roomId:this.roomId
@@ -856,7 +854,7 @@ cc.Class({
                 this.setMyReadState(state)
                 let bstate = state ? 2 : 1
                 this.setExitGameBtnType(bstate)
-                this.startTimerToReady(bstate==1)
+                //this.startTimerToReady(bstate==1)
                 return state;
             }
         }

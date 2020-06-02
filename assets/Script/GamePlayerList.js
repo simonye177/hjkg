@@ -48,7 +48,7 @@ cc.Class({
                 if(this.callback_playeragin)
                     this.callback_playeragin();
                 this.onCloseLayer()
-            },10)
+            },20)
         }
     },
 
