@@ -11,16 +11,16 @@ GlobalConfig.PENGZHUANG_WALL = "PENGZHUANG_WALL";
 GlobalConfig.PENGZHUANG_GOLD = "PENGZHUANG_GOLD";
 
 
-//测试地址
-// GlobalConfig.appHost = "154.221.25.57";
-// GlobalConfig.HttpHost = "118.178.16.240";
-// GlobalConfig.friendHost = "154.221.25.57";
+// 测试地址
+GlobalConfig.appHost = "154.221.25.57";
+GlobalConfig.HttpHost = "118.178.16.240";
+GlobalConfig.friendHost = "154.221.25.57";
 
 
-//正式地址
-GlobalConfig.HttpHost = "game.alsc1319.org";
-GlobalConfig.appHost = "mainr1.alsc1319.io";
-GlobalConfig.friendHost = "lt.alsc1319.org";
+// //正式地址
+// GlobalConfig.HttpHost = "game.alsc1319.org";
+// GlobalConfig.appHost = "mainr1.alsc1319.io";
+// GlobalConfig.friendHost = "lt.alsc1319.org";
 
 GlobalConfig.websockstr = "ws://" +  GlobalConfig.HttpHost + ":2348";
 

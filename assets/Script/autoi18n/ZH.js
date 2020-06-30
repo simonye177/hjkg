@@ -22,6 +22,7 @@ window.autoi18n['ZH'] = {
         "zhunbeizhong":"准备中",
         "youxizhong":"游戏中",
         "qxzbtips":"再次取消准备将被踢出房间且五分钟不能加入该房间",
+        "smtcfj":"10S内没有准备的玩家，10S后踢出房间",
         "tcfjti":"还有{0}秒您才可以加入此房间",
     },
     "serverTips":{
