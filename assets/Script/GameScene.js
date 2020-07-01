@@ -33,8 +33,8 @@ cc.Class({
         autoi18n.analysisLanguageData(this.node,'upNode.rightdi.wanjia','GameScene');
         autoi18n.analysisLanguageData(this.node,'upNode.leftUp.kszl','GameScene');
 
-        autoi18n.analysisLanguageSprite(this.node,'btn_backhall','fhdtbtn');
-        autoi18n.analysisLanguageSprite(this.node,'btn_exitgame','exitgame');
+        autoi18n.analysisLanguageSprite(this.node,'btn_backhall','tuichufangjiangame');
+        autoi18n.analysisLanguageSprite(this.node,'btn_exitgame','fanhuishouye');
         autoi18n.analysisLanguageSprite(this.node,'btn_gamerule','gamerule');
         autoi18n.analysisLanguageSprite(this.node,'btn_playerlist','wanjialiebiao');
         autoi18n.analysisLanguageSprite(this.node,'btn_invitefriend','yaoqinghaoyou');
@@ -42,6 +42,8 @@ cc.Class({
         autoi18n.analysisLanguageSprite(this.node,'zhunbeiNode.qxzhunbei','yizhunbei');
         autoi18n.analysisLanguageSprite(this.node,'tipNode.cjfjtips','chuangjiansuss');
         autoi18n.analysisLanguageSprite(this.node,'tipNode.jrfjtips','jiarususs');
+        autoi18n.analysisLanguageSprite(this.node,'starGameBtn','kaishiyouxi');
+
     },
 
     //初始化
@@ -264,6 +266,12 @@ cc.Class({
         }else if(cmd == GlobalConfig.READ_TIME){
             if(result){
                 this.startTimerReadyServer(result.timer);
+            }
+        }else if(cmd == GlobalConfig.FANGZHU_TIREN){
+            if(result){
+                if(this.gameListpre){
+                    this.gameListpre.getComponent("GamePlayerList").tichuPlayer(result.outId);
+                }
             }
         }
     },
@@ -620,7 +628,9 @@ cc.Class({
                 cPopUpManage.show(obj,cc.v2(120,0))
                 obj.getComponent("GamePlayerList").setModeTyppe("wanjialiebiao")
                 let arg_sort = this.getDeepClonUser()
-                obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort)
+                // this.owerUid = cc.vv.gameData.getCurRoomCreatorInfo().userId;
+                obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort,this.myUid,this.owerUid)
+                this.gameListpre = obj;
                 return
             }
         })
@@ -1134,10 +1144,20 @@ cc.Class({
             if(this.myUid != this.owerUid) return;
             if(this.otherReadyPlayerNum >0 && this._myReadState){
                 this.starGameBtn.active = true;
+                this.readyNode.active = false;
             }
         }else{
             this.starGameBtn.active = false;
         }
+    },
+
+    //房主开始游戏
+    sendStartGame(){
+        var sendStr =   {
+            cmd: GlobalConfig.GAMESTART,
+            roomId:this.roomId,
+        }
+        cc.vv.webSoket.websocketSend(sendStr)
     },
 
 

@@ -19,6 +19,7 @@ cc.Class({
     addAutoI18n(){
         autoi18n.analysisLanguageSprite(this.node,'bg.title','titlewjlb');
         autoi18n.analysisLanguageSprite(this.node,'bg.titleyxjs','youxijiesuantitle');
+        autoi18n.analysisLanguageSprite(this.node,'PlayerListItem.tichuwanjia','tichu');
         autoi18n.analysisLanguageSprite(this.node,'youxijieusuanNode.tuichufangjian','tuichufangjian');
         autoi18n.analysisLanguageSprite(this.node,'youxijieusuanNode.zailaiyiju','zailaiyiju');
     },
@@ -70,27 +71,33 @@ cc.Class({
         this.callback_playeragin = callback_playeragin;
     },
 
-    addPlayerListCell(ret,myuid){
+    addPlayerListCell(ret,myuid,roomOwerUid){
         // cc.log("addPlayerListCell_ret:" , ret)
         this.myUid = myuid;
+        this.roomOwerUid = roomOwerUid;
         if(!ret || ret.length <= 0){
             return
         }
+
+        this.retData = ret;
+
         this.playerListScrollViewContent.removeAllChildren();
 
         this.playerListScrollViewContent.height = this.playerListItem.height * ret.length
 
+        let fangzhu = (this.modeType == "wanjialiebiao" && myuid == roomOwerUid);
         for (var i = 0; i < ret.length; i++) {
             var newPcell = cc.instantiate(this.playerListItem)
             newPcell.x = 0;
             newPcell.active = true
             this.playerListScrollViewContent.addChild(newPcell)
-            this.initCell(newPcell,ret[i],i)
+            this.initCell(newPcell,ret[i],i,fangzhu)
         }
+
     },
 
 
-    initCell(node,data,idx){
+    initCell(node,data,idx,isfangzhu){
         let userStore = data.userStore
         node.getChildByName("name").getComponent(cc.Label).string = window.subSTotring(data.nickName)
         node.getChildByName("money").getComponent(cc.Label).string = Number(userStore.balance).toFixed(2) || 0;
@@ -120,6 +127,16 @@ cc.Class({
         node.getChildByName("kuangshiicon").active = this.modeType == "wanjialiebiao";
         node.getChildByName("money").active = this.modeType == "wanjialiebiao";
         node.getChildByName("defenNum").getComponent(cc.Label).string = Number(df).toFixed(2) ;
+
+        if(isfangzhu){
+            let tcwj =node.getChildByName("tichuwanjia");
+            tcwj.active = true;
+            tcwj.on('click', ()=>{
+                this.sendTichuWanjia(data.userId);
+            }, this);
+            node.getChildByName("defen").active = false;
+            node.getChildByName("defenNum").active = false;
+        }
     },
 
     onCloseLayer(){
@@ -141,6 +158,26 @@ cc.Class({
             this.callback_playeragin()
         }
         this.onCloseLayer()
+    },
+
+    tichuPlayer(uid){
+        // var ret = window.deepClone(this.retData);
+        for(let i = 0 ; i <this.retData.length; ++i){
+            if(this.retData[i].userId == uid){
+                this.retData.splice(i,1)
+                break
+            }
+        }
+        this.addPlayerListCell(this.retData,this.myUid.this.roomOwerUid);
+    },
+
+    sendTichuWanjia(uid){
+        var sendStr =   {
+            cmd: GlobalConfig.FANGZHU_TIREN,
+            outId: uid,
+        }
+        cc.vv.webSoket.websocketSend(sendStr)
+
     },
 
 
