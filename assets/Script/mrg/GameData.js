@@ -128,4 +128,9 @@ cc.Class({
         return this.isRecoverJoinRoom
     },
 
+    showTipStrd(str){
+        this.scheduleOnce(()=>{
+            ShowTipsLabel(str);
+        },2)
+    },
 });

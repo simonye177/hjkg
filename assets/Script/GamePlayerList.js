@@ -71,10 +71,11 @@ cc.Class({
         this.callback_playeragin = callback_playeragin;
     },
 
-    addPlayerListCell(ret,myuid,roomOwerUid){
+    addPlayerListCell(ret,myuid,roomOwerUid,roomId){
         // cc.log("addPlayerListCell_ret:" , ret)
         this.myUid = myuid;
         this.roomOwerUid = roomOwerUid;
+        this.roomId = roomId;
         if(!ret || ret.length <= 0){
             return
         }
@@ -128,7 +129,7 @@ cc.Class({
         node.getChildByName("money").active = this.modeType == "wanjialiebiao";
         node.getChildByName("defenNum").getComponent(cc.Label).string = Number(df).toFixed(2) ;
 
-        if(isfangzhu){
+        if(isfangzhu && data.userId!=this.myUid){
             let tcwj =node.getChildByName("tichuwanjia");
             tcwj.active = true;
             tcwj.on('click', ()=>{
@@ -168,13 +169,14 @@ cc.Class({
                 break
             }
         }
-        this.addPlayerListCell(this.retData,this.myUid.this.roomOwerUid);
+        this.addPlayerListCell(this.retData,this.myUid,this.roomOwerUid,this.roomId);
     },
 
     sendTichuWanjia(uid){
         var sendStr =   {
             cmd: GlobalConfig.FANGZHU_TIREN,
             outId: uid,
+            roomId:this.roomId,
         }
         cc.vv.webSoket.websocketSend(sendStr)
 

@@ -269,8 +269,16 @@ cc.Class({
             }
         }else if(cmd == GlobalConfig.FANGZHU_TIREN){
             if(result){
+                let outUserId = result.out[0].userId;
+                if(outUserId==this.myUid){
+                    window.exitGame(null,autoi18n.languageData.showText.btcfjl);
+                    return;
+                }
+                this.deleteUser(outUserId)
+                this.updatePlayerNum();
+                this.updateOterPlayer(true);
                 if(this.gameListpre){
-                    this.gameListpre.getComponent("GamePlayerList").tichuPlayer(result.outId);
+                    this.gameListpre.getComponent("GamePlayerList").tichuPlayer(outUserId);
                 }
             }
         }
@@ -629,7 +637,7 @@ cc.Class({
                 obj.getComponent("GamePlayerList").setModeTyppe("wanjialiebiao")
                 let arg_sort = this.getDeepClonUser()
                 // this.owerUid = cc.vv.gameData.getCurRoomCreatorInfo().userId;
-                obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort,this.myUid,this.owerUid)
+                obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort,this.myUid,this.owerUid,this.roomId)
                 this.gameListpre = obj;
                 return
             }

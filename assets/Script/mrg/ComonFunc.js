@@ -95,10 +95,13 @@ window.joinGame = function(data,isrecover){
     cc.director.loadScene("game")
 },
 
-window.exitGame = function( isrecover ){
+window.exitGame = function( isrecover , tipSTr){
     cc.vv.gameData.setBackInfo(isrecover)
     cc.vv.gameData.cleanRoomInfo()
     cc.vv.webSoket.setIsLoadingScene(true);
+    if(tipSTr){
+        cc.vv.gameData.showTipStrd(tipSTr);
+    }
     cc.director.loadScene("hall")
 },
 
@@ -121,7 +124,7 @@ window.addCommonPrefab = function(){
 
 //显示文本提示
 window.tipsObjList = [];
-window.ShowTipsLabel = function (str, pos) {
+window.ShowTipsLabel = function (str, time, pos) {
     if(!Window.tipsPerfabNode){
         cc.error("================tipsNode is null:" )
         return
