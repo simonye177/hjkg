@@ -1069,7 +1069,7 @@ cc.Class({
 
 
     checkShowTenTips(timer){
-        if(timer<10 && timer>9.9 &&!this.showTenTips){
+        if(this.readyTimer && timer<10 && timer>9.9 &&!this.showTenTips){
             this.showTenTips = true;
             var tipStr = autoi18n.languageData.showText.smtcfj||"";
             var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
