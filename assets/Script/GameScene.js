@@ -237,7 +237,8 @@ cc.Class({
                     if(out[i].userId == this.myUid){
                         this.exitGameType = 1;
                         this.saveUserExitTimeArg();
-                        window.exitGame();
+                        // window.exitGame();
+                        window.exitGame(null,autoi18n.languageData.showText.btcfjl);
                     }else{
                         //别的玩家被踢出房间 删除那个人的数据并刷新
                         this.deleteUser(out[i].userId)
@@ -266,6 +267,12 @@ cc.Class({
         }else if(cmd == GlobalConfig.READ_TIME){
             if(result){
                 this.startTimerReadyServer(result.timer);
+            }
+        }else if(cmd == GlobalConfig.JOIN_TIME){
+            if(result){
+                if(result.timer){
+                    this.startTimerReadyServer(result.timer);
+                }
             }
         }else if(cmd == GlobalConfig.FANGZHU_TIREN){
             if(result){
@@ -1227,15 +1234,15 @@ cc.Class({
 
 
     saveUserExitTimeArg(){
-        if(this.exitGameType==1){
-            let tempArg = {roomId:this.roomInfo.roomId , time : new Date().getTime()}
-            let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArg')
-            let newArg = [];
-            if(ExitArg)
-                newArg = JSON.parse(ExitArg);
-            newArg.push(tempArg)
-            cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
-        }
+        // if(this.exitGameType==1){
+        //     let tempArg = {roomId:this.roomInfo.roomId , time : new Date().getTime()}
+        //     let ExitArg = cc.sys.localStorage.getItem('UserExitTimeArg')
+        //     let newArg = [];
+        //     if(ExitArg)
+        //         newArg = JSON.parse(ExitArg);
+        //     newArg.push(tempArg)
+        //     cc.sys.localStorage.setItem('UserExitTimeArg', JSON.stringify(newArg));
+        // }
     },
 
 

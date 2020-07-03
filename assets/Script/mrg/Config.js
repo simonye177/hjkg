@@ -51,7 +51,8 @@ GlobalConfig.GAME_OVER = 3011;//游戏结束
 GlobalConfig.RECOVER_GAME = 3012;//恢复游戏
 GlobalConfig.READ_TIME = 3013;//准备倒计时
 GlobalConfig.FANGZHU_TIREN = 3015;//房主踢人
+GlobalConfig.JOIN_TIME = 3016;//进入房间倒计时
 GlobalConfig.GET_INVITE = 3020;//收到邀请
 GlobalConfig.LOGIN_OUT = 4444; //玩家被挤号了
 
-GlobalConfig.wsArg = [0,1000,3000,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,3011,3012,3013,3015,3020,4444];
+GlobalConfig.wsArg = [0,1000,3000,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,3011,3012,3013,3015,3016,3020,4444];
