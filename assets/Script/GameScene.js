@@ -192,7 +192,7 @@ cc.Class({
                     this.gameState = 2;
                     this.gameTimer(result.timer)
                     if(!this.isShowTipsAlscKou && this.lastMystate){
-                        let tips = autoi18n.languageData.showText.xtydj + " " +this.roomInfo.payAmount  + " ALSC"
+                        let tips = autoi18n.languageData.showText.xtydj + " " +this.roomInfo.payAmount  + " A13"
                         ShowTipsLabel(tips);
                         this.isShowTipsAlscKou = true;
                     }
@@ -270,9 +270,7 @@ cc.Class({
             }
         }else if(cmd == GlobalConfig.JOIN_TIME){
             if(result){
-                if(result.timer){
-                    this.startTimerReadyServer(result.timer);
-                }
+                this.startTimerReadyServer(result.timer);
             }
         }else if(cmd == GlobalConfig.FANGZHU_TIREN){
             if(result){
@@ -602,7 +600,7 @@ cc.Class({
 
     //退出游戏
     onExitGame(){
-        cc.log("touch game exit game")
+        cc.log("this.exitGameBtnType:........:" , this.exitGameBtnType)
         window.playEff("button");
         if(this.exitGameBtnType == 2){
             this.onJieSanTips(autoi18n.languageData.showText.qdtcyx,()=>{

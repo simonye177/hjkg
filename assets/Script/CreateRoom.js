@@ -59,7 +59,7 @@ cc.Class({
 
     jineCallback(editbox){
         var str_jine = this.editbox_jine.getComponent(cc.EditBox).string;
-        this.tipsStr.string = autoi18n.languageData.CreateRoom.label_tips + str_jine +"ALSC"
+        this.tipsStr.string = autoi18n.languageData.CreateRoom.label_tips + str_jine +"A13"
     },
 
     xiandingxiaoshu(editbox){

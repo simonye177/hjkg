@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.4370314842578711,
-      "y": 0.4370314842578711,
+      "x": 0.5161309757222009,
+      "y": 0.5161309757222009,
       "z": 1
     },
     "_quat": {
@@ -3231,7 +3231,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 47.02,
+      "width": 32.03,
       "height": 18
     },
     "_anchorPoint": {
@@ -3274,8 +3274,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "ALSC",
-    "_N$string": "ALSC",
+    "_string": "A13",
+    "_N$string": "A13",
     "_fontSize": 18,
     "_lineHeight": 18,
     "_enableWrapText": true,
