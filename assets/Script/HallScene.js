@@ -196,6 +196,10 @@ cc.Class({
         // }
 
         // this.showGameUpdateTips();
+
+        // this.scheduleOnce(()=>{
+        //     ShowTipsLabel(window.showServerTips("Lang10036_100"));
+        // },1)
     },
 
 

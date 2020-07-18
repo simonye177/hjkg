@@ -177,9 +177,12 @@ window.showServerTips = function( arg ){
         tipString = autoi18n.languageData.showText.czerrortips + "[" + arg1 + "]"
         return tipString
     }
-    if(arg1=="Lang10001" || arg1=="Lang10002"){
+    if(tipString.indexOf("{0}")!=-1){
         tipString = tipString.format(argT[1] || "")
     }
+    // if(arg1=="Lang10001" || arg1=="Lang10002"){
+    //     tipString = tipString.format(argT[1] || "")
+    // }
     return tipString
 },
 
