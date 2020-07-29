@@ -270,6 +270,10 @@ cc.Class({
             }
         }else if(cmd == GlobalConfig.JOIN_TIME){
             if(result){
+                if(result.ownerId){
+                    this.owerUid = result.ownerId
+                    this.showStartGameBtn(true)
+                }
                 this.startTimerReadyServer(result.timer);
             }
         }else if(cmd == GlobalConfig.FANGZHU_TIREN){
@@ -625,9 +629,12 @@ cc.Class({
     //发送退出游戏
     sendExitGame(exitType){
         this.exitGameType = exitType;
+        var over = this.exitGameType==3 ? 1 : null
         var sendStr =   {
             cmd: GlobalConfig.EXITGAME,
-            roomId:this.roomId
+            roomId:this.roomId,
+            over:over
+
         }
         cc.vv.webSoket.websocketSend(sendStr)
     },
@@ -1153,7 +1160,7 @@ cc.Class({
 
     showStartGameBtn( isShow ){
         if(isShow){
-            this.owerUid = cc.vv.gameData.getCurRoomCreatorInfo().userId;
+            // this.owerUid = cc.vv.gameData.getCurRoomCreatorInfo().userId;
             if(this.myUid != this.owerUid) return;
             if(this.otherReadyPlayerNum >0 && this._myReadState){
                 this.starGameBtn.active = true;
