@@ -404,7 +404,7 @@ cc.Class({
                     this.sendjoinRoom(data.roomId,"" , "share")
                 })
 
-                obj.getComponent("GetInvite").closeCallBack(()=>{
+                obj.getComponent("GetInvite").setcloseCallBack(()=>{
                     this.inviteNode = null
                 })
 
