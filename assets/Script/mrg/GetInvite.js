@@ -39,7 +39,7 @@ cc.Class({
         cPopUpManage.hide(this.node, true)
     },
 
-    closeCallBack(closeCall)
+    closeCallBack(closeCallBack)
     {
         this.closeCallBack = closeCallBack
     },
