@@ -32,8 +32,16 @@ cc.Class({
     },
 
     onCloseLayer(){
+        if(this.closeCallBack){
+            this.closeCallBack()
+        }
         var cPopUpManage = PopUpManage().getComponent("PopUpManage");
         cPopUpManage.hide(this.node, true)
+    },
+
+    closeCallBack(closeCall)
+    {
+        this.closeCallBack = closeCallBack
     },
 
     setAgreeCallBack(callback){

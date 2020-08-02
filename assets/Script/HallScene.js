@@ -385,6 +385,12 @@ cc.Class({
 
     //
     opneInvite(data){
+        if(this.inviteNode){
+            var cPopUpManage = PopUpManage().getComponent("PopUpManage");
+            cPopUpManage.hide(this.inviteNode, true)
+            this.inviteNode = null
+        }
+
         var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
         cc.vv.PrefabMgr.add("prefab/GetInvite",(prefabInstance)=>{
             if(prefabInstance){
@@ -397,6 +403,12 @@ cc.Class({
                     if(ret) return;
                     this.sendjoinRoom(data.roomId,"" , "share")
                 })
+
+                obj.getComponent("GetInvite").closeCallBack(()=>{
+                    this.inviteNode = null
+                })
+
+                this.inviteNode = obj;
                 return
             }
         })
