@@ -2,9 +2,9 @@ if (!window.autoi18n) window.autoi18n = {};
 window.autoi18n['EN'] = {
     "showText": {
         "cjfjtips": "Please input information for creating room",
-        "rssrtips": "The number of players is 2-20",
-        "jrsrtips": "Amount error, it could not be less than 10",
-        "sjsrtips": "Play time is 1-3 minutes",
+        "rssrtips": "3-6 players",
+        "jrsrtips": "The amount is 100-1000 as a multiple of 10",
+        "sjsrtips": "Game time is 60-90 seconds",
         "czerrortips": "Operation error ",
         "ssfjbcztips": "Searched room does not exist",
         "myhytips": "You do not have friends",
@@ -21,6 +21,10 @@ window.autoi18n['EN'] = {
 		"jhts":"Your account is logged in elsewhere",
         "zhunbeizhong":"preparing",
         "youxizhong":"in the game",
+		"smtcfj":"Players who are not prepared within 10S kick out",
+		"tcfjti":"You can join this room in {0} seconds",
+		"btcfjl":"You have been kicked out of the room by the host",
+
     },
     "serverTips":{
         "Lang10001": "You have entered into {0} room, and you could not create room",
@@ -50,6 +54,17 @@ window.autoi18n['EN'] = {
         "Lang10026": "No empty room, please wait a moment ",
         "Lang10027": "Mine parameter error",
         "Lang10028": "Game settlement abnormal",
+		"Lang10029": "Gams has already started",
+        "Lang10030": "Not ready to kick out of the room",
+        "Lang10031": "Insufficient balance kick out the room",
+        "Lang10032": "Homeowner can start the game",
+        "Lang10033": "Gams has already started",
+        "Lang10034": "Not enough people",
+        "Lang10035": "You have been kicked out of the room by the host",
+        "Lang10036": "You can enter the room after {0}s",
+        "Lang10037": "Unable to cancel preparation",
+        "Lang10038": "The host can kick out the player",
+        "Lang10039": "The game has started, players cannot be kicked out",
     },
 
     "inviteText": {
@@ -71,6 +86,7 @@ window.autoi18n['EN'] = {
         "upNode.rightdi.fanghao":"Room number：",
 		"upNode.rightdi.wanjia": "Player：",
         "bjyxhd":"You gained for this round of the game ",
+		"upNode.leftUp.kszl": "Total ore：",
     },
 
     "CreateRoom": {
@@ -79,7 +95,7 @@ window.autoi18n['EN'] = {
         "label_time":"Amount for single ",
         "label_jine":"Password of room ",
         "label_tips":"Creating room shall frozen ",
-        "EditBoxRenshu.label_ren":"erson ",
+        "EditBoxRenshu.label_ren":"person ",
         "EditBoxTime.label_fen":"Score ",
         "EditBoxRenshu.PLACEHOLDER_LABEL":"2 people minimum",
         "EditBoxTime.PLACEHOLDER_LABEL": "Minimum 1 minute, maximum 3 minutes",

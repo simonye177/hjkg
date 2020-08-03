@@ -2,9 +2,9 @@ if (!window.autoi18n) window.autoi18n = {};
 window.autoi18n['KO'] = {
     "showText": {
         "cjfjtips": "방을 만드는 정보를 입력하세요",
-        "rssrtips": "플레이어 수는 2-20입니다",
-        "jrsrtips": "금액 입력 오류,  최소로 10보다 적을수 없습니다",
-        "sjsrtips": "재생 시간은 1-3 분입니다",
+        "rssrtips": "3-6 명",
+        "jrsrtips": "금액은 100-1000이며 10의 배수입니다",
+        "sjsrtips": "게임 시간은 60-90 초입니다",
         "czerrortips": "조작 오류",
         "ssfjbcztips": "검색한 방이 존재하지 않습니다",
         "myhytips": "당신은 아직 친구가 없습니다",
@@ -21,6 +21,9 @@ window.autoi18n['KO'] = {
 		"jhts":"귀하의 계정은 다른 곳에 로그인되어 있습니다",
         "zhunbeizhong":"준비중",
         "youxizhong":"게임에서",
+		"smtcfj":"10S 이내에 준비되지 않은 선수는 방에서 쫓겨났다",
+        "tcfjti":"{0} 초 안에이 방에 참여할 수 있습니다",
+        "btcfjl":"호스트가 방에서 쫓겨났습니다.",
     },
     "serverTips":{
         "Lang10001": "당신은 이미 {0}호 방에 입장하였고 방을 만들수 없습니다",
@@ -50,10 +53,21 @@ window.autoi18n['KO'] = {
         "Lang10026": "남은 방이 없습니다~잠시만 기다리세요",
         "Lang10027": "광석 파라미터 오류",
         "Lang10028": "게임 결제 이상",
+		"Lang10029": "게임이 이미 시작되었습니다",
+        "Lang10030": "방에서 쫓아 낼 준비가되지 않았다",
+        "Lang10031": "방에서 균형이 불충분하다",
+        "Lang10032": "주택 소유자는 게임을 시작할 수 있습니다",
+        "Lang10033": "게임이 이미 시작되었습니다",
+        "Lang10034": "부족한 사람들",
+        "Lang10035": "호스트가 방에서 쫓겨났습니다.",
+        "Lang10036": "{0} 후에 방에 입장 할 수 있습니다",
+        "Lang10037": "준비를 취소 할 수 없습니다",
+        "Lang10038": "호스트는 플레이어를 쫓아 낼 수 있습니다",
+        "Lang10039": "게임 시작시 플레이어를 쫓아 낼 수 없습니다",
     },
 
     "inviteText": {
-        "sdyqxx": "收到邀请信息",
+        "sdyqxx": "초대 메시지 수신",
     },
 
     "HallScene": {
@@ -71,6 +85,7 @@ window.autoi18n['KO'] = {
         "upNode.rightdi.fanghao": "방번호：",
 		"upNode.rightdi.wanjia": "플레이어：",
         "bjyxhd": "이번 게임에서 당신이 획득한것은",
+		"upNode.leftUp.kszl": "총 광석：",
     },
 
     "CreateRoom": {

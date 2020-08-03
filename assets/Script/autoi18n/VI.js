@@ -2,9 +2,9 @@ if (!window.autoi18n) window.autoi18n = {};
 window.autoi18n['VI'] = {
     "showText": {
         "cjfjtips": "Vui lòng nhập thông tin để tạo phòng",
-        "rssrtips": "Số lượng người chơi là 2-20",
-        "jrsrtips": "Số tiền nhập sai, tối thiểu không nhỏ hơn 10",
-        "sjsrtips": "Thời gian chơi là 1-3 phút",
+        "rssrtips": "3-6 người chơi",
+        "jrsrtips": "Số tiền là 100-1000 và là bội số của 10",
+        "sjsrtips": "Thời gian trò chơi là 60-90 giây",
         "czerrortips": "Lỗi thao tác",
         "ssfjbcztips": "Phòng tìm kiếm không tồn tại",
         "myhytips": "Bạn chưa có bạn bè",
@@ -21,6 +21,9 @@ window.autoi18n['VI'] = {
 		"jhts":"Tài khoản của bạn đã đăng nhập ở nơi khác",
         "zhunbeizhong":"Đang chuẩn bị",
         "youxizhong":"Trong trò chơi",
+		"smtcfj":"10S内没有准备的玩家，10S后踢出房间",
+        "tcfjti":"还有{0}秒您才可以加入此房间",
+        "btcfjl":"您已被房主踢出房间",
     },
     "serverTips":{
         "Lang10001": "Bạn đã vào phòng  số{0}, không thể tạo phòng mới",
@@ -50,6 +53,17 @@ window.autoi18n['VI'] = {
         "Lang10026": "Không có phòng trống ~ vui lòng đợi",
         "Lang10027": "Thông số khoáng thạch không chính xác",
         "Lang10028": "Giải quyết trò chơi bất thường",
+		"Lang10029": "Game đã bắt đầu",
+        "Lang10030": "Chưa sẵn sàng để ra khỏi phòng",
+        "Lang10031": "Không đủ cân bằng đá ra khỏi phòng",
+        "Lang10032": "Chủ nhà có thể bắt đầu trò chơi",
+        "Lang10033": "Game đã bắt đầu",
+        "Lang10034": "Không đủ người",
+        "Lang10035": "Bạn đã bị chủ nhà đuổi ra khỏi phòng",
+        "Lang10036": "Bạn có thể vào phòng sau {0} s",
+        "Lang10037": "Không thể hủy bỏ chuẩn bị",
+        "Lang10038": "Chủ nhà có thể đuổi cầu thủ",
+        "Lang10039": "Trò chơi đã bắt đầu, người chơi không thể bị đuổi ra",
     },
 
     "inviteText": {
@@ -71,6 +85,7 @@ window.autoi18n['VI'] = {
         "upNode.rightdi.fanghao": "Số phòng：",
 		"upNode.rightdi.wanjia": "Máy nghe nhạc：",
         "bjyxhd": "ạn nhận được game này",
+		"upNode.leftUp.kszl": "Tổng quặng：",
     },
 
     "CreateRoom": {
