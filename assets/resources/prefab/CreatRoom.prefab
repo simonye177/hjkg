@@ -812,7 +812,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -910,7 +910,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -1008,7 +1008,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -1106,7 +1106,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -1149,7 +1149,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 272.25,
+      "width": 251.43,
       "height": 25
     },
     "_anchorPoint": {
@@ -1748,8 +1748,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": true,
-    "_string": "最多20人",
-    "_N$string": "最多20人",
+    "_string": "3-6",
+    "_N$string": "3-6",
     "_fontSize": 25,
     "_lineHeight": 50,
     "_enableWrapText": false,
@@ -1858,7 +1858,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -2272,8 +2272,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": true,
-    "_string": "请输入游戏时长",
-    "_N$string": "请输入游戏时长",
+    "_string": "60-90",
+    "_N$string": "60-90",
     "_fontSize": 25,
     "_lineHeight": 50,
     "_enableWrapText": false,
@@ -2382,7 +2382,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": ""
   },

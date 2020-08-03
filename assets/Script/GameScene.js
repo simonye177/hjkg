@@ -188,6 +188,7 @@ cc.Class({
                 this.showStartGameBtn(true);
                 // cc.log("---------------------USERREADY:" ,this.roomInfo.users)
                 this.setReadState(result.userStore)
+                this.updateUserAlsc()
                 if(result.timer){
                     this.gameState = 2;
                     this.gameTimer(result.timer)

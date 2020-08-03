@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5161309757222009,
-      "y": 0.5161309757222009,
+      "x": 0.6494795609119303,
+      "y": 0.6494795609119303,
       "z": 1
     },
     "_quat": {
@@ -1048,7 +1048,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_state": 0,
     "_atlas": null,
     "_id": "c8k9Zkv+1B1rUrGkAjedet"
@@ -2193,7 +2193,7 @@
   {
     "__type__": "cc.Node",
     "_name": "headdi",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 49
     },
@@ -2835,7 +2835,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "6enYQQT7JAzYW+xPzTpQI8"
   },
@@ -2922,7 +2922,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "9fEQy8gtlM9LXuLIOd2KJY"
   },
@@ -3007,7 +3007,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "71Vg7KJxBGLJY57t99M24U"
   },
@@ -3094,7 +3094,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "b0zx4yp15Hkr+kNSbPdJ9X"
   },
@@ -3458,7 +3458,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "f331bWfidH4JEroBPugF17"
   },
@@ -3545,7 +3545,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "5cdBQU/65B+ZHdCz6fAkh2"
   },
@@ -3630,7 +3630,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "21H6S7xZNP/IjOaw0kC+60"
   },
@@ -3717,7 +3717,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "4eQVk+hT5FCZ4FkZBYzgMj"
   },

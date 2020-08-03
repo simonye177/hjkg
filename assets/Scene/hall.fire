@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.4370314842578711,
-      "y": 0.4370314842578711,
+      "x": 0.2827023988005997,
+      "y": 0.2827023988005997,
       "z": 1
     },
     "_quat": {
@@ -59,7 +59,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Canvas",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 1
     },
@@ -3399,7 +3399,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "4ccx0vPYJBL6igsemLSg40"
   },
@@ -3484,7 +3484,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "0fntX55Z5P5LNy5MOn6wAY"
   },
@@ -3743,7 +3743,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "addZdnM79F9JZcvjUSn096"
   },
@@ -3830,7 +3830,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": "feg2ZEfz9H2rikeTjd/mu4"
   },
