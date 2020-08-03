@@ -746,6 +746,9 @@ cc.Class({
 
         if(size>=2){
             cloneret.sort(function(a,b){
+                if(b.userStore.score == a.userStore.score)
+                return b.userStore.catchTime - b.userStore.catchTime
+                else
                 return b.userStore.score-a.userStore.score;
             });
         }
@@ -799,10 +802,10 @@ cc.Class({
 
     //加入房间提示
     tipsJoinRoom(isrecover){
-        if(isrecover)return;
         var myUid = cc.vv.gameData.getUserInfo().userId
         var owerUid = cc.vv.gameData.getCurRoomCreatorInfo().userId
         this.owerUid = owerUid;
+        if(isrecover)return;
         var tipNode = this.node.getChildByName("tipNode")
         var joinType = cc.vv.gameData.getJoinRoomType()
         var tStr = "jrfjtips"
@@ -1286,6 +1289,9 @@ cc.Class({
         var users_sort = users
         if(users.length>=2){
             var users_sort = users.sort(function(a,b){
+                if(b.userStore.score == a.userStore.score)
+                return b.userStore.catchTime - b.userStore.catchTime
+                else
                 return b.userStore.score-a.userStore.score;
             });
         }
