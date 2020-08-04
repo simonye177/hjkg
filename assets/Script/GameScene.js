@@ -747,7 +747,7 @@ cc.Class({
         if(size>=2){
             cloneret.sort(function(a,b){
                 if(b.userStore.score == a.userStore.score)
-                return b.userStore.catchTime - b.userStore.catchTime
+                return a.userStore.catchTime - b.userStore.catchTime
                 else
                 return b.userStore.score-a.userStore.score;
             });
@@ -1290,7 +1290,7 @@ cc.Class({
         if(users.length>=2){
             var users_sort = users.sort(function(a,b){
                 if(b.userStore.score == a.userStore.score)
-                return b.userStore.catchTime - b.userStore.catchTime
+                return a.userStore.catchTime - b.userStore.catchTime
                 else
                 return b.userStore.score-a.userStore.score;
             });

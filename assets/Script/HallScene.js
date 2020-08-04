@@ -31,6 +31,8 @@ cc.Class({
         autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.roomType_1','gongkaifang');
         autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.roomType_2','mimafang');
         autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.lijijiaru','lijijiaru');
+
+        this.roomListCell = this.node.getChildByName("RoomListIcon");
     },
 
     // use this for initialization
@@ -40,11 +42,12 @@ cc.Class({
         this.isCancelPipei = false
         this.initMgr()
         this.initScene("Hall")
+        this.addAutoI18n();
         this.initUI()
         this.addListens()
         this.sendGetRoomList()
         // cc.game.on("onLanguageChange",this.addAutoI18n,this);
-        this.addAutoI18n();
+        
 
         this.schedule(this.updateRoomList,5)
         // //大厅音乐

@@ -97,9 +97,9 @@ window.autoi18n['EN'] = {
         "label_tips":"Creating room shall frozen ",
         "EditBoxRenshu.label_ren":"person ",
         "EditBoxTime.label_fen":"Score ",
-        "EditBoxRenshu.PLACEHOLDER_LABEL":"2 people minimum",
-        "EditBoxTime.PLACEHOLDER_LABEL": "Minimum 1 minute, maximum 3 minutes",
-        "EditBoxJine.PLACEHOLDER_LABEL": "Minimum 10 ALSC",
+        "EditBoxRenshu.PLACEHOLDER_LABEL":"3-6",
+        "EditBoxTime.PLACEHOLDER_LABEL": "60-90",
+        "EditBoxJine.PLACEHOLDER_LABEL": "100-1000",
         "EditBoxMima.PLACEHOLDER_LABEL": "Optional",
     },
 

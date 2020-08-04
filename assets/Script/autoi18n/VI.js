@@ -21,9 +21,9 @@ window.autoi18n['VI'] = {
 		"jhts":"Tài khoản của bạn đã đăng nhập ở nơi khác",
         "zhunbeizhong":"Đang chuẩn bị",
         "youxizhong":"Trong trò chơi",
-		"smtcfj":"10S内没有准备的玩家，10S后踢出房间",
-        "tcfjti":"还有{0}秒您才可以加入此房间",
-        "btcfjl":"您已被房主踢出房间",
+		"smtcfj":"Người chơi không được chuẩn bị trong vòng 10S sẽ đá",
+        "tcfjti":"Bạn có thể tham gia phòng này trong {0} giây",
+        "btcfjl":"Bạn đã bị chủ nhà đuổi ra khỏi phòng",
     },
     "serverTips":{
         "Lang10001": "Bạn đã vào phòng  số{0}, không thể tạo phòng mới",
@@ -71,7 +71,7 @@ window.autoi18n['VI'] = {
     },
 
     "HallScene": {
-        "hallUI.text_RoomList": "Danh sách phòng",
+        "hallUI.text_RoomList": "đại sảnh",
         "RoomListIcon.headicondi.l_ fangzhu": "Chủ phòng",
         "RoomListIcon.i_danzhu": "Đặt cược:",
         "RoomListIcon.i_wanjia": "Người chơi:",
@@ -96,9 +96,9 @@ window.autoi18n['VI'] = {
         " label_tips": "Tạo phòng cần phải đóng băng",
         "EditBoxRenshu.label_ren": "Người",
         "EditBoxTime.label_fen": "điểm",
-        "EditBoxRenshu.PLACEHOLDER_LABEL": "Tối thiểu 2 người",
-        "EditBoxTime.PLACEHOLDER_LABEL": "Tối thiểu 1 phút, tối đa 3 phút",
-        "EditBoxJine.PLACEHOLDER_LABEL": "Tối thiểu 10 ALSC",
+        "EditBoxRenshu.PLACEHOLDER_LABEL": "3-6",
+        "EditBoxTime.PLACEHOLDER_LABEL": "60-90",
+        "EditBoxJine.PLACEHOLDER_LABEL": "100-1000",
         "EditBoxMima.PLACEHOLDER_LABEL": "Không bắt buộc",
     },
 

@@ -96,9 +96,9 @@ window.autoi18n['JA'] = {
         "label_tips":"ルーム作成には凍結が必要",
         "EditBoxRenshu.label_ren":"人",
         "EditBoxTime.label_fen":"分間",
-        "EditBoxRenshu.PLACEHOLDER_LABEL":"2人以上",
-        "EditBoxTime.PLACEHOLDER_LABEL":"最小1分、最大3分",
-        "EditBoxJine.PLACEHOLDER_LABEL":"最小10ALSC",
+        "EditBoxRenshu.PLACEHOLDER_LABEL":"3-6",
+        "EditBoxTime.PLACEHOLDER_LABEL":"60〜90",
+        "EditBoxJine.PLACEHOLDER_LABEL":"100〜1000",
         "EditBoxMima.PLACEHOLDER_LABEL":"自由項目",
     },
 

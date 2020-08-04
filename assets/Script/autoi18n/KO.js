@@ -96,9 +96,9 @@ window.autoi18n['KO'] = {
         "label_tips": "방을 만들려면 동결해야 합니다",
         "EditBoxRenshu.label_ren": "명",
         "EditBoxTime.label_fen": "점",
-        "EditBoxRenshu.PLACEHOLDER_LABEL": "최소 2 명",
-        "EditBoxTime.PLACEHOLDER_LABEL": "최소 1 분, 최대 3 분",
-        "EditBoxJine.PLACEHOLDER_LABEL": "최소 10 ALSC",
+        "EditBoxRenshu.PLACEHOLDER_LABEL": "3-6",
+        "EditBoxTime.PLACEHOLDER_LABEL": "60-90",
+        "EditBoxJine.PLACEHOLDER_LABEL": "100-1000",
         "EditBoxMima.PLACEHOLDER_LABEL": "입력하지 않아도 됨",
     },
 
