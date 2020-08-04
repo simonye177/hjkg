@@ -66,12 +66,9 @@ cc.Class({
         bjhdLabel.getComponent(cc.Label).string = autoi18n.languageData.GameScene.bjyxhd;
 
         var LabelMoney =this.node.getChildByName("youxijieusuanNode").getChildByName("LabelMoney")
-        LabelMoney.getComponent(cc.Label).string =  Number(num).toFixed(2);
-
-        var LabelA13 =this.node.getChildByName("youxijieusuanNode").getChildByName("A13Label")
+        LabelMoney.getComponent(cc.Label).string =  Number(num).toFixed(2) + "   A13";
 
         LabelMoney.x = bjhdLabel.x + bjhdLabel.getContentSize().width/2 + 60
-        LabelA13.x = LabelMoney.x + 80
 
     },
 
