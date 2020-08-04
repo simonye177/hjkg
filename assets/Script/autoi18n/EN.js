@@ -37,7 +37,7 @@ window.autoi18n['EN'] = {
         "Lang10008": "Please enter into room first",
         "Lang10009": "Preparing, please wait for the start of the game~",
         "Lang10011": "Obtain user information failure, please log in again~",
-        "Lang10012": "ALSC coin balance insufficient ~",
+        "Lang10012": "a13 coin balance insufficient ~",
         "Lang10013": "Prohibit exiting before the end of the game ",
         "Lang10014": "Game is over ",
         "Lang10015": "This mine has been excavated by other player ",
@@ -107,10 +107,10 @@ window.autoi18n['EN'] = {
         "1" : 
         `1、 how to create a room?？
 
-        After the player has successfully logged in, get to the bottom and click the third button, click the topmost "Everyone Mining, Come to Fight" to enter the game page. Click the button "Create Room" in the lower left corner, after clicking, the create room page appears. Page Information for create room: The "number of players" must not be less than 2 and the maximum is 20, The minimum "game time" is 1 minute, and the maximum is unlimited, and only integers can be entered. The "single bet amount" is a minimum of 10 ALSC, and the maximum is unlimited, the ALSC amount will be frozen when creating the room for users whoever entered this room.
-        Exiting the room system before starting the game will return the frozen ALSC. When the game finishes,the bet amount of the player with the lowest score will be shared according to the player score ranking, if the scores are tied, the single bet amount will be shared together, the frozen single bet amount of other players will be refunded automatically.
-        If ALSC is insufficient, then it is unable to create a room nor enter the room, "room password" is optional, if a password is entered when creating a room, other players will also need the password to enter this room, after entering all the information, click the "create now" button to successfully create a room.
-		The room types are divided into public rooms and password rooms. Public rooms: All players can enter this room. Password room: Need to enter password to enter the room. After successful creation of the room, the top of the page will be displaying: "Back to game center" button, "Game rules" button, "Player list" button, "Invite friends" button, the lower column displays: player score, nickname, ALSC, room number and other information.
+        After the player has successfully logged in, get to the bottom and click the third button, click the topmost "Everyone Mining, Come to Fight" to enter the game page. Click the button "Create Room" in the lower left corner, after clicking, the create room page appears. Page Information for create room: The "number of players" must not be less than 2 and the maximum is 20, The minimum "game time" is 1 minute, and the maximum is unlimited, and only integers can be entered. The "single bet amount" is a minimum of 10 a13, and the maximum is unlimited, the a13 amount will be frozen when creating the room for users whoever entered this room.
+        Exiting the room system before starting the game will return the frozen a13. When the game finishes,the bet amount of the player with the lowest score will be shared according to the player score ranking, if the scores are tied, the single bet amount will be shared together, the frozen single bet amount of other players will be refunded automatically.
+        If a13 is insufficient, then it is unable to create a room nor enter the room, "room password" is optional, if a password is entered when creating a room, other players will also need the password to enter this room, after entering all the information, click the "create now" button to successfully create a room.
+		The room types are divided into public rooms and password rooms. Public rooms: All players can enter this room. Password room: Need to enter password to enter the room. After successful creation of the room, the top of the page will be displaying: "Back to game center" button, "Game rules" button, "Player list" button, "Invite friends" button, the lower column displays: player score, nickname, a13, room number and other information.
 		`,
 
 
@@ -143,16 +143,16 @@ window.autoi18n['EN'] = {
         Click the "Player List" button, all the players in the game to the current ranking, score, and other information will appear.
         Click the "Invite friends" button, the status of friends will appear. In-game, available, offline, if invite friends at this time, friends can not join the room
         The middle page of the game will appear gold mines, stones. When the gold mines are captured, the gold mine score will be a random number between 1-100. If the stones are captured, the stones are not scored. The player who first hooks up a gold mine will get the gold mine scores, other players do not score at the same gold mine.
-        AThe bottom row will show the player's score, nickname, ALSC number, room number and other information, and the bottom row will show each player's nickname ALSC number, current score and other information.
+        AThe bottom row will show the player's score, nickname, a13 number, room number and other information, and the bottom row will show each player's nickname a13 number, current score and other information.
         `,
 
         "6" :
         `6、Game settlement after the game
         
         At the end of the game when the countdown is 0, a settlement page will appear. At the center of this page the ranking and score of the player in the game will be displayed, according to the scores on this page, the system will: 
-        Rank and calculate to share the single bet amount of the players who are with the lowest ranking (if there are side-by-side players, they are shared together), other players except the players with the lowest ranking score will need to charge a certain miner fee of ALSC won by the player. The single bet amount of players other than the lowest scoring players will be automatically returned to the account. Below the ranking score, players can see how much ALSC they have earned in the game.
+        Rank and calculate to share the single bet amount of the players who are with the lowest ranking (if there are side-by-side players, they are shared together), other players except the players with the lowest ranking score will need to charge a certain miner fee of a13 won by the player. The single bet amount of players other than the lowest scoring players will be automatically returned to the account. Below the ranking score, players can see how much a13 they have earned in the game.
         If there are only 2 players in the room and the 2 players score the same, the system will not calculate and return the frozen single bet amount
-        There are two buttons below the ALSC obtained in this game: "Exit the room" and "One more game". Click the "Exit room" button to return to the room list page. Click the "One more game" button to return to the room page, a new round will be started, each round will freeze the single bet amount entered when creating the room, and will be settled when the game is over.
+        There are two buttons below the a13 obtained in this game: "Exit the room" and "One more game". Click the "Exit room" button to return to the room list page. Click the "One more game" button to return to the room page, a new round will be started, each round will freeze the single bet amount entered when creating the room, and will be settled when the game is over.
 		`,
 
         "7":

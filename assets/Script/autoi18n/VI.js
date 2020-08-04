@@ -36,7 +36,7 @@ window.autoi18n['VI'] = {
         "Lang10008": "Vui lòng vào phòng trước",
         "Lang10009": "Đã chuẩn bị, xin hãy kiên nhẫn để bắt đầu game ~",
         "Lang10011": "Không thể lấy thông tin người dùng, vui lòng đăng nhập lại ~",
-        "Lang10012": "Số tiền thừa ALSC không đủ ~",
+        "Lang10012": "Số tiền thừa a13 không đủ ~",
         "Lang10013": "Đang chơi game, không cho phép thoát ra",
         "Lang10014": "Game đã kết thúc",
         "Lang10015": "Khoáng thạch này đã bị người chơi khác đào lên",
@@ -106,10 +106,10 @@ window.autoi18n['VI'] = {
         "1" : 
         `1、Cách tạo phòng？
 
-        Sau khi người chơi đã đăng nhập thành công, hãy nhập vào dưới cùng và nhấp vào nút thứ ba. Nhấp vào trên cùng "Mọi người khai thác và những người khác để chiến đấu" để vào trang trò chơi. Số người không được ít hơn 2 người và tối đa là 20. "Thời gian trò chơi" tối thiểu là 1 phút và tối đa là không giới hạn. Bạn chỉ có thể nhập một số nguyên. Số tiền tối thiểu cho một lần đặt cược là 10 ALSC. Trong số người dùng đóng băng ALSC đã nhập khi tạo phòng.
-        Thoát khỏi hệ thống phòng trước khi bắt đầu trò chơi sẽ trả lại ALSC bị đóng băng. Vào cuối trò chơi, số tiền đặt cược duy nhất của người chơi có điểm thấp nhất sẽ được chia theo xếp hạng điểm của người chơi. Nó sẽ được hoàn trả tự động.
-        Nếu ALSC không đủ, bạn không thể tạo phòng hoặc vào phòng. "Mật khẩu phòng" là tùy chọn. Nếu bạn nhập mật khẩu khi tạo phòng, người chơi khác cần mật khẩu để vào phòng này. Sau khi nhập tất cả thông tin, hãy nhấp vào nút "Tạo ngay" để thành công. Tạo một căn phòng.
-        Các loại phòng được chia thành phòng công cộng và phòng mật khẩu. Phòng công cộng: Tất cả người chơi trong phòng này có thể vào phòng mật khẩu: Bạn cần nhập mật khẩu để vào phòng. Sau khi tạo thành công, phòng trên cùng sẽ được hiển thị. Nút liệt kê ", nút" Mời bạn bè ", cột bên dưới hiển thị điểm người chơi, biệt danh, ALSC, số phòng và các thông tin khác.
+        Sau khi người chơi đã đăng nhập thành công, hãy nhập vào dưới cùng và nhấp vào nút thứ ba. Nhấp vào trên cùng "Mọi người khai thác và những người khác để chiến đấu" để vào trang trò chơi. Số người không được ít hơn 2 người và tối đa là 20. "Thời gian trò chơi" tối thiểu là 1 phút và tối đa là không giới hạn. Bạn chỉ có thể nhập một số nguyên. Số tiền tối thiểu cho một lần đặt cược là 10 a13. Trong số người dùng đóng băng a13 đã nhập khi tạo phòng.
+        Thoát khỏi hệ thống phòng trước khi bắt đầu trò chơi sẽ trả lại a13 bị đóng băng. Vào cuối trò chơi, số tiền đặt cược duy nhất của người chơi có điểm thấp nhất sẽ được chia theo xếp hạng điểm của người chơi. Nó sẽ được hoàn trả tự động.
+        Nếu a13 không đủ, bạn không thể tạo phòng hoặc vào phòng. "Mật khẩu phòng" là tùy chọn. Nếu bạn nhập mật khẩu khi tạo phòng, người chơi khác cần mật khẩu để vào phòng này. Sau khi nhập tất cả thông tin, hãy nhấp vào nút "Tạo ngay" để thành công. Tạo một căn phòng.
+        Các loại phòng được chia thành phòng công cộng và phòng mật khẩu. Phòng công cộng: Tất cả người chơi trong phòng này có thể vào phòng mật khẩu: Bạn cần nhập mật khẩu để vào phòng. Sau khi tạo thành công, phòng trên cùng sẽ được hiển thị. Nút liệt kê ", nút" Mời bạn bè ", cột bên dưới hiển thị điểm người chơi, biệt danh, a13, số phòng và các thông tin khác.
         `,
 
 
@@ -142,16 +142,16 @@ window.autoi18n['VI'] = {
         Nhấp vào nút "Mời bạn bè" và trạng thái của bạn bè sẽ xuất hiện. Trong trò chơi, nhàn rỗi, ngoại tuyến, mời bạn bè vào thời điểm này, những người bạn tốt không thể tham gia phòng
         Trang giữa của trò chơi sẽ xuất hiện các mỏ vàng, đá. Khi các mỏ vàng bị bắt, điểm số của mỏ vàng là một con số ngẫu nhiên trong khoảng 1-100. Nếu các viên đá bị bắt, các viên đá sẽ không được ghi. Nếu nhiều người chơi bắt được cùng một loại quặng, nhiều nhất Người chơi đầu tiên móc được điểm vàng, người chơi khác không ghi bàn.
         Một vòng quặng mới xuất hiện khi một phần ba số vàng và đá vẫn còn. Ở giữa cuối trang vàng và đá, sẽ có đếm ngược thời gian trước khi trò chơi kết thúc. Thời gian đếm ngược ở đây dựa trên thời gian trò chơi được nhập khi phòng được tạo. Trò chơi kết thúc khi đếm ngược bằng 0. Ví dụ: nếu người chơi đột nhiên vào Điện thoại đã nói chuyện trong 30 giây và việc đếm ngược sẽ không bị tạm dừng sau 30 giây.
-        Hàng dưới cùng sẽ hiển thị điểm số, biệt danh, số ALSC, số phòng và thông tin khác của người chơi và hàng dưới cùng sẽ hiển thị số biệt danh ALSC của người chơi, số điểm hiện tại và các thông tin khác.
+        Hàng dưới cùng sẽ hiển thị điểm số, biệt danh, số a13, số phòng và thông tin khác của người chơi và hàng dưới cùng sẽ hiển thị số biệt danh a13 của người chơi, số điểm hiện tại và các thông tin khác.
         `,
 
         "6" :
         `6、Giải quyết trò chơi sau trò chơi
         
         Vào cuối trò chơi khi đếm ngược bằng 0, một trang thanh toán xuất hiện. Ở giữa trang này hiển thị thứ hạng và điểm của người chơi trong trò chơi. Hệ thống sẽ tính điểm dựa trên trang này.
-        Tính thứ hạng để có được số tiền đặt cược duy nhất của người chơi có thứ hạng thấp nhất (nếu có người chơi phụ, chia sẻ với nhau), những người chơi khác ngoại trừ người chơi có điểm xếp hạng thấp nhất sẽ cần phải trả một khoản phí khai thác ALSC nhất định mà người chơi giành được. Số tiền đặt cược duy nhất của người chơi không phải là người chơi có điểm thấp nhất sẽ được tự động quay lại tài khoản. Dưới điểm số xếp hạng, người chơi có thể thấy trò chơi ALSC đã kiếm được bao nhiêu.
+        Tính thứ hạng để có được số tiền đặt cược duy nhất của người chơi có thứ hạng thấp nhất (nếu có người chơi phụ, chia sẻ với nhau), những người chơi khác ngoại trừ người chơi có điểm xếp hạng thấp nhất sẽ cần phải trả một khoản phí khai thác a13 nhất định mà người chơi giành được. Số tiền đặt cược duy nhất của người chơi không phải là người chơi có điểm thấp nhất sẽ được tự động quay lại tài khoản. Dưới điểm số xếp hạng, người chơi có thể thấy trò chơi a13 đã kiếm được bao nhiêu.
         Nếu chỉ có 2 người chơi trong phòng và 2 người chơi cùng điểm, hệ thống sẽ không tính toán và thoát số tiền đặt cược đơn bị đóng băng
-        Có hai nút bên dưới ALSC thu được trong trò chơi này. Có hai nút "Thoát khỏi phòng" và "Thêm một trò chơi". Nhấp vào nút "Thoát khỏi phòng" để trở về trang danh sách phòng. Nhấp vào nút "Một trò chơi" để trở về trang phòng , Bắt đầu một vòng mới, mỗi vòng sẽ đóng băng số tiền đặt cược duy nhất được nhập khi tạo phòng và sẽ được giải quyết khi trò chơi kết thúc.
+        Có hai nút bên dưới a13 thu được trong trò chơi này. Có hai nút "Thoát khỏi phòng" và "Thêm một trò chơi". Nhấp vào nút "Thoát khỏi phòng" để trở về trang danh sách phòng. Nhấp vào nút "Một trò chơi" để trở về trang phòng , Bắt đầu một vòng mới, mỗi vòng sẽ đóng băng số tiền đặt cược duy nhất được nhập khi tạo phòng và sẽ được giải quyết khi trò chơi kết thúc.
         `,
 
         "7":

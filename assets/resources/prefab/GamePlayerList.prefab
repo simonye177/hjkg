@@ -2777,7 +2777,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 245,
+      "width": 300,
       "height": 35
     },
     "_anchorPoint": {
@@ -2820,8 +2820,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "本局游戏您获得",
-    "_N$string": "本局游戏您获得",
+    "_string": "本局游戏您获得    ",
+    "_N$string": "本局游戏您获得    ",
     "_fontSize": 35,
     "_lineHeight": 35,
     "_enableWrapText": true,
@@ -2832,7 +2832,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 3,
     "_N$cacheMode": 0,
     "_id": ""
   },

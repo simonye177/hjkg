@@ -68,7 +68,9 @@ cc.Class({
         var LabelMoney =this.node.getChildByName("youxijieusuanNode").getChildByName("LabelMoney")
         LabelMoney.getComponent(cc.Label).string =  Number(num).toFixed(2) + "   A13";
 
-        LabelMoney.x = bjhdLabel.x + bjhdLabel.getContentSize().width/2 + 60
+        LabelMoney.x = bjhdLabel.x + bjhdLabel.getContentSize().width/2 + 50
+
+        cc.log(".................sssssssss:" ,bjhdLabel.x , bjhdLabel.getContentSize().width/2 , LabelMoney.x)
 
     },
 
