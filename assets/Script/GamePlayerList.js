@@ -62,8 +62,17 @@ cc.Class({
             num = 0;
             window.playEff("shule");
         }
-        this.node.getChildByName("youxijieusuanNode").getChildByName("bjhdLabel").getComponent(cc.Label).string = autoi18n.languageData.GameScene.bjyxhd;
-        this.node.getChildByName("youxijieusuanNode").getChildByName("LabelMoney").getComponent(cc.Label).string =  Number(num).toFixed(2);
+        var bjhdLabel = this.node.getChildByName("youxijieusuanNode").getChildByName("bjhdLabel")
+        bjhdLabel.getComponent(cc.Label).string = autoi18n.languageData.GameScene.bjyxhd;
+
+        var LabelMoney =this.node.getChildByName("youxijieusuanNode").getChildByName("LabelMoney")
+        LabelMoney.getComponent(cc.Label).string =  Number(num).toFixed(2);
+
+        var LabelA13 =this.node.getChildByName("youxijieusuanNode").getChildByName("A13Label")
+
+        LabelMoney.x = bjhdLabel.x + bjhdLabel.getContentSize().width/2 + 60
+        LabelA13.x = LabelMoney.x + 80
+
     },
 
     setGameOverCallBack(callback_exitgame, callback_playeragin ){

@@ -12,11 +12,16 @@ cc.Class({
         spacing: 0, // 间距
     },
 
+    addAutoI18n(){
+        autoi18n.analysisLanguageSprite(this.item,'roomType_1','gongkaifang');
+        autoi18n.analysisLanguageSprite(this.item,'roomType_2','mimafang');
+        autoi18n.analysisLanguageSprite(this.item,'lijijiaru','lijijiaru');
+    },
+
     onLoad () {
         ScrollViewHelper.prototype.onLoad.call(this)
-        this.__initScrollView()
-
         this.node.on('scrolling', this.srolling, this)
+        this.addAutoI18n()
     },
 
     __initScrollView(){

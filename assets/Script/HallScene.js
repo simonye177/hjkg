@@ -28,11 +28,9 @@ cc.Class({
         autoi18n.analysisLanguageSprite(this.node,'hallUI.btn_seachRoom','ssfjbtn');
         autoi18n.analysisLanguageSprite(this.node,'hallUI.dibg.btn_createRoom','cjfjbtn');
         autoi18n.analysisLanguageSprite(this.node,'hallUI.dibg.btn_FastJoin','ksjrbtn');
-        autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.roomType_1','gongkaifang');
-        autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.roomType_2','mimafang');
-        autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.lijijiaru','lijijiaru');
-
-        this.roomListCell = this.node.getChildByName("RoomListIcon");
+        // autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.roomType_1','gongkaifang');
+        // autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.roomType_2','mimafang');
+        // autoi18n.analysisLanguageSprite(this.node,'RoomListIcon.lijijiaru','lijijiaru');
     },
 
     // use this for initialization

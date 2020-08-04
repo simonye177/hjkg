@@ -650,7 +650,9 @@ cc.Class({
                 obj.getComponent("GamePlayerList").setModeTyppe("wanjialiebiao")
                 let arg_sort = this.getDeepClonUser()
                 // this.owerUid = cc.vv.gameData.getCurRoomCreatorInfo().userId;
-                obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort,this.myUid,this.owerUid,this.roomId)
+                this.scheduleOnce(()=>{
+                    obj.getComponent("GamePlayerList").addPlayerListCell(arg_sort,this.myUid,this.owerUid,this.roomId)
+                },0.5)
                 this.gameListpre = obj;
                 return
             }
