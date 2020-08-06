@@ -43,9 +43,9 @@ cc.Class({
         this.addAutoI18n();
         this.initUI()
         this.addListens()
-        this.schedule(()=>{
+        this.scheduleOnce(()=>{
             this.sendGetRoomList()
-        },0.5)
+        },0.6)
         // cc.game.on("onLanguageChange",this.addAutoI18n,this);
         
 

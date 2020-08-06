@@ -23,6 +23,7 @@ cc.Class({
         cc.log("---碰撞了---:" , other.tag)
         if(other.tag == 1){
             // cc.log("peng dao le qiang bi")
+            this.setCollision(false)
             cc.vv.eventMgr.emit(GlobalConfig.PENGZHUANG_WALL, null);
             return
         }else if(other.tag ==2){
@@ -33,14 +34,9 @@ cc.Class({
                 return
             }
             other.node.removeFromParent()
+            this.setCollision(false)
             cc.vv.eventMgr.emit(GlobalConfig.PENGZHUANG_GOLD, {id:id,isgold:isgold,iconId:iconId});
-            // cc.log("peng dao le kuangshi")
-
-            var manager = cc.director.getCollisionManager();
-            manager.enabled = false;
         }
-
-
 
         // 碰撞系统会计算出碰撞组件在世界坐标系下的相关的值，并放到 world 这个属性里面
         var world = self.world;
@@ -71,6 +67,13 @@ cc.Class({
      */
     onCollisionStay: function (other, self) {
         console.log('on collision stay');
+    },
+
+    setCollision(b){
+        var manager = cc.director.getCollisionManager();
+        manager.enabled = b;
+        cc.log("............设置碰撞claw：" , b)
+        // manager.enabledDebugDraw = true;
     },
 
     /**
