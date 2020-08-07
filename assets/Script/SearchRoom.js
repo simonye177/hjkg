@@ -19,6 +19,7 @@ cc.Class({
 
         autoi18n.analysisLanguageSprite(this.node,'title','sousuofangj');
         autoi18n.analysisLanguageSprite(this.node,'titlemima','shurumima');
+        autoi18n.analysisLanguageSprite(this.node,'btn_lijijinru','lijijiaru');
     },
 
     onLoad () {

@@ -107,7 +107,7 @@ window.autoi18n['EN'] = {
         "1" : 
         `1、 how to create a room?？
 
-        After the player has successfully logged in, get to the bottom and click the third button, click the topmost "Everyone Mining, Come to Fight" to enter the game page. Click the button "Create Room" in the lower left corner, after clicking, the create room page appears. Page Information for create room: The "number of players" must not be less than 2 and the maximum is 20, The minimum "game time" is 1 minute, and the maximum is unlimited, and only integers can be entered. The "single bet amount" is a minimum of 10 a13, and the maximum is unlimited, the a13 amount will be frozen when creating the room for users whoever entered this room.
+        After the player has successfully logged in, get to the bottom and click the third button, click the topmost "Everyone Mining, Come to Fight" to enter the game page. Click the button "Create Room" in the lower left corner, after clicking, the create room page appears. Page Information for create room: The "number of players" must not be less than 3 and the maximum is 6, The minimum "game time" is 1 minute, and the maximum is unlimited, and only integers can be entered. The "single bet amount" is a minimum of 100 a13, and the maximum is unlimited, the a13 amount will be frozen when creating the room for users whoever entered this room.
         Exiting the room system before starting the game will return the frozen a13. When the game finishes,the bet amount of the player with the lowest score will be shared according to the player score ranking, if the scores are tied, the single bet amount will be shared together, the frozen single bet amount of other players will be refunded automatically.
         If a13 is insufficient, then it is unable to create a room nor enter the room, "room password" is optional, if a password is entered when creating a room, other players will also need the password to enter this room, after entering all the information, click the "create now" button to successfully create a room.
 		The room types are divided into public rooms and password rooms. Public rooms: All players can enter this room. Password room: Need to enter password to enter the room. After successful creation of the room, the top of the page will be displaying: "Back to game center" button, "Game rules" button, "Player list" button, "Invite friends" button, the lower column displays: player score, nickname, a13, room number and other information.
@@ -122,7 +122,7 @@ window.autoi18n['EN'] = {
 
 
         "3" :
-        `3、如何加入房间？
+        `3、How to join the room?
         
         After login successfully, click the third button below, and click the "Everyone Mining, Come to Fight" at the top to enter the game page. On the page "Room List", you can see the specific information of each room, such as "Room Status", "Room No. "," Number of players "," Single bet amount "," Public room", “Password room" and other information.
         Click the "Search Room" button to the right of the "Room List" and enter the room number. You can click the "Join Now" button at the room information to join the room, or click the "Quick Join" button at the bottom to join the room which is with the fastest time to the start of the game. You cannot join rooms which their games are in progress. After successfully joining the room, the system will freeze the single bet amount entered when the room was created and will be settled when the game ends
@@ -173,7 +173,7 @@ window.autoi18n['EN'] = {
      },
 
       "SearchRoom": {
-         "fanghaoEditBox.PLACEHOLDER_LABEL":"Please input the room number ",
+        "fanghaoEditBox.PLACEHOLDER_LABEL":"Please input the room number ",
         "mimaEditBox.PLACEHOLDER_LABEL":"Please input the room password ",
      },
 }

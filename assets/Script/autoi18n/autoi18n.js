@@ -25,6 +25,8 @@ window.autoi18n.analysisLanguageSprite=function(parent,nodeKey,name){
 },
 
 window.autoi18n.analysisLanguageData=function(parent,nodeKey,moduleName,...args){
+
+    cc.log("analysisLanguageData---:" , nodeKey ,  moduleName)
     let keys=nodeKey.split(".");
     let node=parent;
     for(let i=0;i<keys.length;i++){

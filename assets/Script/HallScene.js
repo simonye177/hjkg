@@ -468,7 +468,10 @@ cc.Class({
         },this);
 
         cc.vv.eventMgr.addHandler(GlobalConfig.SOKET_OPEN, function (data) {
-            self.sendGetRoomList()
+            this.scheduleOnce(()=>{
+                self.sendGetRoomList()
+            },1)
+            
             if(this.shareRoomId){
                 let ret = this.checkIsCannotJoin(this.shareRoomId);
                 if(ret) return;
