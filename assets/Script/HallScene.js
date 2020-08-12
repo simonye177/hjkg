@@ -658,4 +658,18 @@ cc.Class({
         cc.vv.musicManage.stopMusic();
         this.unschedule(this.updateRoomList)
     },
+
+    testWrite(){
+        cc.sys.localStorage.setItem("testlocalStorage", "123456")
+        ShowTipsLabel("测试写入成功123456")
+    },
+
+    testRead(){
+        var vue = cc.sys.localStorage.getItem("testlocalStorage")
+        if(vue){
+            ShowTipsLabel("成功读取到写入值：" +  vue)
+            return
+        }
+        ShowTipsLabel("读取值为空")
+    },
 });
