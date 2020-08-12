@@ -9,7 +9,7 @@ cc.Class({
         this.soketState = 0;  //0 未连接  1：连接  2：关闭
         this.isJihao = false; //是否被挤号了
         this.isCloseGame = false;//是否是退游戏
-        this.isLoadScene = false;
+        // this.isLoadScene = false;
     },
 
     getSoketState(){
@@ -22,7 +22,8 @@ cc.Class({
 
     setIsLoadingScene( isLoadScene ){
         this.isLoadScene = isLoadScene;
-        if(isLoadScene == false){
+        cc.log(".....................setIsLoadingScene.:" , this.isLoadScene);
+        if(!isLoadScene){
             this.doMessageList()
         }
     },
@@ -95,7 +96,9 @@ cc.Class({
                 })
                 return
             }
-            if(this.isLoadScene){
+            cc.log(".................onmessage...this.isLoadScene:" , self.isLoadScene)
+            if(self.isLoadScene){
+                cc.log("添加消息到缓存。。。。:" , s_data.cmd)
                 self.messageList.push(s_data)
             }else{
                 // self.websocketMessage(s_data)

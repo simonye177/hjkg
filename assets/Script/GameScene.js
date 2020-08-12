@@ -110,7 +110,7 @@ cc.Class({
         this.roomId = roomInfo.roomId
         this.myInfo = cc.vv.gameData.getUserInfo()
         this.myUid = this.myInfo.userId
-        cc.log("----------------initRoom_this.myUid:" , this.myUid)
+        cc.log("----------initRoom-----_this.myUid:" , this.myUid)
         this.roomInfo = roomInfo
         this.timerLabel.node.active = false;
         this.cszlLabel.string = roomInfo.payAmount;
