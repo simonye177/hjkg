@@ -317,10 +317,12 @@ cc.Class({
 
     startTimerReadyServer(time){
         if(time){
+            cc.sys.localStorage.setItem("lastDoJiShiTime", new Date().getTime() + time*1000 )
             this.gameTimer(time,true)
         }else{
             this.timerLabel.node.active = false;
             this.unschedule(this.updateCurTime);
+            cc.sys.localStorage.setItem("lastDoJiShiTime", "")
         }
     },
 
@@ -1029,6 +1031,15 @@ cc.Class({
             this.updateOterPlayer(true)
             this.updateOtherReady()
             this.showStartGameBtn(true)
+
+
+            var curtime = new Date().getTime();
+            var daojishiTime = cc.sys.localStorage.getItem("lastDoJiShiTime")
+            if( daojishiTime && curtime < Number(daojishiTime))
+            {
+                let cha = (Number(daojishiTime) - curtime ) / 1000
+                this.gameTimer( Math.floor(cha) , true)
+            }
         }
     },
 
