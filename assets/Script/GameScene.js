@@ -1174,12 +1174,11 @@ cc.Class({
     },
 
     //判断是否显示开始游戏按钮
-
     showStartGameBtn( isShow ){
         if(isShow){
             // this.owerUid = cc.vv.gameData.getCurRoomCreatorInfo().userId;
             if(this.myUid != this.owerUid) return;
-            if(this.otherReadyPlayerNum >0 && this._myReadState){
+            if(this.otherReadyPlayerNum >0 && this._myReadState && this.gameState != 3){
                 this.starGameBtn.active = true;
                 this.readyNode.active = false;
             }
