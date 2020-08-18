@@ -190,7 +190,7 @@ cc.Class({
                 this.setReadState(result.userStore)
                 this.updateUserAlsc()
                 if(result.timer){
-                    this.gameState = 2;
+                    // this.gameState = 2;
                     this.gameTimer(result.timer)
                     if(!this.isShowTipsAlscKou && this.lastMystate){
                         let tips = autoi18n.languageData.showText.xtydj + " " +this.roomInfo.payAmount  + " A13"
@@ -458,7 +458,7 @@ cc.Class({
 
 
         this.gameRect.on('touchend', function (event) {
-
+            cc.log("---------------------addOperationListen:" ,this.operationState , this.gameState)
             if(this.operationState == 0 && this.gameState == 3){
                 this.operationState = 1
                 this.shengzi.pauseAllActions()
