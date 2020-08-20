@@ -610,13 +610,15 @@ cc.Class({
         cc.log("this.exitGameBtnType:........:" , this.exitGameBtnType)
         window.playEff("button");
         if(this.exitGameBtnType == 2){
-            this.onJieSanTips(autoi18n.languageData.showText.qdtcyx,()=>{
-                // window.exitGame()
-                // cc.game.end()
-                cc.vv.musicManage.stopMusic();
-                // window.alsc.finish();
-                cc.vv.webSoket.closeSoket(true);
-            })
+            // this.onJieSanTips(autoi18n.languageData.showText.qdtcyx,()=>{
+            //     // window.exitGame()
+            //     // cc.game.end()
+            //     cc.vv.musicManage.stopMusic();
+            //     // window.alsc.finish();
+            //     cc.vv.webSoket.closeSoket(true);
+            // })
+            cc.vv.musicManage.stopMusic();
+            cc.vv.webSoket.closeSoket(true);
         }else{
             var users = this.roomInfo.users
             if(users.length==1 && users[0].userId == this.myUid){
