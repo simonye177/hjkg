@@ -1006,6 +1006,7 @@ cc.Class({
         this.gameTimer(result.totalTime);
         this.setExitGameBtnType(2);
         this.updatePlayerNum();
+        this.closeTenTips();
         window.playEff("startgame");
     },
 
@@ -1113,9 +1114,20 @@ cc.Class({
                     obj.getComponent("ExitPanel").showTime(10);
                     obj.getComponent("ExitPanel").closeTimerCallBack(()=>{
                         this.showTenTips = null;
+                        this.tenTipsNode = null;
                     });
+                    this.tenTipsNode = obj;
                 }
             })
+        }
+    },
+
+    closeTenTips(){
+        if(this.showTenTips && this.tenTipsNode){
+            var cPopUpManage=window.PopUpManage().getComponent("PopUpManage")
+            cPopUpManage.hide(this.tenTipsNode, true)
+            this.showTenTips = null
+            this.tenTipsNode = null;
         }
     },
 
