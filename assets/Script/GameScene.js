@@ -316,13 +316,13 @@ cc.Class({
     },
 
     startTimerReadyServer(time){
-        if(time){
-            cc.sys.localStorage.setItem("lastDoJiShiTime", new Date().getTime() + time*1000 )
-            this.gameTimer(time,true)
-        }else{
+        if(time===null){
             this.timerLabel.node.active = false;
             this.unschedule(this.updateCurTime);
             cc.sys.localStorage.setItem("lastDoJiShiTime", "")
+        }else if(time){
+            cc.sys.localStorage.setItem("lastDoJiShiTime", new Date().getTime() + time*1000 )
+            this.gameTimer(time,true)
         }
     },
 
